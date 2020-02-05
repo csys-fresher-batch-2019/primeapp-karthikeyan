@@ -104,7 +104,7 @@ public class UserCreditsImp implements usercreditsdao {
 
 			System.out.println("Welcome to Prime\nUpdate your Profile");
 			con1.close();
-			TestNewUser.main(mailId);
+			//TestNewUser.main(mailId);
 		}
 	}
 
