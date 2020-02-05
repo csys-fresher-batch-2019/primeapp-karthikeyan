@@ -44,16 +44,16 @@ import javax.mail.internet.*;
 
 	private static Multipart messageBody(String Msg) throws MessagingException{ {
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
-		messageBodyPart1.setText("Greetings, From Payroll Department");  
+		messageBodyPart1.setText("Prime OTP Assitance");  
+		BodyPart messageBodyPart2 = new MimeBodyPart(); 
+		messageBodyPart2.setText("\nTo authenticate, please use the following One Time Password (OTP):");
 		 
-		//BodyPart messageBodyPart2 = new MimeBodyPart(); 
-		//messageBodyPart2.setText("\nDear, \n \t\t "+id);
 		BodyPart messageBodyPart3 = new MimeBodyPart(); 
-		messageBodyPart3.setText("\n\t\tYour Leave application was "+Msg);
+		messageBodyPart3.setText(Msg);
 		BodyPart messageBodyPart4 = new MimeBodyPart(); 
-		messageBodyPart4.setText("\n\t\tThank you");
+		messageBodyPart4.setText("Do not share this OTP with anyone. \nAmazon takes your account security very seriously. \nAmazon Customer Service will never ask you to disclose or \nverify your Amazon password, OTP, credit card, or banking account number. ");
 		BodyPart messageBodyPart5 = new MimeBodyPart(); 
-		messageBodyPart5.setText("\n\t Team Payroll...");
+		messageBodyPart5.setText("Thanks for Using Prime Videos");
 
 		/*String filename = "SendAttachment.java";  
 		FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
