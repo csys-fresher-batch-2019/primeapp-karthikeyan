@@ -92,9 +92,7 @@ public class UserCreditsImp implements usercreditsdao {
 	public void insertSignUp(String mailId, String password, int random) throws Exception {
 
 		if (TestConformEmail.main(random, mailId))
-
 		{
-
 			String sql1 = "insert into user_credits (mail_id,user_id,passwords) values (?,user_id_seq.nextval,?)";
 			Connection con1 = TestConnection.getConnection();
 			PreparedStatement pst1 = con1.prepareStatement(sql1);
