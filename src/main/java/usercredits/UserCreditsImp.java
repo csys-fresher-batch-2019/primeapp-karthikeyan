@@ -11,8 +11,6 @@ import com.chainsys.primeapp.TestConformEmail;
 
 import Connection.TestConnection;
 
-import TestUserCredits.TestNewUser;
-
 
 public class UserCreditsImp implements usercreditsdao {
 
