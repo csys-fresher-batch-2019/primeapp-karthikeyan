@@ -10,7 +10,7 @@ import com.chainsys.primeapp.OTPUtil;
 import com.chainsys.primeapp.TestConformEmail;
 
 import Connection.TestConnection;
-import TestUserCredits.TestLogin;
+
 import TestUserCredits.TestNewUser;
 
 
@@ -27,6 +27,7 @@ public class UserCreditsImp implements usercreditsdao {
 			return true;
 		} else {
 			System.out.println("Incorrect Email ID DoesNot Exist");
+			con.close();
 			return false;
 		}
 
@@ -43,6 +44,7 @@ public class UserCreditsImp implements usercreditsdao {
 			otp = OTPUtil.getOTP();
 			TestConformEmail.changePassword(otp, mailId);
 		}
+		con.close();
 		return otp;
 	}
 
@@ -60,6 +62,7 @@ public class UserCreditsImp implements usercreditsdao {
 		int row = pst1.executeUpdate();
 		if (row == 1) {
 			System.out.println("Password Updated");
+			con1.close();
 
 		}
 
@@ -78,7 +81,9 @@ public class UserCreditsImp implements usercreditsdao {
 
 		} else {
 			int random = OTPUtil.getOTP();
+			con.close();
 			insertSignUp(User.mailId, User.password, random);
+			
 
 		}
 

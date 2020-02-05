@@ -3,7 +3,7 @@ package com.chainsys.primeapp;
 import java.io.IOException;
 import java.util.Scanner;
 
-import com.sendgrid.helpers.mail.objects.Email;
+//import com.sendgrid.helpers.mail.objects.Email;
 
 import TestUserCredits.MailUtil1;
 
