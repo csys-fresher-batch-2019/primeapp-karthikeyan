@@ -12,12 +12,11 @@ public class TestPasswordAssitancne {
 		System.out.println("Prime Password assistance\n\nEnter the email address associated with your \nPrime account.");
 		System.out.println("Enter your Email ID : ");
 		String EmailId = sc.next();
-		int otp = s.resetPassword(EmailId);
+		
 
-		System.out.println("Enter otp");
-		int userOtp = sc.nextInt();
+		
 
-		if (s.verifyOtp(otp, userOtp)) {
+		if (s.resetPassword(EmailId)) {
 			String password="";
 			String password1="";
 			String password2="";

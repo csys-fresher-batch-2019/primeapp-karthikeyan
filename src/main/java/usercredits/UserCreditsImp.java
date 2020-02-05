@@ -33,7 +33,7 @@ public class UserCreditsImp implements usercreditsdao {
 
 	}
 
-	public int resetPassword(String mailId) throws Exception {
+	public boolean resetPassword(String mailId) throws Exception {
 		int otp = 0;
 		String sql = "select * from user_credits where mail_id = ?";
 		Connection con = TestConnection.getConnection();
@@ -43,15 +43,15 @@ public class UserCreditsImp implements usercreditsdao {
 		if (rs.next()) {
 			otp = OTPUtil.getOTP();
 			TestConformEmail.changePassword(otp, mailId);
+			return true;
 		}
 		con.close();
-		return otp;
+		return false;
+		
+		
 	}
 
-	public boolean verifyOtp(int otp, int userOtp) {
-		return otp == userOtp;
-	}
-
+	
 	public void verifyOTPAndUpdatePassword(String mailId, String password) throws Exception {
 
 		// String password = getPassword.main(null);
