@@ -7,9 +7,8 @@ import java.util.Scanner;
 
 import TestUserCredits.MailUtil1;
 
-public class TestConformEmail {
-	Scanner sc = new Scanner(System.in);
-
+public class TestConformEmail 
+{
 	public static boolean main(int random, String mailId) throws IOException {
 		Scanner sc = new Scanner(System.in);
         String subject = "Verify your new Amazon account";    

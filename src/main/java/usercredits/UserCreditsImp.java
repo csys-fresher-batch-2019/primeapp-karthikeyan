@@ -68,7 +68,7 @@ public class UserCreditsImp implements usercreditsdao {
 
 	}
 
-	public void userSignUp(UserCredits User) throws Exception {
+	public String userSignUp(UserCredits User) throws Exception {
 		String sql = "select user_id from user_credits where mail_id = ?";
 		Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);
@@ -83,16 +83,19 @@ public class UserCreditsImp implements usercreditsdao {
 			int random = OTPUtil.getOTP();
 			con.close();
 			insertSignUp(User.mailId, User.password, random);
-			
+			return User.mailId;
 
 		}
+		return null;
 
 	}
 
 	public void insertSignUp(String mailId, String password, int random) throws Exception {
 
 		if (TestConformEmail.main(random, mailId))
+
 		{
+
 			String sql1 = "insert into user_credits (mail_id,user_id,passwords) values (?,user_id_seq.nextval,?)";
 			Connection con1 = TestConnection.getConnection();
 			PreparedStatement pst1 = con1.prepareStatement(sql1);
@@ -102,7 +105,7 @@ public class UserCreditsImp implements usercreditsdao {
 
 			System.out.println("Welcome to Prime\nUpdate your Profile");
 			con1.close();
-			//TestNewUser.main(mailId);
+			
 		}
 	}
 

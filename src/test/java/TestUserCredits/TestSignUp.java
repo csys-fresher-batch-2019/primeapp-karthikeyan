@@ -26,8 +26,8 @@ public class TestSignUp {
 	 	if (password1.equals(password))
 	 	{
 	 		as.password = password;
-	 		ap.userSignUp(as);
-	 		
+	 		String mailId = ap.userSignUp(as);
+	 		TestNewUser.main(mailId);
 	 	}
 	 	else
 	 	{
