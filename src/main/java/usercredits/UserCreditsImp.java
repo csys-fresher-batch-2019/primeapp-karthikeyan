@@ -6,9 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
-import com.chainsys.primeapp.TestConformEmail;
+import com.chainsys.primeapp.OTPUtil;
 
 import Connection.TestConnection;
+import com.chainsys.primeapp.TestConformEmail;
 import TestUserCredits.TestLogin;
 import TestUserCredits.TestNewUser;
 import TestUserCredits.TestRandomNumber;
@@ -25,13 +26,15 @@ public class UserCreditsImp implements usercreditsdao{
 		ResultSet rs = pst.executeQuery();
 		if (rs.next())
 		{
+			con.close();
 		return true;
 		}
 		else
 		{
-			//System.out.println("Incorrect Email ID DoesNot Exist");
+			System.out.println("Incorrect Email ID DoesNot Exist");
 			return false;
 		}
+		
 	
 	}
 	public void testPassword(String mailId) throws Exception{
@@ -59,7 +62,7 @@ public class UserCreditsImp implements usercreditsdao{
 		}
 	}
 
-	public boolean userSignUp(UserCredits User) throws Exception {
+	public void userSignUp(UserCredits User) throws Exception {
 		String sql = "select user_id from user_credits where mail_id = ?";
 		Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);	
@@ -68,22 +71,24 @@ public class UserCreditsImp implements usercreditsdao{
 		rs.next();
 		if (rs.next()){
 			con.close();
-			//System.out.println("Email Id Already Exist");
-			return false;
+			System.out.println("Email Id Already Exist");
+			
 		}
 		else {
-			//insertSignUp(User.mailId,User.password);
+			int random = OTPUtil.getOTP();
+			insertSignUp(User.mailId,User.password,random);
 			
-			return true;
+			
 		}
+		
 	}
 	
 		
 	public void insertSignUp(String mailId, String password,int random) throws Exception
 		{
-			//int random = TestRandomNumber.main(null);
-			//if(TestConformEmail.main(random,mailId))
-		if(true)
+			
+			if(TestConformEmail.main(random,mailId))
+		
 			{
 			
 			String sql1 = "insert into user_credits (mail_id,user_id,passwords) values (?,user_id_seq.nextval,?)";

@@ -1,11 +1,11 @@
-package TestUserCredits;
+package com.chainsys.primeapp;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 import com.sendgrid.helpers.mail.objects.Email;
 
-import TestUserCredits.MailUtil;
+import TestUserCredits.MailUtil1;
 
 public class TestConformEmail {
 	Scanner sc = new Scanner(System.in);
@@ -14,7 +14,7 @@ public class TestConformEmail {
 		Scanner sc = new Scanner(System.in);
         String subject = "Verify your new Amazon account";    
         String bodyContent = "To verify your email address,\nplease use the following One Time Password (OTP):\n\n\n "+random+"\n\nDo not share this OTP with anyone.\nPrime takes your account security very seriously. ";
-        MailUtilil1.send("primemovieentertainments@gmail.com","Reset@123",mailId,subject,bodyContent);
+        MailUtil1.send("primemovieentertainments@gmail.com","Reset@123",mailId,subject,bodyContent);
         System.out.println("Enter the OTP");
 		System.out.println("OTP send to your MailId");
 		int a =sc.nextInt();

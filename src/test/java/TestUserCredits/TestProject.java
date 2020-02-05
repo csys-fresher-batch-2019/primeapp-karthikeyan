@@ -23,15 +23,12 @@ public class TestProject {
 		case 1:
 		{
 			TestLogin.main(null);
-			TestPage.main(null);
-			
-			break;
 			
 		}
 		case 2:
 		{
 			TestSignUp.main(null);
-			TestPage.main(null);
+			TestLogin.main(null);
 			
 			break;
 		}

@@ -3,13 +3,13 @@ package TestUserCredits;
 import java.io.IOException;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
+//import javax.activation.DataHandler;
+//import javax.activation.FileDataSource;
 import javax.mail.*;    
 import javax.mail.internet.*;
 
-import com.sendgrid.helpers.mail.objects.Email;    
- class MailUtil1
+//import com.sendgrid.helpers.mail.objects.Email;    
+ public class MailUtil1
 {  
 	public static void send(final String from,final String password,String to,String sub,String Msg) throws IOException
 	{  
@@ -31,9 +31,8 @@ import com.sendgrid.helpers.mail.objects.Email;
         	MimeMessage message = new MimeMessage(session);    
         	message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
         	message.setSubject(sub);    
-        	//Multipart multipart = messageBody(Msg);
-         
-        	//message.setContent(multipart );  
+        	Multipart multipart = messageBody(Msg);
+            message.setContent(multipart );  
         	Transport.send(message);    
         	System.out.println("message sent successfully");    
         }
@@ -43,7 +42,7 @@ import com.sendgrid.helpers.mail.objects.Email;
         }    
 	}
 
-	/*private static Multipart messageBody(String Msg) throws MessagingException{ {
+	private static Multipart messageBody(String Msg) throws MessagingException{ {
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
 		messageBodyPart1.setText("Greetings, From Payroll Department");  
 		 
@@ -56,10 +55,10 @@ import com.sendgrid.helpers.mail.objects.Email;
 		BodyPart messageBodyPart5 = new MimeBodyPart(); 
 		messageBodyPart5.setText("\n\t Team Payroll...");
 
-		String filename = "SendAttachment.java";  
+		/*String filename = "SendAttachment.java";  
 		FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
 		messageBodyPart2.setDataHandler(new DataHandler(source));  
-		messageBodyPart2.setFileName(filename); 
+		messageBodyPart2.setFileName(filename); */
 		
 		Multipart multipart = new MimeMultipart();  
 		multipart.addBodyPart(messageBodyPart1);  
@@ -67,10 +66,12 @@ import com.sendgrid.helpers.mail.objects.Email;
 		multipart.addBodyPart(messageBodyPart3);
 		multipart.addBodyPart(messageBodyPart4);
 		multipart.addBodyPart(messageBodyPart5);
-		return multipart;*/ 
+		return multipart; 
 
 
  }
+	}
+}
 
 
  

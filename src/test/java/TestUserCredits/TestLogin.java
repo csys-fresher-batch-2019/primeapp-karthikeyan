@@ -5,6 +5,8 @@ public class TestLogin {
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		UserCreditsImp as = new UserCreditsImp();
+		System.out.println("-------------------------------------------------------");
+		System.out.println("-------------------------------------------------------");
 		System.out.println("Login User");
 		System.out.println("Enter Email ID");
 		String EmailId = sc.next();
@@ -19,6 +21,7 @@ public class TestLogin {
 				if (pass.equals(Password)) {
 					System.out.println("Login Successfull");
 					b = 1;
+					TestPage.main(null);
 
 				} else {
 					c++;
@@ -31,8 +34,15 @@ public class TestLogin {
 					}
 					
 				}
-
 			}
 		}
-	}
-}
+			else
+				{
+					TestProject.main(null);
+				}
+		
+			}
+		}
+		
+	
+
