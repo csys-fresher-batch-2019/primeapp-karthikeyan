@@ -18,6 +18,15 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		PreparedStatement pst = con.prepareStatement(sql);				
 		int row = pst.executeUpdate();
 		System.out.println(row);
+		try {
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		finally
+		{
+			con.close();
+		}
 	} 
 
 	public ArrayList<Plan> List() throws Exception{
@@ -43,10 +52,11 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 			as.discountAmount=e;
 			
 			ll.add(as);
-		}			
+		}		
 		return ll;			
-		}
-
+		
+	
+	}
 	
 	public ArrayList<Integer> getPlanDuration(int PlanDuration) throws Exception{
 		String sql = "select * from plans where plan_duration >= ?";

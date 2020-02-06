@@ -16,11 +16,10 @@ import logger.Logger;
 
 
 public class UserCreditsImp implements usercreditsdao {
-
+	Logger logger = Logger.getInstance();
 	public boolean userLogin(String mailID) throws Exception {
 		String sql = "Select passwords from user_credits where mail_id = ?";
 		Connection con = TestConnection.getConnection();
-		Logger logger = Logger.getInstance();
 		PreparedStatement pst = con.prepareStatement(sql);
 		pst.setString(1, mailID);
 		ResultSet rs = pst.executeQuery();
@@ -55,7 +54,6 @@ public class UserCreditsImp implements usercreditsdao {
 
 	
 	public void verifyOTPAndUpdatePassword(String mailId, String password) throws Exception {
-		Logger logger = Logger.getInstance();
 		// String password = getPassword.main(null);
 		String sql1 = "update user_credits set passwords = '" + password + "'where mail_id = ?"; //and otp = ?
 		Connection con1 = TestConnection.getConnection();
@@ -71,7 +69,6 @@ public class UserCreditsImp implements usercreditsdao {
 	}
 
 	public String userSignUp(UserCredits User) throws Exception {
-		Logger logger = Logger.getInstance();
 		String sql = "select user_id from user_credits where mail_id = ?";
 		Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);
@@ -98,7 +95,6 @@ public class UserCreditsImp implements usercreditsdao {
 		if (TestConformEmail.main(random, mailId))
 
 		{
-			Logger logger = Logger.getInstance();
 			String sql1 = "insert into user_credits (mail_id,user_id,passwords) values (?,user_id_seq.nextval,?)";
 			Connection con1 = TestConnection.getConnection();
 			PreparedStatement pst1 = con1.prepareStatement(sql1);
@@ -143,7 +139,7 @@ public class UserCreditsImp implements usercreditsdao {
 				profile(users.mailId);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
@@ -175,18 +171,15 @@ public class UserCreditsImp implements usercreditsdao {
 		aes.mobileNumber = h;
 		aes.createdDate = i.toLocalDate();
 		logger.info(aes);
-
 		logger.info("Profile Updated");
 		con1.close();
 	}
 
 	public List<UserCredits> getUserDetails() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public List<UserCredits> getUserAge(int age) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

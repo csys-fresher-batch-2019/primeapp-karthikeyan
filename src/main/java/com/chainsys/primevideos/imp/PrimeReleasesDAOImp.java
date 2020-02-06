@@ -11,30 +11,27 @@ import com.chainsys.primevideos.dao.PrimeReleasesDAO;
 import com.chainsys.primevideos.method.PrimeReleases;
 
 import Connection.TestConnection;
+import logger.Logger;
 
 public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
+	Logger logger = Logger.getInstance();
 
 	public void addReleaseDetails(PrimeReleases PrimeRelease) {
 		
 	}
 	public List<PrimeReleases> getPrimeReleases(String videoname) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	public String[] nameOfVideo(String Like) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	public int addImdbRating(int primeID) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	public List<PrimeReleases> getGenres(String genre) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	public List<PrimeReleases> list() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	public List<PrimeReleases> completeSearch(String get,String term) throws Exception {
@@ -44,14 +41,14 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		pst.setString(1, get);
 		pst.setString(2, term);
 		ResultSet rs = pst.executeQuery();
-		System.out.println(sql);
+		logger.info(sql);
 		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
-		System.out.println("Prime Id   Name of Video");
+		logger.info("Prime Id   Name of Video");
 		while(rs.next())
 		{
 			int a=rs.getInt(1);
 			String b=rs.getString(2);			
-			System.out.println(a+"        "+b);
+			logger.info(a+"        "+b);
 		}			
 		return l;
 	}
@@ -63,12 +60,12 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		pst.setString(2, search);
 		ResultSet rs = pst.executeQuery();
 		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
-		System.out.println("Prime Id   Name of Video");
+		logger.info("Prime Id   Name of Video");
 		while(rs.next())
 		{
 			int a=rs.getInt(1);
 			String b=rs.getString(2);			
-			System.out.println(a+"      "+b);
+			logger.info(a+"      "+b);
 		}			
 		return l;
 		
@@ -80,12 +77,12 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		pst.setString(2, val);
 		ResultSet rs = pst.executeQuery();
 		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
-		System.out.println("Prime Id   Name of Video");
+		logger.info("Prime Id   Name of Video");
 		while(rs.next())
 		{
 			int a=rs.getInt(1);
 			String b=rs.getString(2);			
-			System.out.println(a+"      "+b);
+			logger.info(a+"      "+b);
 		}			
 		return l;
 	}*/
@@ -128,7 +125,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		ad.casting=n;
 		ad.descriptionofvideo=o;
 		l.add(ad);
-		System.out.println(ad);
+		logger.info(ad);
 		return null;		
 	
 	}
