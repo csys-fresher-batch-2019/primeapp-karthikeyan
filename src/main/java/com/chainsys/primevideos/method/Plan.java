@@ -1,4 +1,4 @@
-package plan;
+package com.chainsys.primevideos.method;
 
 public class Plan {
 	public int planId;

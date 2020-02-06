@@ -1,11 +1,12 @@
 package TestUserCredits;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import usercredits.UserCredits;
-import usercredits.UserCreditsImp;
+import com.chainsys.primevideos.imp.UserCreditsImp;
+import com.chainsys.primevideos.method.UserCredits;
+
+import logger.Logger;
 
 public class TestNewUser {
 	//update user_credits set((customer_name,gender,DOB,age,mail_id,passwords,mobile_no) where mail_id = ?;
@@ -13,8 +14,9 @@ public class TestNewUser {
 		UserCreditsImp apa = new UserCreditsImp();
 		UserCredits asa = new UserCredits();
 		asa.mailId=mailIds;
+		Logger logger = Logger.getInstance();
 	    Scanner sc = new Scanner(System.in);
-	 	System.out.println("Enter CustomerName");
+	 	logger.info("Enter CustomerName");
 	 	asa.customerName=sc.next();
 	 	System.out.println("Enter Gender(M/F)");
 	 	asa.gender=sc.next();

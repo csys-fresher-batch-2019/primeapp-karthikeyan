@@ -1,4 +1,4 @@
-package usercredits;
+package com.chainsys.primevideos.method;
 
 import java.sql.Date;
 import java.time.LocalDate;

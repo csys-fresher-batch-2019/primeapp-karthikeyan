@@ -1,5 +1,8 @@
 package plan;
 
+import com.chainsys.primevideos.imp.AmazonPlanImplements;
+import com.chainsys.primevideos.method.Plan;
+
 public class TestInsertPlan {
 
 	public static void main(String[] args) throws Exception {

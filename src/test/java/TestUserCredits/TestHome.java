@@ -3,8 +3,8 @@ package TestUserCredits;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import primereleases.PrimeReleases;
-import primereleases.PrimeReleasesDAOImp;
+import com.chainsys.primevideos.imp.PrimeReleasesDAOImp;
+import com.chainsys.primevideos.method.PrimeReleases;
 
 public class TestHome {
 

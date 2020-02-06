@@ -1,11 +1,7 @@
-package com.chainsys.primeapp;
+package Util;
 
 import java.io.IOException;
 import java.util.Scanner;
-
-//import com.sendgrid.helpers.mail.objects.Email;
-
-import TestUserCredits.MailUtil1;
 
 public class TestConformEmail 
 {

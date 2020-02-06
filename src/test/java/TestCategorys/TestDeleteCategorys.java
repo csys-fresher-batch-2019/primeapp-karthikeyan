@@ -1,9 +1,8 @@
 package TestCategorys;
 
-import java.sql.SQLException;
 import java.util.Scanner;
 
-import categorys.AmazonCategorysImp;
+import com.chainsys.primevideos.imp.AmazonCategorysImp;
 
 public class TestDeleteCategorys {
 

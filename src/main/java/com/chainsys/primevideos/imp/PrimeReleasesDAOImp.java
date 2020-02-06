@@ -1,16 +1,16 @@
-package primereleases;
+package com.chainsys.primevideos.imp;
 
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.chainsys.primevideos.dao.PrimeReleasesDAO;
+import com.chainsys.primevideos.method.PrimeReleases;
+
 import Connection.TestConnection;
-import plan.Plan;
 
 public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 

@@ -1,11 +1,13 @@
+package Util;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
-import plan.AmazonPlanImplements;
-import plan.Plan;
+import com.chainsys.primevideos.imp.AmazonPlanImplements;
+import com.chainsys.primevideos.method.Plan;
 
 public class TestExportPlan {
 

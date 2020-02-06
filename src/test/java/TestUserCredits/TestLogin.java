@@ -1,6 +1,7 @@
 package TestUserCredits;
 import java.util.Scanner;
-import usercredits.UserCreditsImp;
+
+import com.chainsys.primevideos.imp.UserCreditsImp;
 public class TestLogin {
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);

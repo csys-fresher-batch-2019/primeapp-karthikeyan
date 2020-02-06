@@ -1,7 +1,8 @@
-package plan;
+package com.chainsys.primevideos.dao;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import com.chainsys.primevideos.method.Plan;
 
 public interface AmazonPlanDAO {
 	//insert into plans(plan_id,plan_amount,plan_duration,no_of_screens) values (121,199,30,1);

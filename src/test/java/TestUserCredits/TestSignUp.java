@@ -2,8 +2,8 @@
 
 import java.util.Scanner;
 
-import usercredits.UserCredits;
-import usercredits.UserCreditsImp;
+import com.chainsys.primevideos.imp.UserCreditsImp;
+import com.chainsys.primevideos.method.UserCredits;
 
 public class TestSignUp {
 

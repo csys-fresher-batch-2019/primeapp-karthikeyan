@@ -1,7 +1,8 @@
-package primereleases;
+package com.chainsys.primevideos.dao;
 
-import java.sql.SQLException;
 import java.util.List;
+
+import com.chainsys.primevideos.method.PrimeReleases;
 
 public interface PrimeReleasesDAO {
 	//insert into prime_releases (prime_id,category_id,name_of_video,genre,audio_languages,subtitle_languages,director,release_date,prime_release_date,box_office_collection_millions,casting,description_of_video) 

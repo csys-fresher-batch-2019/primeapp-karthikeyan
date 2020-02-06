@@ -1,4 +1,4 @@
-package usercredits;
+package com.chainsys.primevideos.imp;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -6,10 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
-import com.chainsys.primeapp.OTPUtil;
-import com.chainsys.primeapp.TestConformEmail;
+import com.chainsys.primevideos.dao.usercreditsdao;
+import com.chainsys.primevideos.method.UserCredits;
 
 import Connection.TestConnection;
+import Util.OTPUtil;
+import Util.TestConformEmail;
+import logger.Logger;
 
 
 public class UserCreditsImp implements usercreditsdao {
@@ -17,6 +20,7 @@ public class UserCreditsImp implements usercreditsdao {
 	public boolean userLogin(String mailID) throws Exception {
 		String sql = "Select passwords from user_credits where mail_id = ?";
 		Connection con = TestConnection.getConnection();
+		Logger logger = Logger.getInstance();
 		PreparedStatement pst = con.prepareStatement(sql);
 		pst.setString(1, mailID);
 		ResultSet rs = pst.executeQuery();
@@ -24,7 +28,7 @@ public class UserCreditsImp implements usercreditsdao {
 			con.close();
 			return true;
 		} else {
-			System.out.println("Incorrect Email ID DoesNot Exist");
+			logger.info("Incorrect Email ID DoesNot Exist");
 			con.close();
 			return false;
 		}
@@ -51,7 +55,7 @@ public class UserCreditsImp implements usercreditsdao {
 
 	
 	public void verifyOTPAndUpdatePassword(String mailId, String password) throws Exception {
-
+		Logger logger = Logger.getInstance();
 		// String password = getPassword.main(null);
 		String sql1 = "update user_credits set passwords = '" + password + "'where mail_id = ?"; //and otp = ?
 		Connection con1 = TestConnection.getConnection();
@@ -59,7 +63,7 @@ public class UserCreditsImp implements usercreditsdao {
 		pst1.setString(1, mailId);
 		int row = pst1.executeUpdate();
 		if (row == 1) {
-			System.out.println("Password Updated");
+			logger.info("Password Updated");
 			con1.close();
 
 		}
@@ -67,6 +71,7 @@ public class UserCreditsImp implements usercreditsdao {
 	}
 
 	public String userSignUp(UserCredits User) throws Exception {
+		Logger logger = Logger.getInstance();
 		String sql = "select user_id from user_credits where mail_id = ?";
 		Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);
@@ -75,7 +80,7 @@ public class UserCreditsImp implements usercreditsdao {
 		rs.next();
 		if (rs.next()) {
 			con.close();
-			System.out.println("Email Id Already Exist");
+			logger.info("Email Id Already Exist");
 
 		} else {
 			int random = OTPUtil.getOTP();
@@ -93,7 +98,7 @@ public class UserCreditsImp implements usercreditsdao {
 		if (TestConformEmail.main(random, mailId))
 
 		{
-
+			Logger logger = Logger.getInstance();
 			String sql1 = "insert into user_credits (mail_id,user_id,passwords) values (?,user_id_seq.nextval,?)";
 			Connection con1 = TestConnection.getConnection();
 			PreparedStatement pst1 = con1.prepareStatement(sql1);
@@ -101,7 +106,7 @@ public class UserCreditsImp implements usercreditsdao {
 			pst1.setString(2, password);
 			pst1.executeUpdate();
 
-			System.out.println("Welcome to Prime\nUpdate your Profile");
+			logger.info("Welcome to Prime\nUpdate your Profile");
 			con1.close();
 			
 		}
@@ -121,20 +126,24 @@ public class UserCreditsImp implements usercreditsdao {
 	}
 
 	public void userUpdate(UserCredits users) throws Exception {
-		String sql = "update user_credits set customer_name = ? ,gender = ?,DOB = ?,age = ?,mobile_no = ? where mail_id = ?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);
-		pst.setString(1, users.customerName);
-		pst.setString(2, users.gender);
-		pst.setDate(3, Date.valueOf(users.dob));
-		pst.setInt(4, users.age);
-		pst.setLong(5, users.mobileNumber);
-		pst.setString(6, users.mailId);
-		int row = pst.executeUpdate();
+		try {
+			String sql = "update user_credits set customer_name = ? ,gender = ?,DOB = ?,age = ?,mobile_no = ? where mail_id = ?";
+			Connection con = TestConnection.getConnection();
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, users.customerName);
+			pst.setString(2, users.gender);
+			pst.setDate(3, Date.valueOf(users.dob));
+			pst.setInt(4, users.age);
+			pst.setLong(5, users.mobileNumber);
+			pst.setString(6, users.mailId);
+			int row = pst.executeUpdate();
 
-		con.close();
-		if (row != 0) {
-			profile(users.mailId);
+			con.close();
+			if (row != 0) {
+				profile(users.mailId);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -142,7 +151,7 @@ public class UserCreditsImp implements usercreditsdao {
 		String sql1 = "select * from user_credits where mail_id = ?";
 		Connection con1 = TestConnection.getConnection();
 		PreparedStatement pst1 = con1.prepareStatement(sql1);
-
+		Logger logger = Logger.getInstance();
 		pst1.setString(1, mailIds);
 		ResultSet row1 = pst1.executeQuery();
 		row1.next();
@@ -165,9 +174,9 @@ public class UserCreditsImp implements usercreditsdao {
 		aes.password = g;
 		aes.mobileNumber = h;
 		aes.createdDate = i.toLocalDate();
-		System.out.println(aes);
+		logger.info(aes);
 
-		System.out.println("Profile Updated");
+		logger.info("Profile Updated");
 		con1.close();
 	}
 

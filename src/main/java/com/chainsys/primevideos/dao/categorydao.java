@@ -1,8 +1,9 @@
-package categorys;
+package com.chainsys.primevideos.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
+import com.chainsys.primevideos.method.categorys;
 
 public interface categorydao {
 	//insert into categorys (category_id,category_name) values (1,'TVShows');

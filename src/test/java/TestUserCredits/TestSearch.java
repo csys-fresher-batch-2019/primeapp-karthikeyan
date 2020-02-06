@@ -1,19 +1,74 @@
 package TestUserCredits;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import primereleases.PrimeReleases;
-import primereleases.PrimeReleasesDAOImp;
+import com.chainsys.primevideos.imp.PrimeReleasesDAOImp;
 
 public class TestSearch {
-
+	public static int a=0;
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		PrimeReleasesDAOImp ds = new PrimeReleasesDAOImp();
 		ReadFile.main("Search");
-		System.out.println("Enter the Search Method : ");
+		
+		System.out.println("Movie : ");
+		String movie = sc.nextLine();
+		if(movie.length()!=0)
+		{
+			a++;
+		}
+		System.out.println("IMDb : ");
+		String IMDB = sc.nextLine();
+		if(IMDB.length()!=0)
+		{
+			a++;
+		}
+		System.out.println("Language : ");
+		String Language = sc.nextLine();
+		if(Language.length()!=0)
+		{
+			a++;
+		}
+		System.out.println("Director : ");
+		String Director = sc.nextLine();
+		if(Director.length()!=0)
+		{
+			a++;
+		}
+		System.out.println("Actor : ");
+		String Actor = sc.nextLine();
+		if(Actor.length()!=0)
+		{
+			a++;
+		}
+		System.out.println("Genre : ");
+		String Genre = sc.nextLine();
+		if(Genre.length()!=0)
+		{
+			a++;
+		}
+		System.out.println("Categorys : ");
+		String Categorys = sc.nextLine();
+		if(Categorys.length()!=0)
+		{
+			a++;
+		}
+		System.out.println("Origials (Y,N): ");
+		String Originals = sc.nextLine();
+		if(Originals.length()!=0)
+		{
+			a++;
+		}
+		System.out.println("Release Year : ");
+		String year = sc.nextLine();
+		if(year.length()!=0)
+		{
+			a++;
+		}
+	}
+}
+		/*System.out.println("Enter the Search Method : ");
+		System.out.println(a);
 		int ch = sc.nextInt();
 		switch(ch)
 		{
@@ -62,4 +117,4 @@ public class TestSearch {
 			}
 			System.out.println();
 
-	}}
+	}}*/

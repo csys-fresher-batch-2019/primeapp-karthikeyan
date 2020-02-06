@@ -1,4 +1,4 @@
-package categorys;
+package com.chainsys.primevideos.method;
 
 public class categorys {
 	private int categoryId;

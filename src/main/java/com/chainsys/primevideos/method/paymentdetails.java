@@ -1,4 +1,4 @@
-package paymentdetails;
+package com.chainsys.primevideos.method;
 
 import java.time.LocalDate;
 

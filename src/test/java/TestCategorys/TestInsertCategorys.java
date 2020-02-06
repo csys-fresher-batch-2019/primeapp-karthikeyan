@@ -2,8 +2,7 @@ package TestCategorys;
 
 import java.util.Scanner;
 
-import categorys.AmazonCategorysImp;
-import categorys.categorys;
+import com.chainsys.primevideos.imp.AmazonCategorysImp;
 
 public class TestInsertCategorys {
 

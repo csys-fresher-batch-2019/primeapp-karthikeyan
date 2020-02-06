@@ -1,11 +1,9 @@
 package TestCategorys;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import categorys.AmazonCategorysImp;
-import categorys.categorys;
-import plan.Plan;
+import com.chainsys.primevideos.imp.AmazonCategorysImp;
+import com.chainsys.primevideos.method.categorys;
 
 public class TestSelectCategorys {
 

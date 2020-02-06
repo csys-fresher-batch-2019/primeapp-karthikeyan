@@ -1,12 +1,12 @@
-package plan;
+package com.chainsys.primevideos.imp;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
+import com.chainsys.primevideos.dao.AmazonPlanDAO;
+import com.chainsys.primevideos.method.Plan;
 
 import Connection.TestConnection;
 public class AmazonPlanImplements implements AmazonPlanDAO {

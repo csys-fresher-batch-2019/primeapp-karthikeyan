@@ -2,7 +2,7 @@ package TestUserCredits;
 
 import java.util.Scanner;
 
-import usercredits.UserCreditsImp;
+import com.chainsys.primevideos.imp.UserCreditsImp;
 
 public class TestPasswordAssitancne {
 
