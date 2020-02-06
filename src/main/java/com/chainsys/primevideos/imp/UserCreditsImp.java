@@ -10,6 +10,7 @@ import com.chainsys.primevideos.dao.usercreditsdao;
 import com.chainsys.primevideos.method.UserCredits;
 
 import Connection.TestConnection;
+import Exception.DbException;
 import Util.OTPUtil;
 import Util.TestConformEmail;
 import logger.Logger;
@@ -19,10 +20,10 @@ public class UserCreditsImp implements usercreditsdao {
 	Logger logger = Logger.getInstance();
 	public boolean userLogin(String mailID) throws Exception {
 		String sql = "Select passwords from user_credits where mail_id = ?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, mailID);
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		if (rs.next()) {
 			con.close();
 			return true;
@@ -30,6 +31,10 @@ public class UserCreditsImp implements usercreditsdao {
 			logger.info("Incorrect Email ID DoesNot Exist");
 			con.close();
 			return false;
+		}}}
+		catch(DbException e)
+		{
+			throw new Exception("UserLogin Failed");
 		}
 
 	}
@@ -37,8 +42,8 @@ public class UserCreditsImp implements usercreditsdao {
 	public boolean resetPassword(String mailId) throws Exception {
 		int otp = 0;
 		String sql = "select * from user_credits where mail_id = ?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, mailId);
 		ResultSet rs = pst.executeQuery();
 		if (rs.next()) {
@@ -46,7 +51,11 @@ public class UserCreditsImp implements usercreditsdao {
 			TestConformEmail.changePassword(otp, mailId);
 			return true;
 		}
-		con.close();
+		}
+		catch(DbException e)
+		{
+			throw new Exception("User Selection Reset Password Failed");
+		}
 		return false;
 		
 		

@@ -9,30 +9,29 @@ import com.chainsys.primevideos.dao.AmazonPlanDAO;
 import com.chainsys.primevideos.method.Plan;
 
 import Connection.TestConnection;
+import Exception.DbException;
+import logger.Logger;
 public class AmazonPlanImplements implements AmazonPlanDAO {
-	
+	Logger logger = Logger.getInstance();
 
 	public void addPlan(Plan plans) throws Exception {
 		String sql = "insert into plans(plan_id,plan_amount,plan_duration,no_of_screens) values ("+plans.planId+","+plans.planAmount+","+plans.planDuration+","+plans.discountAmount+")";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);				
-		int row = pst.executeUpdate();
-		System.out.println(row);
-		try {
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		finally
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);)
 		{
-			con.close();
+		int row = pst.executeUpdate();
+		logger.info(row);}
+		catch(DbException e)
+		{
+			throw new Exception("Plan Insertion Failed");
 		}
+		
 	} 
 
 	public ArrayList<Plan> List() throws Exception{
 		String sql = "select * from plans";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);	
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
 		ResultSet rs = pst.executeQuery();
 		ArrayList<Plan> ll = new ArrayList<Plan>();
 		
@@ -52,19 +51,25 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 			as.discountAmount=e;
 			
 			ll.add(as);
-		}		
-		return ll;			
+		
+		}
+		return ll;
+		}
+		catch(DbException e)
+		{
+			throw new Exception("Plan Selection View Failed");
+		}
 		
 	
 	}
 	
 	public ArrayList<Integer> getPlanDuration(int PlanDuration) throws Exception{
 		String sql = "select * from plans where plan_duration >= ?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setInt(1,PlanDuration);
 		ResultSet rs = pst.executeQuery();
-		System.out.println(rs);
+		logger.info(rs);
 		ArrayList<Integer> ln = new ArrayList<Integer>();
 		
 		while(rs.next())
@@ -75,8 +80,12 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 			as.planId=a;			
 			
 		}			
-		return ln;			
-		
+		return ln;	
+		}
+		catch(DbException e)
+		{
+			throw new Exception("PlanView Failed");
+		}
 		
 		
 	}

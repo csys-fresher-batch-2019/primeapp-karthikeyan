@@ -13,27 +13,9 @@ import com.chainsys.primevideos.method.PrimeReleases;
 import Connection.TestConnection;
 import logger.Logger;
 
-public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
+public abstract class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 	Logger logger = Logger.getInstance();
 
-	public void addReleaseDetails(PrimeReleases PrimeRelease) {
-		
-	}
-	public List<PrimeReleases> getPrimeReleases(String videoname) {
-		return null;
-	}
-	public String[] nameOfVideo(String Like) {
-		return null;
-	}
-	public int addImdbRating(int primeID) {
-		return 0;
-	}
-	public List<PrimeReleases> getGenres(String genre) {
-		return null;
-	}
-	public List<PrimeReleases> list() {
-		return null;
-	}
 	public List<PrimeReleases> completeSearch(String get,String term) throws Exception {
 		String sql = "select prime_id,name_of_video from prime_releases where ? =?";
 		Connection con = TestConnection.getConnection();
