@@ -13,7 +13,7 @@ import com.chainsys.primevideos.method.PrimeReleases;
 import Connection.TestConnection;
 import logger.Logger;
 
-public abstract class PrimeReleasesDAOImp implements PrimeReleasesDAO {
+public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 	Logger logger = Logger.getInstance();
 
 	public List<PrimeReleases> completeSearch(String get,String term) throws Exception {
@@ -145,6 +145,36 @@ public abstract class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			l.add(as);
 		}			
 		return l;
+	}
+	@Override
+	public void addReleaseDetails(PrimeReleases PrimeRelease) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public List<PrimeReleases> getPrimeReleases(String videoname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public String[] nameOfVideo(String Like) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public int addImdbRating(int primeID) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public List<PrimeReleases> getGenres(String genre) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<PrimeReleases> list() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
