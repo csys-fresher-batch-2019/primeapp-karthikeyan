@@ -65,22 +65,26 @@ public class UserCreditsImp implements usercreditsdao {
 	public void verifyOTPAndUpdatePassword(String mailId, String password) throws Exception {
 		// String password = getPassword.main(null);
 		String sql1 = "update user_credits set passwords = '" + password + "'where mail_id = ?"; //and otp = ?
-		Connection con1 = TestConnection.getConnection();
-		PreparedStatement pst1 = con1.prepareStatement(sql1);
+		try(Connection con1 = TestConnection.getConnection();
+		PreparedStatement pst1 = con1.prepareStatement(sql1);){
 		pst1.setString(1, mailId);
 		int row = pst1.executeUpdate();
 		if (row == 1) {
 			logger.info("Password Updated");
-			con1.close();
-
+		}}
+		catch(DbException e)
+		{
+			throw new Exception("Password Update Failed");
 		}
+
+		
 
 	}
 
 	public String userSignUp(UserCredits User) throws Exception {
 		String sql = "select user_id from user_credits where mail_id = ?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, User.mailId);
 		ResultSet rs = pst.executeQuery();
 		rs.next();
@@ -95,7 +99,11 @@ public class UserCreditsImp implements usercreditsdao {
 			return User.mailId;
 
 		}
-		return null;
+		return null;}
+		catch(DbException e)
+		{
+			throw new Exception("userLogin operation Failed");
+		}
 
 	}
 
@@ -105,36 +113,44 @@ public class UserCreditsImp implements usercreditsdao {
 
 		{
 			String sql1 = "insert into user_credits (mail_id,user_id,passwords) values (?,user_id_seq.nextval,?)";
-			Connection con1 = TestConnection.getConnection();
-			PreparedStatement pst1 = con1.prepareStatement(sql1);
+			try(Connection con1 = TestConnection.getConnection();
+			PreparedStatement pst1 = con1.prepareStatement(sql1);){
 			pst1.setString(1, mailId);
 			pst1.setString(2, password);
 			pst1.executeUpdate();
 
 			logger.info("Welcome to Prime\nUpdate your Profile");
-			con1.close();
+			}
+		catch(DbException e)
+			{
+				throw new Exception("Update User Failed After Otp Conformation");
+			}
 			
 		}
 	}
 
 	public String Password(String mailId) throws Exception {
 		String sql = "Select passwords from user_credits where mail_id = ?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, mailId);
 		ResultSet rs = pst.executeQuery();
 		rs.next();
 		String a = rs.getString(1);
-		con.close();
-		return a;
+		
+		return a;}
+		catch(DbException e)
+		{
+			throw new Exception("Password Selection Failed at Matching Region");
+		}
 
 	}
 
 	public void userUpdate(UserCredits users) throws Exception {
-		try {
+		
 			String sql = "update user_credits set customer_name = ? ,gender = ?,DOB = ?,age = ?,mobile_no = ? where mail_id = ?";
-			Connection con = TestConnection.getConnection();
-			PreparedStatement pst = con.prepareStatement(sql);
+			try(Connection con = TestConnection.getConnection();
+			PreparedStatement pst = con.prepareStatement(sql);){
 			pst.setString(1, users.customerName);
 			pst.setString(2, users.gender);
 			pst.setDate(3, Date.valueOf(users.dob));
@@ -147,15 +163,16 @@ public class UserCreditsImp implements usercreditsdao {
 			if (row != 0) {
 				profile(users.mailId);
 			}
-		} catch (Exception e) {
-			logger.error(e.getMessage());
+		} catch(DbException e)
+		{
+			throw new Exception("UserProfile Update Failed");
 		}
 	}
 
 	public void profile(String mailIds) throws Exception {
 		String sql1 = "select * from user_credits where mail_id = ?";
-		Connection con1 = TestConnection.getConnection();
-		PreparedStatement pst1 = con1.prepareStatement(sql1);
+		try(Connection con1 = TestConnection.getConnection();
+		PreparedStatement pst1 = con1.prepareStatement(sql1);){
 		Logger logger = Logger.getInstance();
 		pst1.setString(1, mailIds);
 		ResultSet row1 = pst1.executeQuery();
@@ -181,7 +198,11 @@ public class UserCreditsImp implements usercreditsdao {
 		aes.createdDate = i.toLocalDate();
 		logger.info(aes);
 		logger.info("Profile Updated");
-		con1.close();
+		}
+		catch(DbException e)
+		{
+			throw new Exception("UsesCredits View Failed");
+		}
 	}
 
 	public List<UserCredits> getUserDetails() {

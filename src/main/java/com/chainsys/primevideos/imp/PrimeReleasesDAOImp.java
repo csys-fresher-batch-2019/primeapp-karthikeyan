@@ -11,6 +11,7 @@ import com.chainsys.primevideos.dao.PrimeReleasesDAO;
 import com.chainsys.primevideos.method.PrimeReleases;
 
 import Connection.TestConnection;
+import Exception.DbException;
 import logger.Logger;
 
 public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
@@ -18,8 +19,8 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 
 	public List<PrimeReleases> completeSearch(String get,String term) throws Exception {
 		String sql = "select prime_id,name_of_video from prime_releases where ? =?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, get);
 		pst.setString(2, term);
 		ResultSet rs = pst.executeQuery();
@@ -32,12 +33,16 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			String b=rs.getString(2);			
 			logger.info(a+"        "+b);
 		}			
-		return l;
+		return l;}
+		catch(DbException e)
+		{
+			throw new Exception("Selection Search View Failed");
+		}
 	}
 	public List<PrimeReleases> likeSearch(String term,String search) throws Exception {
 		String sql = "select prime_id,name_of_video from prime_releases where ? LIKE %?%";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, term);
 		pst.setString(2, search);
 		ResultSet rs = pst.executeQuery();
@@ -49,7 +54,11 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			String b=rs.getString(2);			
 			logger.info(a+"      "+b);
 		}			
-		return l;
+		return l;}
+		catch(DbException e)
+		{
+			throw new Exception("Like Search Failed");
+		}
 		
 	}
 	/*private List<PrimeReleases> commonMethod(String term, String val, String sql) throws Exception, SQLException {
@@ -71,8 +80,8 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 	public List<PrimeReleases> getDetails(int id) throws Exception
 	{
 		String sql ="Select * from prime_releases where prime_id = ?";
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);	
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);	){
 		pst.setInt(1,id);
 		ResultSet rs = pst.executeQuery();
 		List<PrimeReleases> l = new ArrayList<PrimeReleases>();
@@ -108,7 +117,11 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		ad.descriptionofvideo=o;
 		l.add(ad);
 		logger.info(ad);
-		return null;		
+		return null;		}
+		catch(DbException e)
+		{
+			throw new Exception("Selection Video Details Failed");
+		}
 	
 	}
 	public ArrayList<PrimeReleases> list1() throws Exception {
@@ -128,8 +141,8 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		return CallFunction(sql);		
 		}
 	private static ArrayList<PrimeReleases> CallFunction(String sql) throws Exception{
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);	
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){	
 		ResultSet rs = pst.executeQuery();
 		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
 		//
@@ -144,7 +157,11 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			as.nameofVideo=b;			
 			l.add(as);
 		}			
-		return l;
+		return l;}
+		catch(DbException e)
+		{
+			throw new Exception("DataBase Operation Failed");
+		}
 	}
 	@Override
 	public void addReleaseDetails(PrimeReleases PrimeRelease) {
