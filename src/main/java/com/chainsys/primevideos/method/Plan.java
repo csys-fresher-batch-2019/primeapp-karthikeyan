@@ -1,11 +1,11 @@
 package com.chainsys.primevideos.method;
 
 public class Plan {
-	public int planId;
-	public int planAmount; 
-	public int planDuration; 
-	public int noOfScreens;
-	public int discountAmount=0;
+	private int planId;
+	private int planAmount; 
+	private int planDuration; 
+	private int noOfScreens;
+	private int discountAmount=0;
 	
 	public Plan(int planId, int planAmount, int planDuration, int noOfScreens, int discountAmount) {
 		super();
@@ -29,6 +29,46 @@ public class Plan {
 	public static void add(Plan as) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public int getPlanId() {
+		return planId;
+	}
+
+	public void setPlanId(int planId) {
+		this.planId = planId;
+	}
+
+	public int getPlanAmount() {
+		return planAmount;
+	}
+
+	public void setPlanAmount(int planAmount) {
+		this.planAmount = planAmount;
+	}
+
+	public int getPlanDuration() {
+		return planDuration;
+	}
+
+	public void setPlanDuration(int planDuration) {
+		this.planDuration = planDuration;
+	}
+
+	public int getNoOfScreens() {
+		return noOfScreens;
+	}
+
+	public void setNoOfScreens(int noOfScreens) {
+		this.noOfScreens = noOfScreens;
+	}
+
+	public int getDiscountAmount() {
+		return discountAmount;
+	}
+
+	public void setDiscountAmount(int discountAmount) {
+		this.discountAmount = discountAmount;
 	}
 	
 	
