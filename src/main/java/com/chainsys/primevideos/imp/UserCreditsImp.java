@@ -45,13 +45,13 @@ public class UserCreditsImp implements usercreditsdao {
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, mailId);
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		if (rs.next()) {
 			otp = OTPUtil.getOTP();
 			TestConformEmail.changePassword(otp, mailId);
 			return true;
 		}
-		}
+		}}
 		catch(DbException e)
 		{
 			throw new Exception("User Selection Reset Password Failed");
@@ -86,7 +86,7 @@ public class UserCreditsImp implements usercreditsdao {
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, User.mailId);
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		rs.next();
 		if (rs.next()) {
 			con.close();
@@ -99,7 +99,7 @@ public class UserCreditsImp implements usercreditsdao {
 			return User.mailId;
 
 		}
-		return null;}
+		return null;}}
 		catch(DbException e)
 		{
 			throw new Exception("userLogin operation Failed");
@@ -134,11 +134,11 @@ public class UserCreditsImp implements usercreditsdao {
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, mailId);
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		rs.next();
 		String a = rs.getString(1);
 		
-		return a;}
+		return a;}}
 		catch(DbException e)
 		{
 			throw new Exception("Password Selection Failed at Matching Region");
@@ -175,7 +175,7 @@ public class UserCreditsImp implements usercreditsdao {
 		PreparedStatement pst1 = con1.prepareStatement(sql1);){
 		Logger logger = Logger.getInstance();
 		pst1.setString(1, mailIds);
-		ResultSet row1 = pst1.executeQuery();
+		try(ResultSet row1 = pst1.executeQuery();){
 		row1.next();
 		String a = row1.getString(1);
 		String b = row1.getString(2);
@@ -198,7 +198,7 @@ public class UserCreditsImp implements usercreditsdao {
 		aes.createdDate = i.toLocalDate();
 		logger.info(aes);
 		logger.info("Profile Updated");
-		}
+		}}
 		catch(DbException e)
 		{
 			throw new Exception("UsesCredits View Failed");

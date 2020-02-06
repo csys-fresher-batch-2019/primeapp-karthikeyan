@@ -32,7 +32,7 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		String sql = "select * from plans";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		ArrayList<Plan> ll = new ArrayList<Plan>();
 		
 		while(rs.next())
@@ -54,7 +54,7 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		
 		}
 		return ll;
-		}
+		}}
 		catch(DbException e)
 		{
 			throw new Exception("Plan Selection View Failed");
@@ -68,7 +68,7 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setInt(1,PlanDuration);
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		logger.info(rs);
 		ArrayList<Integer> ln = new ArrayList<Integer>();
 		
@@ -81,7 +81,7 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 			
 		}			
 		return ln;	
-		}
+		}}
 		catch(DbException e)
 		{
 			throw new Exception("PlanView Failed");

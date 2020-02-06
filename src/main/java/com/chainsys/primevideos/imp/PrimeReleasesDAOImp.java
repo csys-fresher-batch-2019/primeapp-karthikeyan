@@ -23,7 +23,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, get);
 		pst.setString(2, term);
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		logger.info(sql);
 		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
 		logger.info("Prime Id   Name of Video");
@@ -33,7 +33,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			String b=rs.getString(2);			
 			logger.info(a+"        "+b);
 		}			
-		return l;}
+		return l;}}
 		catch(DbException e)
 		{
 			throw new Exception("Selection Search View Failed");
@@ -45,7 +45,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, term);
 		pst.setString(2, search);
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
 		logger.info("Prime Id   Name of Video");
 		while(rs.next())
@@ -54,7 +54,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			String b=rs.getString(2);			
 			logger.info(a+"      "+b);
 		}			
-		return l;}
+		return l;}}
 		catch(DbException e)
 		{
 			throw new Exception("Like Search Failed");
@@ -83,7 +83,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);	){
 		pst.setInt(1,id);
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		List<PrimeReleases> l = new ArrayList<PrimeReleases>();
 		rs.next();
 		int a = rs.getInt(1);
@@ -117,7 +117,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		ad.descriptionofvideo=o;
 		l.add(ad);
 		logger.info(ad);
-		return null;		}
+		return null;	}	}
 		catch(DbException e)
 		{
 			throw new Exception("Selection Video Details Failed");
@@ -143,7 +143,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 	private static ArrayList<PrimeReleases> CallFunction(String sql) throws Exception{
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){	
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
 		//
 		while(rs.next())
@@ -157,7 +157,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			as.nameofVideo=b;			
 			l.add(as);
 		}			
-		return l;}
+		return l;}}
 		catch(DbException e)
 		{
 			throw new Exception("DataBase Operation Failed");

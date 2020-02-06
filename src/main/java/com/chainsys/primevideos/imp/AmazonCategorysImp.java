@@ -38,7 +38,7 @@ public class AmazonCategorysImp implements categorydao {
 			String sql = "select * from categorys"; 
 			try(Connection con = TestConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(sql);){			
-			ResultSet row = pst.executeQuery();
+			try(ResultSet row = pst.executeQuery();){
 			logger.info(row);
 			ArrayList<categorys> ww = new ArrayList<categorys>();
 			
@@ -54,7 +54,7 @@ public class AmazonCategorysImp implements categorydao {
 			ww.add(ae);
 }
 			
-			return ww;}
+			return ww;}}
 			catch(DbException e)
 			{
 				throw new Exception("Category View Failed");
