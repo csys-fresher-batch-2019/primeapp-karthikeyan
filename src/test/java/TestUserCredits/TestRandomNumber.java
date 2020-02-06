@@ -1,4 +1,4 @@
-package TestUserCredits;
+package testUserCredits;
 import java.util.Random; 
 public class TestRandomNumber 
 {

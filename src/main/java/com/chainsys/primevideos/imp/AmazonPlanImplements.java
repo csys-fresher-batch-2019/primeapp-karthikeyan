@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import com.chainsys.primevideos.dao.AmazonPlanDAO;
 import com.chainsys.primevideos.method.Plan;
 
-import Connection.TestConnection;
-import Exception.DbException;
+import connection.TestConnection;
+import exception.DbException;
 import logger.Logger;
 public class AmazonPlanImplements implements AmazonPlanDAO {
 	Logger logger = Logger.getInstance();

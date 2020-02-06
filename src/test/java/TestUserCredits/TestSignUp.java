@@ -1,4 +1,4 @@
-	package TestUserCredits;
+	package testUserCredits;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class TestSignUp {
 	    Scanner sc = new Scanner(System.in);
 	    System.out.println("Prime Registration");
 	    System.out.println("Mail ID");   
-	 	as.mailId = sc.next();
+	 	as.setMailId(sc.next());
 	 	
 	 	String password="";
 	 	while((password.length())<8)
@@ -25,7 +25,7 @@ public class TestSignUp {
 	 	String password1  =sc.next();
 	 	if (password1.equals(password))
 	 	{
-	 		as.password = password;
+	 		as.setPassword(password);
 	 		String mailId = ap.userSignUp(as);
 	 		TestNewUser.main(mailId);
 	 	}

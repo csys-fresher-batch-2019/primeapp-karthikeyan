@@ -4,15 +4,15 @@ import java.sql.Date;
 import java.time.LocalDate;
 
 public class UserCredits {
-	private String customerName;
-	private String gender;
-	private LocalDate dob;
-	private int age;
-	private String mailId;
-	private int userId;
-	private String password;
-	private Long mobileNumber;
-	private LocalDate createdDate;
+	public String customerName;
+	public String gender;
+	public LocalDate dob;
+	public int age;
+	public String mailId;
+	public int userId;
+	public String password;
+	public Long mobileNumber;
+	public LocalDate createdDate;
 	
 	
 	public UserCredits(String customerName, String gender, LocalDate dob, int age, String mailId, int userId,

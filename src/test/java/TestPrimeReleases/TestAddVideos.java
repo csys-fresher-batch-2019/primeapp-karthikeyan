@@ -1,4 +1,4 @@
-package TestPrimeReleases;
+package testPrimeReleases;
 
 public class TestAddVideos {
 	

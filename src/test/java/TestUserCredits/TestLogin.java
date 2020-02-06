@@ -1,4 +1,4 @@
-package TestUserCredits;
+package testUserCredits;
 import java.util.Scanner;
 
 import com.chainsys.primevideos.imp.UserCreditsImp;

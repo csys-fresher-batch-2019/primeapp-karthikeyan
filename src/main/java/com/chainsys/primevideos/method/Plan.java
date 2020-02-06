@@ -1,11 +1,11 @@
 package com.chainsys.primevideos.method;
 
 public class Plan {
-	private int planId;
-	private int planAmount; 
-	private int planDuration; 
-	private int noOfScreens;
-	private int discountAmount=0;
+	public int planId;
+	public int planAmount; 
+	public int planDuration; 
+	public int noOfScreens;
+	public int discountAmount=0;
 	
 	public Plan(int planId, int planAmount, int planDuration, int noOfScreens, int discountAmount) {
 		super();

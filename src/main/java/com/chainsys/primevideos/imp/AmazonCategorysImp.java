@@ -6,14 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.chainsys.primevideos.dao.categorydao;
-import com.chainsys.primevideos.method.categorys;
+import com.chainsys.primevideos.dao.CategoryDAO;
+import com.chainsys.primevideos.method.Categorys;
 
-import Connection.TestConnection;
-import Exception.DbException;
+import connection.TestConnection;
+import exception.DbException;
 import logger.Logger;
 
-public class AmazonCategorysImp implements categorydao {
+public class AmazonCategorysImp implements CategoryDAO {
 	Logger logger = Logger.getInstance();
 
 	public void addCategorys(int id, String category) throws DbException {
@@ -33,21 +33,21 @@ public class AmazonCategorysImp implements categorydao {
 	}
 
 
-	public ArrayList<categorys> getcategorys() throws Exception {
+	public ArrayList<Categorys> getcategorys() throws Exception {
 		
 			String sql = "select * from categorys"; 
 			try(Connection con = TestConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(sql);){			
 			try(ResultSet row = pst.executeQuery();){
 			logger.info(row);
-			ArrayList<categorys> ww = new ArrayList<categorys>();
+			ArrayList<Categorys> ww = new ArrayList<Categorys>();
 			
 			while(row.next())
 			{
 			int a=row.getInt(1);
 			String b= row.getString(2);
 			
-			categorys ae = new categorys();;
+			Categorys ae = new Categorys();;
 			ae.setCategoryId(a);
 			ae.setCategoryName(b);
 			

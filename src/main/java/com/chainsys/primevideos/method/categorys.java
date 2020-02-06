@@ -1,16 +1,16 @@
 package com.chainsys.primevideos.method;
 
-public class categorys {
+public class Categorys {
 	private int categoryId;
 	private String categoryName;
 	
-	public categorys(int categoryId, String categoryName) {
+	public Categorys(int categoryId, String categoryName) {
 		super();
 		this.setCategoryId(categoryId);
 		this.setCategoryName(categoryName);
 	}
 
-	public categorys() {
+	public Categorys() {
 		// TODO Auto-generated constructor stub
 	}
 

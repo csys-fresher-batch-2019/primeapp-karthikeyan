@@ -10,8 +10,8 @@ import java.util.List;
 import com.chainsys.primevideos.dao.PrimeReleasesDAO;
 import com.chainsys.primevideos.method.PrimeReleases;
 
-import Connection.TestConnection;
-import Exception.DbException;
+import connection.TestConnection;
+import exception.DbException;
 import logger.Logger;
 
 public class PrimeReleasesDAOImp implements PrimeReleasesDAO {

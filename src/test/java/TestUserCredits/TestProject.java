@@ -1,10 +1,10 @@
-package TestUserCredits;
+package testUserCredits;
 
 import java.util.Scanner;
 
-import TestUserCredits.TestLogin;
-import TestUserCredits.TestSignUp;
 import plan.TestPlan;
+import testUserCredits.TestLogin;
+import testUserCredits.TestSignUp;
 
 public class TestProject {
 

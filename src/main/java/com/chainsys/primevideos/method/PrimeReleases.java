@@ -3,22 +3,22 @@ package com.chainsys.primevideos.method;
 import java.time.LocalDate;
 
 public class PrimeReleases {
-	private int primeId;
-	private int categoryId;
-	private String nameofVideo;
-	private String genre;
-	private int season = 0;
-	private int totalEpisodes = 0;
-	private String audioLanguages;
-	private String subtitleLanguages;
-	private String director;
-	private LocalDate releaseDate;
-	private LocalDate primereleaseDate;
-	private int boxofficecollectionuinmillions;
-	private String casting;
-	private String descriptionofvideo;
-	private int imdbRating;
-	private boolean originals;
+	public int primeId;
+	public int categoryId;
+	public String nameofVideo;
+	public String genre;
+	public int season = 0;
+	public int totalEpisodes = 0;
+	public String audioLanguages;
+	public String subtitleLanguages;
+	public String director;
+	public LocalDate releaseDate;
+	public LocalDate primereleaseDate;
+	public int boxofficecollectionuinmillions;
+	public String casting;
+	public String descriptionofvideo;
+	public int imdbRating;
+	public boolean originals;
 	public PrimeReleases(int primeId, int categoryId, String nameofVideo, String genre, int season, int totalEpisodes,
 			String audioLanguages, String subtitleLanguages, String director, LocalDate releaseDate,
 			LocalDate primereleaseDate, int boxofficecollectionuinmillions, String casting, String descriptionofvideo,

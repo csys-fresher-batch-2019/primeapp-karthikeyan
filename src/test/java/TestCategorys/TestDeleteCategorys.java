@@ -1,4 +1,4 @@
-package TestCategorys;
+package testCategorys;
 
 import java.util.Scanner;
 

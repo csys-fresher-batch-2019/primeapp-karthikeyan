@@ -2,15 +2,15 @@ package com.chainsys.primevideos.method;
 
 import java.time.LocalDate;
 
-public class watchlist {
-	private int userId;
-	private int primeId;
-	private String status = "watching";
-	private int likes = 0;
-	private LocalDate startedon;
-	private int viewerrating;
+public class WatchList {
+	public int userId;
+	public int primeId;
+	public String status = "watching";
+	public int likes = 0;
+	public LocalDate startedon;
+	public int viewerrating;
 	
-	public watchlist(int userId, int primeId, String status, int likes, LocalDate startedon, int viewerrating) {
+	public WatchList(int userId, int primeId, String status, int likes, LocalDate startedon, int viewerrating) {
 		super();
 		this.userId = userId;
 		this.primeId = primeId;

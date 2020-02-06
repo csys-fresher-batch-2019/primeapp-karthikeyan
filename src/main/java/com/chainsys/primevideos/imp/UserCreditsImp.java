@@ -6,17 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
-import com.chainsys.primevideos.dao.usercreditsdao;
+import com.chainsys.primevideos.dao.UserCreditsDAO;
 import com.chainsys.primevideos.method.UserCredits;
 
-import Connection.TestConnection;
-import Exception.DbException;
-import Util.OTPUtil;
-import Util.TestConformEmail;
+import connection.TestConnection;
+import exception.DbException;
 import logger.Logger;
+import util.OTPUtil;
+import util.TestConformEmail;
 
 
-public class UserCreditsImp implements usercreditsdao {
+public class UserCreditsImp implements UserCreditsDAO {
 	Logger logger = Logger.getInstance();
 	public boolean userLogin(String mailID) throws Exception {
 		String sql = "Select passwords from user_credits where mail_id = ?";

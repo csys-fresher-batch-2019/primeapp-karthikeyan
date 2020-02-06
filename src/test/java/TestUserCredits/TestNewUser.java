@@ -1,4 +1,4 @@
-package TestUserCredits;
+package testUserCredits;
 
 import java.time.LocalDate;
 import java.util.Scanner;
