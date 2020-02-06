@@ -41,18 +41,16 @@ public class PrimeReleases {
 		this.imdbRating = imdbRating;
 		this.originals = originals;
 	}
-	public PrimeReleases() {
-		// TODO Auto-generated constructor stub
-	}
+	
 	@Override
 	public String toString() {
-		return "Prime Movies \nPrimeId=" + primeId + "\nCategoryId=" + categoryId + "\nNameofVideo=" + nameofVideo
-				+ "\nGenre=" + genre + "\nSeason=" + season + "\nTotalEpisodes=" + totalEpisodes + "\nAudioLanguages="
-				+ audioLanguages + "\nSubtitleLanguages=" + subtitleLanguages + "\nDirector=" + director
-				+ "\nReleaseDate=" + releaseDate + "\nPrimereleaseDate=" + primereleaseDate
-				+ "\nBoxOfficecollectionInMillions=" + boxofficecollectionuinmillions + "\nCasting=" + casting
-				+ "\nDescriptionofvideo=" + descriptionofvideo + "\nImdbRating=" + imdbRating + "\nOriginals="
-				+ originals ;
+		return "PrimeReleases [primeId=" + primeId + ", categoryId=" + categoryId + ", nameofVideo=" + nameofVideo
+				+ ", genre=" + genre + ", season=" + season + ", totalEpisodes=" + totalEpisodes + ", audioLanguages="
+				+ audioLanguages + ", subtitleLanguages=" + subtitleLanguages + ", director=" + director
+				+ ", releaseDate=" + releaseDate + ", primereleaseDate=" + primereleaseDate
+				+ ", boxofficecollectionuinmillions=" + boxofficecollectionuinmillions + ", casting=" + casting
+				+ ", descriptionofvideo=" + descriptionofvideo + ", imdbRating=" + imdbRating + ", originals="
+				+ originals + "]";
 	}
 	
 	
