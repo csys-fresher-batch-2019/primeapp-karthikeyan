@@ -13,7 +13,7 @@ public class TestSignUp {
 	    Scanner sc = new Scanner(System.in);
 	    System.out.println("Prime Registration");
 	    System.out.println("Mail ID");   
-	 	as.setMailId(sc.next());
+	 	as.MailId(sc.next());
 	 	
 	 	String password="";
 	 	while((password.length())<8)
@@ -25,7 +25,7 @@ public class TestSignUp {
 	 	String password1  =sc.next();
 	 	if (password1.equals(password))
 	 	{
-	 		as.setPassword(password);
+	 		as.Password(password);
 	 		String mailId = ap.userSignUp(as);
 	 		TestNewUser.main(mailId);
 	 	}

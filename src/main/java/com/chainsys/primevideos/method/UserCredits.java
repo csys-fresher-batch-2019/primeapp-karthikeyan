@@ -45,6 +45,18 @@ public class UserCredits {
 	}
 
 
+	public void MailId(String next) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void Password(String password2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	
 
 }
