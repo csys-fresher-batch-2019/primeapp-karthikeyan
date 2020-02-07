@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,12 +61,13 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		}
 		
 	}
-	public List<PrimeReleases> commonMethod(String term, String val, String sql) throws Exception, SQLException {
-		Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);
+	public List<PrimeReleases> commonMethod(String term, String val, String sql) throws Exception {
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
+			
 		pst.setString(1, term);
 		pst.setString(2, val);
-		ResultSet rs = pst.executeQuery();
+		try(ResultSet rs = pst.executeQuery();){
 		ArrayList<PrimeReleases> l = new ArrayList<>();
 		logger.info("Prime Id   Name of Video");
 		while(rs.next())
@@ -76,7 +76,12 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			String b=rs.getString(2);			
 			logger.info(a+"      "+b);
 		}			
-		return l;
+		return l;}
+		}
+		catch(DbException e)
+		{
+			throw new Exception("Common Search Method Failed");
+		}
 	}
 	public List<PrimeReleases> getDetails(int id) throws Exception
 	{
@@ -146,7 +151,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		PreparedStatement pst = con.prepareStatement(sql);){	
 		try(ResultSet rs = pst.executeQuery();){
 		ArrayList<PrimeReleases> l = new ArrayList<>();
-		//
+		
 		while(rs.next())
 		{
 			int a=rs.getInt(1);
@@ -164,13 +169,13 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			throw new Exception("DataBase Operation Failed");
 		}
 	}
-	public void addReleaseDetails(PrimeReleases PrimeRelease) {
+	public void addReleaseDetails(PrimeReleases primeRelease) {
 		
 	}
 	public List<PrimeReleases> getPrimeReleases(String videoname) {
 		return null;
 	}
-	public String[] nameOfVideo(String Like) {
+	public String[] nameOfVideo(String like) {
 		return null;
 	}
 	public int addImdbRating(int primeID) {

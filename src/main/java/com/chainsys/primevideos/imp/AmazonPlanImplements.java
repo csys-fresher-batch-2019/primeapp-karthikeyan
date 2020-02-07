@@ -63,11 +63,11 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 	
 	}
 	
-	public ArrayList<Integer> getPlanDuration(int PlanDuration) throws Exception{
+	public ArrayList<Integer> getPlanDuration(int planDuration) throws Exception{
 		String sql = "select * from plans where plan_duration >= ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
-		pst.setInt(1,PlanDuration);
+		pst.setInt(1,planDuration);
 		try(ResultSet rs = pst.executeQuery();){
 		logger.info(rs);
 		ArrayList<Integer> ln = new ArrayList<>();
@@ -90,11 +90,11 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		
 	}
 
-	public ArrayList<Plan> getPlansamount(int PlanAmount) throws Exception {
+	public ArrayList<Plan> getPlansamount(int planAmount) throws Exception {
 		return null;
 	}
 
-	public ArrayList<Plan> getPlans(int PlanDuration, int PlanAmount) {
+	public ArrayList<Plan> getPlans(int planDuration, int planAmount) {
 		return null;
 	}
 		

@@ -81,11 +81,11 @@ public class UserCreditsImp implements UserCreditsDAO {
 
 	}
 
-	public String userSignUp(UserCredits User) throws Exception {
+	public String userSignUp(UserCredits user) throws Exception {
 		String sql = "select user_id from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
-		pst.setString(1, User.mailId);
+		pst.setString(1, user.mailId);
 		try(ResultSet rs = pst.executeQuery();){
 		rs.next();
 		if (rs.next()) {
@@ -95,8 +95,8 @@ public class UserCreditsImp implements UserCreditsDAO {
 		} else {
 			int random = OTPUtil.getOTP();
 			con.close();
-			insertSignUp(User.mailId, User.password, random);
-			return User.mailId;
+			insertSignUp(user.mailId, user.password, random);
+			return user.mailId;
 
 		}
 		return null;}}
