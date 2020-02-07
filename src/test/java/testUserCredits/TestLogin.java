@@ -38,7 +38,7 @@ public class TestLogin {
 		}
 			else
 				{
-					TestProject.main(null);
+					TestUserInterface.main(null);
 				}
 		sc.close();
 			}

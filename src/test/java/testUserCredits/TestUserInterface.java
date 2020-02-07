@@ -6,7 +6,7 @@ import plan.TestPlan;
 import testUserCredits.TestLogin;
 import testUserCredits.TestSignUp;
 
-public class TestProject {
+public class TestUserInterface {
 
 	public static <ReadFiles> void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
@@ -60,7 +60,7 @@ public class TestProject {
 		int s = sc.nextInt();
 		if(s==0)
 		{
-			TestProject.main(null);
+			TestUserInterface.main(null);
 		}
 		sc.close();
 	

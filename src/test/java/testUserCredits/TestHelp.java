@@ -19,7 +19,7 @@ public class TestHelp {
 		}
 		case 2:
 		{
-			TestProject.main(null);
+			TestUserInterface.main(null);
 			break;
 		}
 		case 3:

@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import com.chainsys.primevideos.dao.UserCreditsDAO;
-import com.chainsys.primevideos.method.userCredits;
+import com.chainsys.primevideos.method.UserCredits;
 
 import connection.TestConnection;
 import exception.DbException;
@@ -79,7 +79,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 
 	}
 
-	public String userSignUp(userCredits user) throws Exception {
+	public String userSignUp(UserCredits user) throws Exception {
 		String sql = "select user_id from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
@@ -143,7 +143,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 
 	}
 
-	public void userUpdate(userCredits users) throws Exception {
+	public void userUpdate(UserCredits users) throws Exception {
 		
 			String sql = "update user_credits set customer_name = ? ,gender = ?,DOB = ?,age = ?,mobile_no = ? where mail_id = ?";
 			try(Connection con = TestConnection.getConnection();
@@ -182,7 +182,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		String g = row1.getString(7);
 		Long h = row1.getLong(8);
 		Date i = row1.getDate(9);
-		userCredits aes = new userCredits();
+		UserCredits aes = new UserCredits();
 		aes.customerName = a;
 		aes.gender = b;
 		aes.dob = c.toLocalDate();
@@ -201,11 +201,11 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 	}
 
-	public List<userCredits> getUserDetails() {
+	public List<UserCredits> getUserDetails() {
 		throw new UnsupportedOperationException();
 	}
 
-	public List<userCredits> getUserAge(int age) {
+	public List<UserCredits> getUserAge(int age) {
 		throw new UnsupportedOperationException();
 	}
 

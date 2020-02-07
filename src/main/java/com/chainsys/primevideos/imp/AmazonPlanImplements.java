@@ -20,7 +20,10 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		PreparedStatement pst = con.prepareStatement(sql);)
 		{
 		int row = pst.executeUpdate();
-		logger.info(row);}
+		if(row==1)
+		{
+		logger.info("PlanId :"+plans.planId+" Inserted\n");
+		}}
 		catch(DbException e)
 		{
 			throw new Exception("Plan Insertion Failed");
@@ -90,13 +93,43 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		
 	}
 
-	public ArrayList<Plan> getPlansamount(int planAmount) throws Exception {
-		throw new UnsupportedOperationException();
+	@Override
+	public void deletePlan(int planId) throws Exception {
+		String sql = "delete plans where plan_id = "+planId+"";
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);)
+		{
+			int row = pst.executeUpdate();
+			if(row==1)
+			{
+			logger.info("PlanId :"+planId+" deleted \n");
+			}}
+		catch(DbException e)
+		{
+			throw new Exception("Plan deletion Failed");
+		}
 	}
-
-	public ArrayList<Plan> getPlans(int planDuration, int planAmount) {
-		throw new UnsupportedOperationException();
-	}
+	@Override
+	public void updatePlan(Plan plans) throws Exception {
+		String sql = "update plans set plan_amount = ?, plan_duration = ?,no_of_screens = ?,discount_amount=? where plan_id =?";
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);)
+		{
+			pst.setInt(1, plans.planAmount);
+			pst.setInt(2, plans.planDuration);
+			pst.setInt(3, plans.noOfScreens);
+			pst.setInt(4, plans.discountAmount);
+			pst.setInt(5, plans.planId);
+			int row = pst.executeUpdate();
+			if(row==1)
+			{
+			logger.info("PlanId :"+plans.planId+" Updated\n");
+			}}
+		catch(DbException e)
+		{
+			throw new Exception("Plan Insertion Failed");
+		}
 		
-			
-}	
+	} 
+		
+	}

@@ -2,13 +2,13 @@ package com.chainsys.primevideos.dao;
 
 import java.util.List;
 
-import com.chainsys.primevideos.method.userCredits;
+import com.chainsys.primevideos.method.UserCredits;
 
 public interface UserCreditsDAO {
 
-	void userUpdate(userCredits users) throws Exception;
+	void userUpdate(UserCredits users) throws Exception;
 
-	List<userCredits> getUserDetails();
+	List<UserCredits> getUserDetails();
 
-	List<userCredits> getUserAge(int age);
+	List<UserCredits> getUserAge(int age);
 }

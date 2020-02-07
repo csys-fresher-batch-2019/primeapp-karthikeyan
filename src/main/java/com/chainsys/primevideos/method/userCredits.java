@@ -2,7 +2,7 @@ package com.chainsys.primevideos.method;
 
 import java.time.LocalDate;
 
-public class userCredits {
+public class UserCredits {
 	public String customerName;
 	public String gender;
 	public LocalDate dob;
@@ -14,7 +14,7 @@ public class userCredits {
 	public LocalDate createdDate;
 	
 	
-	public userCredits(String customerName, String gender, LocalDate dob, int age, String mailId, int userId,
+	public UserCredits(String customerName, String gender, LocalDate dob, int age, String mailId, int userId,
 			String password, Long mobileNumber, LocalDate createdDate) {
 		super();
 		this.customerName = customerName;
@@ -31,7 +31,7 @@ public class userCredits {
 	}
 
 
-	public userCredits() {
+	public UserCredits() {
 		throw new UnsupportedOperationException();
 	}
 
@@ -48,7 +48,7 @@ public class userCredits {
 	}
 
 
-	public void password(String password2) {
+	public void password1(String password2) {
 		throw new UnsupportedOperationException();
 	}
 

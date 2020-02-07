@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import com.chainsys.primevideos.imp.AmazonPlanImplements;
 import com.chainsys.primevideos.method.Plan;
 
-public class TestExportPlan {
+import logger.Logger;
 
+public class TestExportPlan {
+	static Logger logger = new Logger();
 	public static void main(String[] args) throws Exception {
 		AmazonPlanImplements imp = new AmazonPlanImplements();
 		ArrayList<Plan> e = imp.list();
@@ -21,7 +23,7 @@ public class TestExportPlan {
 			
 			filecontents = filecontents + line+ "\n"; 
 		}
-		System.out.println(filecontents);
+		logger.info(filecontents);
 		
 		Path path = Paths.get("D:\\gre.txt");
 		
