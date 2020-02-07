@@ -96,7 +96,7 @@ public class AmazonCategorysImp implements CategoryDAO {
 
 
 	public void addCategorys(String category) throws Exception {
-		
+		throw new UnsupportedOperationException();
 	}
 
 }

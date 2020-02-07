@@ -170,22 +170,22 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		}
 	}
 	public void addReleaseDetails(PrimeReleases primeRelease) {
-		
+		throw new UnsupportedOperationException();
 	}
 	public List<PrimeReleases> getPrimeReleases(String videoname) {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 	public String[] nameOfVideo(String like) {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 	public int addImdbRating(int primeID) {
-		return 0;
+		throw new UnsupportedOperationException();
 	}
 	public List<PrimeReleases> getGenres(String genre) {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 	public List<PrimeReleases> list() {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 

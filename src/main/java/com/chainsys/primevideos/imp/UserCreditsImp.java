@@ -206,11 +206,11 @@ public class UserCreditsImp implements UserCreditsDAO {
 	}
 
 	public List<UserCredits> getUserDetails() {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	public List<UserCredits> getUserAge(int age) {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 }

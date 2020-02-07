@@ -91,11 +91,11 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 	}
 
 	public ArrayList<Plan> getPlansamount(int planAmount) throws Exception {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	public ArrayList<Plan> getPlans(int planDuration, int planAmount) {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 		
 			

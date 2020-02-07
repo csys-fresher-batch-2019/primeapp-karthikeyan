@@ -3,16 +3,19 @@ package util;
 import java.io.IOException;
 import java.util.Scanner;
 
+import logger.Logger;
+
 public class TestConformEmail 
 {
 	static Scanner sc = new Scanner(System.in);
+	static Logger logger = Logger.getInstance();
 	public static boolean main(int random, String mailId) throws IOException {
 		
         String subject = "Verify your new Amazon account";    
         String bodyContent = "To verify your email address,\nplease use the following One Time Password (OTP):\n\n\n "+random+"\n\nDo not share this OTP with anyone.\nPrime takes your account security very seriously. ";
         MailUtil1.send("primemovieentertainments@gmail.com","Reset@123",mailId,subject,bodyContent);
-        System.out.println("Enter the OTP");
-		System.out.println("OTP send to your MailId");
+        logger.info("Enter the OTP");
+        logger.info("OTP send to your MailId");
 		int a =sc.nextInt();
 		if(a == random)
 		{
@@ -20,7 +23,7 @@ public class TestConformEmail
 		}
 		else
 		{
-			System.out.println("OTP entered is Incorrect");		
+			logger.info("OTP entered is Incorrect");		
 			return false;
 		}
 	}
@@ -29,8 +32,8 @@ public class TestConformEmail
         String subject = "Prime password assistance";
         String bodyContent = "Password assistance \n\n\n To authenticate, please use the following One Time Password (OTP): \n\n\n "+random+"Do not share this OTP with anyone. \nPrime takes your account security very seriously.";
         MailUtil1.send("primemovieentertainments@gmail.com","Reset@123",mailId,subject,bodyContent);
-        System.out.println("Enter the OTP");
-		System.out.println("OTP send to your MailId");
+        logger.info("Enter the OTP");
+        logger.info("OTP send to your MailId");
 		int a = sc.nextInt();
 		if(a == random)
 		{
@@ -38,7 +41,7 @@ public class TestConformEmail
 		}
 		else
 		{
-			System.out.println("OTP entered is Incorrect");		
+			logger.info("OTP entered is Incorrect");		
 			return false;
 		}
 	}
