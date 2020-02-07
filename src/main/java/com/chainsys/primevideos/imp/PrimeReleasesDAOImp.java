@@ -110,20 +110,20 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		String n = rs.getString(13);
 		String o = rs.getString(14);
 		PrimeReleases ad  =new PrimeReleases();
-		ad.primeId = a;
-		ad.categoryId=b;
-		ad.nameofVideo=c;
-		ad.genre=d;
-		ad.season=e;
-		ad.totalEpisodes=f;
-		ad.audioLanguages=g;
-		ad.subtitleLanguages=h;
-		ad.director=i;		
-		ad.releaseDate=j.toLocalDate();
-		ad.primereleaseDate=k.toLocalDate();
-		ad.boxofficecollectionuinmillions=m;
-		ad.casting=n;
-		ad.descriptionofvideo=o;
+		ad.setPrimeId(a);
+		ad.setCategoryId(b);
+		ad.setNameofVideo(c);
+		ad.setGenre(d);
+		ad.setSeason(e);
+		ad.setTotalEpisodes(f);
+		ad.setAudioLanguages(g);
+		ad.setSubtitleLanguages(h);
+		ad.setDirector(i);		
+		ad.setReleaseDate(j.toLocalDate());
+		ad.setPrimereleaseDate(k.toLocalDate());
+		ad.setBoxofficecollectionuinmillions(m);
+		ad.setCasting(n);
+		ad.setDescriptionofvideo(o);
 		l.add(ad);
 		logger.info(ad);
 			}	}
@@ -163,8 +163,8 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			
 			
 			PrimeReleases as = new PrimeReleases();
-			as.primeId=a;
-			as.nameofVideo=b;			
+			as.setPrimeId(a);
+			as.setNameofVideo(b);			
 			l.add(as);
 		}			
 		return l;}}

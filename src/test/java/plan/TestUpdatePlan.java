@@ -12,15 +12,15 @@ static Scanner sc= new Scanner(System.in);
 			AmazonPlanImplements api = new AmazonPlanImplements();
 			Plan a = new Plan();
 			System.out.println("Enter PlanId To Update:");
-			a.planId = sc.nextInt();
+			a.setPlanId(sc.nextInt());
 			System.out.println("Enter PlanDuration :");
-			a.planDuration=sc.nextInt();
+			a.setPlanDuration(sc.nextInt());
 			System.out.println("Enter PlanAmount :");
-			a.planAmount=sc.nextInt();
+			a.setPlanAmount(sc.nextInt());
 			System.out.println("Enter No Of Screens :");
-			a.noOfScreens=sc.nextInt();
+			a.setNoOfScreens(sc.nextInt());
 			System.out.println("Enter Discount Amount :");
-			a.discountAmount=sc.nextInt();
+			a.setDiscountAmount(sc.nextInt());
 			api.addPlan(a);
 
 	}

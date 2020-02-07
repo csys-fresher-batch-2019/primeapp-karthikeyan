@@ -17,10 +17,12 @@ public class AmazonCategorysImp implements CategoryDAO {
 
 	public void addCategorys(int id, String category) throws DbException {
 		
-			String sql = "insert into categorys (category_id,category_name) values ("+id+",'"+category+"')"; 
+			String sql = "insert into categorys (category_id,category_name) values (?,?)"; 
 			try(Connection con = TestConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(sql);)
 			{
+				pst.setInt(1, id);
+				pst.setString(2, category);
 				int row = pst.executeUpdate();
 				logger.info(row);
 			}

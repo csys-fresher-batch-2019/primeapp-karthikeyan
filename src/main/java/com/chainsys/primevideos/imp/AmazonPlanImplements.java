@@ -15,14 +15,19 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 	Logger logger = Logger.getInstance();
 
 	public void addPlan(Plan plans) throws Exception {
-		String sql = "insert into plans(plan_id,plan_amount,plan_duration,no_of_screens) values ("+plans.planId+","+plans.planAmount+","+plans.planDuration+","+plans.discountAmount+")";
+		String sql = "insert into plans(plan_id,plan_amount,plan_duration,no_of_screens,discount_amount) values (?,?,?,?,?)";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);)
 		{
+		pst.setInt(1, plans.getPlanId());
+		pst.setInt(2, plans.getPlanAmount());
+		pst.setInt(3, plans.getPlanDuration());
+		pst.setInt(4, plans.getNoOfScreens());
+		pst.setInt(5, plans.getDiscountAmount());
 		int row = pst.executeUpdate();
 		if(row==1)
 		{
-		logger.info("PlanId :"+plans.planId+" Inserted\n");
+		logger.info("PlanId :"+plans.getPlanId()+" Inserted\n");
 		}}
 		catch(DbException e)
 		{
@@ -47,11 +52,11 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 			int e=rs.getInt(5);
 			
 			Plan as = new Plan();
-			as.planId=a;
-			as.planAmount=b;
-			as.planDuration=c;
-			as.noOfScreens=d;
-			as.discountAmount=e;
+			as.setPlanId(a);
+			as.setPlanAmount(b);
+			as.setPlanDuration(c);
+			as.setNoOfScreens(d);
+			as.setDiscountAmount(e);
 			
 			ll.add(as);
 		
@@ -80,7 +85,7 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 			int a=rs.getInt(1);
 			
 			Plan as = new Plan();
-			as.planId=a;			
+			as.setPlanId(a);			
 			
 		}			
 		return ln;	
@@ -95,10 +100,11 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 
 	@Override
 	public void deletePlan(int planId) throws Exception {
-		String sql = "delete plans where plan_id = "+planId+"";
+		String sql = "delete plans where plan_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);)
 		{
+			pst.setInt(1, planId);
 			int row = pst.executeUpdate();
 			if(row==1)
 			{
@@ -115,15 +121,15 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);)
 		{
-			pst.setInt(1, plans.planAmount);
-			pst.setInt(2, plans.planDuration);
-			pst.setInt(3, plans.noOfScreens);
-			pst.setInt(4, plans.discountAmount);
-			pst.setInt(5, plans.planId);
+			pst.setInt(1, plans.getPlanAmount());
+			pst.setInt(2, plans.getPlanDuration());
+			pst.setInt(3, plans.getNoOfScreens());
+			pst.setInt(4, plans.getDiscountAmount());
+			pst.setInt(5, plans.getPlanId());
 			int row = pst.executeUpdate();
 			if(row==1)
 			{
-			logger.info("PlanId :"+plans.planId+" Updated\n");
+			logger.info("PlanId :"+plans.getPlanId()+" Updated\n");
 			}}
 		catch(DbException e)
 		{

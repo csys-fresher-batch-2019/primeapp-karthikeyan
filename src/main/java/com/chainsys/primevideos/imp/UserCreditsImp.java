@@ -62,10 +62,11 @@ public class UserCreditsImp implements UserCreditsDAO {
 	
 	public void verifyOTPAndUpdatePassword(String mailId, String password) throws Exception {
 		// String password = getPassword.main(null);
-		String sql1 = "update user_credits set passwords = '" + password + "'where mail_id = ?"; //and otp = ?
+		String sql1 = "update user_credits set passwords = ? where mail_id = ?"; //and otp = ?
 		try(Connection con1 = TestConnection.getConnection();
 		PreparedStatement pst1 = con1.prepareStatement(sql1);){
-		pst1.setString(1, mailId);
+		pst1.setString(1, password);
+		pst1.setString(2, mailId);
 		int row = pst1.executeUpdate();
 		if (row == 1) {
 			logger.info("Password Updated");
@@ -83,7 +84,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		String sql = "select user_id from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
-		pst.setString(1, user.mailId);
+		pst.setString(1, user.getMailId());
 		try(ResultSet rs = pst.executeQuery();){
 		rs.next();
 		if (rs.next()) {
@@ -91,8 +92,8 @@ public class UserCreditsImp implements UserCreditsDAO {
 
 		} else {
 			int random = OTPUtil.getOTP();
-			insertSignUp(user.mailId, user.password, random);
-			return user.mailId;
+			insertSignUp(user.getMailId(), user.getPassword(), random);
+			return user.getMailId();
 
 		}
 		return null;}}
@@ -148,16 +149,16 @@ public class UserCreditsImp implements UserCreditsDAO {
 			String sql = "update user_credits set customer_name = ? ,gender = ?,DOB = ?,age = ?,mobile_no = ? where mail_id = ?";
 			try(Connection con = TestConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(sql);){
-			pst.setString(1, users.customerName);
-			pst.setString(2, users.gender);
-			pst.setDate(3, Date.valueOf(users.dob));
-			pst.setInt(4, users.age);
-			pst.setLong(5, users.mobileNumber);
-			pst.setString(6, users.mailId);
+			pst.setString(1, users.getCustomerName());
+			pst.setString(2, users.getGender());
+			pst.setDate(3, Date.valueOf(users.getDob()));
+			pst.setInt(4, users.getAge());
+			pst.setLong(5, users.getMobileNumber());
+			pst.setString(6, users.getMailId());
 			int row = pst.executeUpdate();
 
 			if (row != 0) {
-				profile(users.mailId);
+				profile(users.getMailId());
 			}
 		} catch(DbException e)
 		{
@@ -183,15 +184,15 @@ public class UserCreditsImp implements UserCreditsDAO {
 		Long h = row1.getLong(8);
 		Date i = row1.getDate(9);
 		UserCredits aes = new UserCredits();
-		aes.customerName = a;
-		aes.gender = b;
-		aes.dob = c.toLocalDate();
-		aes.age = d;
-		aes.mailId = e;
-		aes.userId = f;
-		aes.password = g;
-		aes.mobileNumber = h;
-		aes.createdDate = i.toLocalDate();
+		aes.setCustomerName(a);
+		aes.setGender(b);
+		aes.setDob(c.toLocalDate());
+		aes.setAge(d);
+		aes.setMailId(e);
+		aes.setUserId(f);
+		aes.setPassword(g);
+		aes.setMobileNumber(h);
+		aes.setCreatedDate(i.toLocalDate());
 		logger.info(aes);
 		logger.info("Profile Updated");
 		}}

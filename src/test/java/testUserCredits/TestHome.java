@@ -61,7 +61,7 @@ public class TestHome {
 		for(PrimeReleases a : weee)
 		{
 			
-			System.out.print(a.primeId+" "+ a.nameofVideo+"    ");
+			System.out.print(a.getPrimeId()+" "+ a.getNameofVideo()+"    ");
 		}
 		System.out.println();
 		System.out.println("-------------------------------------------------------------------------------------------------------");

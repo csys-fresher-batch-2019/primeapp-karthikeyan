@@ -12,21 +12,21 @@ public class TestNewUser {
 	public static void main(String mailIds) throws Exception {
 		UserCreditsImp apa = new UserCreditsImp();
 		UserCredits asa = new UserCredits();
-		asa.mailId=mailIds;
+		asa.setMailId(mailIds);
 		Logger logger = Logger.getInstance();
 	    Scanner sc = new Scanner(System.in);
 	 	logger.info("Enter CustomerName");
-	 	asa.customerName=sc.next();
+	 	asa.setCustomerName(sc.next());
 	 	System.out.println("Enter Gender(M/F)");
-	 	asa.gender=sc.next();
+	 	asa.setGender(sc.next());
 	 	System.out.println("Enter DOB(yyyy-mm-dd)");
 	 	String dates =sc.next();
 	 	LocalDate dobs = LocalDate.parse(dates);
-	 	asa.dob=dobs;
+	 	asa.setDob(dobs);
 	 	System.out.println("Enter Age");
-	 	asa.age=sc.nextInt();
+	 	asa.setAge(sc.nextInt());
 	 	System.out.println("Enter MobileNo");
-	 	asa.mobileNumber=sc.nextLong();
+	 	asa.setMobileNumber(sc.nextLong());
 	 	apa.userUpdate(asa);
 	 	
 	 	sc.close();	

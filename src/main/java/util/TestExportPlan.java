@@ -19,7 +19,7 @@ public class TestExportPlan {
 		String filecontents = "";
 		for(Plan ae : e)
 		{
-			String line = ae.planId+","+ae.planDuration+","+ae.planAmount+","+ae.noOfScreens+","+ae.discountAmount;
+			String line = ae.getPlanId()+","+ae.getPlanDuration()+","+ae.getPlanAmount()+","+ae.getNoOfScreens()+","+ae.getDiscountAmount();
 			
 			filecontents = filecontents + line+ "\n"; 
 		}
