@@ -9,7 +9,6 @@ import com.chainsys.primevideos.method.UserCredits;
 import logger.Logger;
 
 public class TestNewUser {
-	//update user_credits set((customer_name,gender,DOB,age,mail_id,passwords,mobile_no) where mail_id = ?;
 	public static void main(String mailIds) throws Exception {
 		UserCreditsImp apa = new UserCreditsImp();
 		UserCredits asa = new UserCredits();
@@ -30,7 +29,7 @@ public class TestNewUser {
 	 	asa.mobileNumber=sc.nextLong();
 	 	apa.userUpdate(asa);
 	 	
-	 	
+	 	sc.close();	
 	}
 
 }

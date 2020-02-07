@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		pst.setString(2, term);
 		try(ResultSet rs = pst.executeQuery();){
 		logger.info(sql);
-		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
+		ArrayList<PrimeReleases> l = new ArrayList<>();
 		logger.info("Prime Id   Name of Video");
 		while(rs.next())
 		{
@@ -46,7 +47,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		pst.setString(1, term);
 		pst.setString(2, search);
 		try(ResultSet rs = pst.executeQuery();){
-		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
+		ArrayList<PrimeReleases> l = new ArrayList<>();
 		logger.info("Prime Id   Name of Video");
 		while(rs.next())
 		{
@@ -61,13 +62,13 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		}
 		
 	}
-	/*private List<PrimeReleases> commonMethod(String term, String val, String sql) throws Exception, SQLException {
+	public List<PrimeReleases> commonMethod(String term, String val, String sql) throws Exception, SQLException {
 		Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);
 		pst.setString(1, term);
 		pst.setString(2, val);
 		ResultSet rs = pst.executeQuery();
-		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
+		ArrayList<PrimeReleases> l = new ArrayList<>();
 		logger.info("Prime Id   Name of Video");
 		while(rs.next())
 		{
@@ -76,7 +77,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			logger.info(a+"      "+b);
 		}			
 		return l;
-	}*/
+	}
 	public List<PrimeReleases> getDetails(int id) throws Exception
 	{
 		String sql ="Select * from prime_releases where prime_id = ?";
@@ -84,7 +85,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		PreparedStatement pst = con.prepareStatement(sql);	){
 		pst.setInt(1,id);
 		try(ResultSet rs = pst.executeQuery();){
-		List<PrimeReleases> l = new ArrayList<PrimeReleases>();
+		List<PrimeReleases> l = new ArrayList<>();
 		rs.next();
 		int a = rs.getInt(1);
 		int b = rs.getInt(2);
@@ -126,25 +127,25 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 	}
 	public ArrayList<PrimeReleases> list1() throws Exception {
 		String sql = "select prime_id,name_of_video from prime_releases  where ROWNUM<=5  order by release_date desc";
-		return CallFunction(sql);
+		return callFunction(sql);
 		}
 	public ArrayList<PrimeReleases> list2() throws Exception {
 		String sql = "select prime_id,name_of_video from prime_releases  where ROWNUM<=10  order by imdb_rating desc";
-		return CallFunction(sql);
+		return callFunction(sql);
 		}
 	public ArrayList<PrimeReleases> list3() throws Exception {
 		String sql = "select prime_id,name_of_video from prime_releases  where originals = 1 and ROWNUM<=10  order by imdb_rating desc";
-		return CallFunction(sql);			
+		return callFunction(sql);			
 		}
 	public ArrayList<PrimeReleases> list4() throws Exception {
 		String sql = "select prime_id,name_of_video from prime_releases  where ROWNUM<=5  order by prime_release_date desc";
-		return CallFunction(sql);		
+		return callFunction(sql);		
 		}
-	private static ArrayList<PrimeReleases> CallFunction(String sql) throws Exception{
+	private static ArrayList<PrimeReleases> callFunction(String sql) throws Exception{
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){	
 		try(ResultSet rs = pst.executeQuery();){
-		ArrayList<PrimeReleases> l = new ArrayList<PrimeReleases>();
+		ArrayList<PrimeReleases> l = new ArrayList<>();
 		//
 		while(rs.next())
 		{
@@ -163,37 +164,25 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			throw new Exception("DataBase Operation Failed");
 		}
 	}
-	@Override
 	public void addReleaseDetails(PrimeReleases PrimeRelease) {
-		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public List<PrimeReleases> getPrimeReleases(String videoname) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
 	public String[] nameOfVideo(String Like) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
 	public int addImdbRating(int primeID) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
-	@Override
 	public List<PrimeReleases> getGenres(String genre) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
 	public List<PrimeReleases> list() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 
 	
 

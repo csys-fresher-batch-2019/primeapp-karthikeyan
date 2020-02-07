@@ -11,7 +11,7 @@ public class TestDeleteCategorys {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter the Category ID");
 		int categoryId=sc.nextInt();
-		ae.deleteupdatecategorys(categoryId);
+		ae.deleteUpdateCategorys(categoryId);
 		
 		
 

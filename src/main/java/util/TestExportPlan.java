@@ -13,7 +13,7 @@ public class TestExportPlan {
 
 	public static void main(String[] args) throws Exception {
 		AmazonPlanImplements imp = new AmazonPlanImplements();
-		ArrayList<Plan> e = imp.List();
+		ArrayList<Plan> e = imp.list();
 		String filecontents = "";
 		for(Plan ae : e)
 		{

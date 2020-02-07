@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class TestConformEmail 
 {
+	static Scanner sc = new Scanner(System.in);
 	public static boolean main(int random, String mailId) throws IOException {
-		Scanner sc = new Scanner(System.in);
+		
         String subject = "Verify your new Amazon account";    
         String bodyContent = "To verify your email address,\nplease use the following One Time Password (OTP):\n\n\n "+random+"\n\nDo not share this OTP with anyone.\nPrime takes your account security very seriously. ";
         MailUtil1.send("primemovieentertainments@gmail.com","Reset@123",mailId,subject,bodyContent);
@@ -24,7 +25,7 @@ public class TestConformEmail
 		}
 	}
 	public static boolean changePassword(int random,String mailId) throws IOException {
-		Scanner sc = new Scanner(System.in);
+		
         String subject = "Prime password assistance";
         String bodyContent = "Password assistance \n\n\n To authenticate, please use the following One Time Password (OTP): \n\n\n "+random+"Do not share this OTP with anyone. \nPrime takes your account security very seriously.";
         MailUtil1.send("primemovieentertainments@gmail.com","Reset@123",mailId,subject,bodyContent);

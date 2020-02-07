@@ -129,7 +129,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 	}
 
-	public String Password(String mailId) throws Exception {
+	public String password(String mailId) throws Exception {
 		String sql = "Select passwords from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){

@@ -3,7 +3,6 @@ package com.chainsys.primevideos.imp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.chainsys.primevideos.dao.CategoryDAO;
@@ -40,14 +39,14 @@ public class AmazonCategorysImp implements CategoryDAO {
 			PreparedStatement pst = con.prepareStatement(sql);){			
 			try(ResultSet row = pst.executeQuery();){
 			logger.info(row);
-			ArrayList<Categorys> ww = new ArrayList<Categorys>();
+			ArrayList<Categorys> ww = new ArrayList<>();
 			
 			while(row.next())
 			{
 			int a=row.getInt(1);
 			String b= row.getString(2);
 			
-			Categorys ae = new Categorys();;
+			Categorys ae = new Categorys();
 			ae.setCategoryId(a);
 			ae.setCategoryName(b);
 			
@@ -68,7 +67,7 @@ public class AmazonCategorysImp implements CategoryDAO {
 		
 	
 
-	public void deleteupdatecategorys(int categoryid) throws Exception {
+	public void deleteUpdateCategorys(int categoryid) throws Exception {
 		String sql ="delete categorys where category_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){	
@@ -81,7 +80,7 @@ public class AmazonCategorysImp implements CategoryDAO {
 		}
 	}
 
-	public void updatecategory(int categoryid,String categoryname) throws Exception {
+	public void updateCategory(int categoryid,String categoryname) throws Exception {
 		String sql = "update categorys set category_name = ? where category_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
@@ -97,7 +96,6 @@ public class AmazonCategorysImp implements CategoryDAO {
 
 
 	public void addCategorys(String category) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 

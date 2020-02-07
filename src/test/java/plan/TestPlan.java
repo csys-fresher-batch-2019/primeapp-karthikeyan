@@ -9,7 +9,7 @@ public class TestPlan {
 
 	public static void main(String[] args) throws Exception {
 		AmazonPlanImplements api = new AmazonPlanImplements();
-		ArrayList<Plan> a1 = api.List();
+		ArrayList<Plan> a1 = api.list();
 		for (Plan plan : a1) {
 			System.out.println(plan);
 		}

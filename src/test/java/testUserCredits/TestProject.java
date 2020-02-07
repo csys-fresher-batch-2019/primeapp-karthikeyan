@@ -10,7 +10,7 @@ public class TestProject {
 
 	public static <ReadFiles> void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
-		ReadFile f = new ReadFile();
+		
 		System.out.println("Welcome to Prime Video");
 		System.out.println("Join Prime to watch the latest movies, exclusive TV shows as well as award-winning Amazon Originals");
 		System.out.println("Press 1 --- Login to Amazon Prime");
@@ -62,6 +62,9 @@ public class TestProject {
 		{
 			TestProject.main(null);
 		}
+		sc.close();
+	
 	}
+	
 
 }

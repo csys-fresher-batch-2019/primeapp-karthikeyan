@@ -11,7 +11,7 @@ public class TestUpdateCategorys {
 		Scanner sc = new Scanner(System.in);
 		int categoryId=sc.nextInt();
 		String categoryName=sc.next();
-		ae.updatecategory(categoryId, categoryName);
+		ae.updateCategory(categoryId, categoryName);
 		
 
 	}

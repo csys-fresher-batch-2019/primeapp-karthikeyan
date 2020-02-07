@@ -17,7 +17,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-//import com.sendgrid.helpers.mail.objects.Email;    
  public class MailUtil1
 {  
 	public static void send(final String from,final String password,String to,String sub,String Msg) throws IOException
@@ -71,7 +70,7 @@ import javax.mail.internet.MimeMultipart;
 		
 		Multipart multipart = new MimeMultipart();  
 		multipart.addBodyPart(messageBodyPart1);  
-		//multipart.addBodyPart(messageBodyPart2);
+		multipart.addBodyPart(messageBodyPart2);
 		multipart.addBodyPart(messageBodyPart3);
 		multipart.addBodyPart(messageBodyPart4);
 		multipart.addBodyPart(messageBodyPart5);

@@ -1,6 +1,5 @@
 package testUserCredits;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class TestPage {
@@ -41,7 +40,7 @@ public class TestPage {
 			System.out.println("Enter valid Page");
 		}
 		
-		
+		sc.close();	
 	}
 
 	}}

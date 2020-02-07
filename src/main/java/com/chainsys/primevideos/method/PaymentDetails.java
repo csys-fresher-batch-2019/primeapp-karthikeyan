@@ -24,7 +24,6 @@ public class PaymentDetails {
 	}
 
 
-	@Override
 	public String toString() {
 		return "paymentdetails [userId=" + userId + ", password=" + password + ", cardcategory=" + cardCategory
 				+ ", nameOnCard=" + nameOnCard + ", cardNo=" + cardNo + ", dateOfExpire=" + dateOfExpire + "]";

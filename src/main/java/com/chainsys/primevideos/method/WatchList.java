@@ -20,7 +20,6 @@ public class WatchList {
 		this.viewerrating = viewerrating;
 	}
 
-	@Override
 	public String toString() {
 		return "watchlist [userId=" + userId + ", primeId=" + primeId + ", status=" + status + ", likes=" + likes
 				+ ", startedon=" + startedon + ", viewerrating=" + viewerrating + "]";

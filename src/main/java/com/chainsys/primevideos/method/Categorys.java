@@ -11,10 +11,8 @@ public class Categorys {
 	}
 
 	public Categorys() {
-		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public String toString() {
 		return "categorys [categoryId=" + getCategoryId() + ", categoryName=" + getCategoryName() + "]";
 	}

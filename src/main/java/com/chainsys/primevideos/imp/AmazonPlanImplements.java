@@ -28,12 +28,12 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		
 	} 
 
-	public ArrayList<Plan> List() throws Exception{
+	public ArrayList<Plan> list() throws Exception{
 		String sql = "select * from plans";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
 		try(ResultSet rs = pst.executeQuery();){
-		ArrayList<Plan> ll = new ArrayList<Plan>();
+		ArrayList<Plan> ll = new ArrayList<>();
 		
 		while(rs.next())
 		{
@@ -70,7 +70,7 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		pst.setInt(1,PlanDuration);
 		try(ResultSet rs = pst.executeQuery();){
 		logger.info(rs);
-		ArrayList<Integer> ln = new ArrayList<Integer>();
+		ArrayList<Integer> ln = new ArrayList<>();
 		
 		while(rs.next())
 		{
@@ -91,12 +91,10 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 	}
 
 	public ArrayList<Plan> getPlansamount(int PlanAmount) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public ArrayList<Plan> getPlans(int PlanDuration, int PlanAmount) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 		

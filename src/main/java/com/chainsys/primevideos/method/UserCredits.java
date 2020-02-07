@@ -1,6 +1,5 @@
 package com.chainsys.primevideos.method;
 
-//import java.sql.Date;
 import java.time.LocalDate;
 
 public class UserCredits {
@@ -33,11 +32,9 @@ public class UserCredits {
 
 
 	public UserCredits() {
-		// TODO Auto-generated constructor stub
 	}
 
 
-	@Override
 	public String toString() {
 		return "Profile Details \n customerName=" + customerName + "\n gender=" + gender + "\n dob=" + dob + "\n age=" + age
 				+ "\n mailId=" + mailId + "\n userId=" + userId + "\n password=" + password + "\n mobileNumber="
@@ -46,13 +43,11 @@ public class UserCredits {
 
 
 	public void MailId(String next) {
-		// TODO Auto-generated method stub
 		
 	}
 
 
 	public void Password(String password2) {
-		// TODO Auto-generated method stub
 		
 	}
 

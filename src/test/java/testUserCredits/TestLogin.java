@@ -18,7 +18,7 @@ public class TestLogin {
 			while (b != 1 && c != 3) {
 				System.out.println("Enter Password");
 				String Password = sc.next();
-				String pass = as.Password(EmailId);
+				String pass = as.password(EmailId);
 				if (pass.equals(Password)) {
 					System.out.println("Login Successfull");
 					b = 1;
@@ -40,7 +40,7 @@ public class TestLogin {
 				{
 					TestProject.main(null);
 				}
-		
+		sc.close();
 			}
 		}
 		

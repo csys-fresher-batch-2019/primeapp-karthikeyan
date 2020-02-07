@@ -17,13 +17,11 @@ public class Plan {
 	}
 
 	public Plan() {
-		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public String toString() {
-		return "PlanId=" + planId + ", PlanAmount=" + planAmount + ", PlanDuration=" + planDuration
-				+ ", NoOfScreens=" + noOfScreens + ", DiscountAmount=" + discountAmount ;
+		return "\nPlanId=" + planId + "| PlanAmount=" + planAmount + "| PlanDuration=" + planDuration
+				+ "| NoOfScreens=" + noOfScreens + "| DiscountAmount=" + discountAmount+"\n-------------------------------------------------------------------------------------" ;
 	}
 
 }

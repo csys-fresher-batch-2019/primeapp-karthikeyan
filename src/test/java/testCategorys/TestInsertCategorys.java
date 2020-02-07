@@ -12,8 +12,6 @@ public class TestInsertCategorys {
 		System.out.println("Enter the Category Name");
 		int categoryid  =  sc.nextInt();
 		System.out.println("Enter the Category Name");
-		 /*String categoryName1 =sc.next();
-		EnumCategorys categoryName = EnumCategorys.valueOf(categoryName1);*/
 		String categoryName = String.valueOf(sc.next());
 		ae.addCategorys(categoryid,categoryName);
 	}

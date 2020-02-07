@@ -65,7 +65,9 @@ public class TestSearch {
 		{
 			a++;
 		}
+		sc.close();
 	}
+	
 }
 		/*System.out.println("Enter the Search Method : ");
 		System.out.println(a);

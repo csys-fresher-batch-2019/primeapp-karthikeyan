@@ -43,10 +43,8 @@ public class PrimeReleases {
 	}
 	
 	public PrimeReleases() {
-		// TODO Auto-generated constructor stub
 	}
 
-	@Override
 	public String toString() {
 		return "PrimeReleases [primeId=" + primeId + ", categoryId=" + categoryId + ", nameofVideo=" + nameofVideo
 				+ ", genre=" + genre + ", season=" + season + ", totalEpisodes=" + totalEpisodes + ", audioLanguages="
