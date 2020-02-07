@@ -7,7 +7,7 @@ import com.chainsys.primevideos.imp.PrimeReleasesDAOImp;
 import com.chainsys.primevideos.method.PrimeReleases;
 
 public class TestHome {
-
+	
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("---------------------------------------------------AMAZON---------------------------------------------------------");
