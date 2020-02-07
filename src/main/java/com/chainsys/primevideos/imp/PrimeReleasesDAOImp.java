@@ -26,7 +26,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		try(ResultSet rs = pst.executeQuery();){
 		logger.info(sql);
 		ArrayList<PrimeReleases> l = new ArrayList<>();
-		logger.info("Prime Id   Name of Video");
+		printLocal();
 		while(rs.next())
 		{
 			int a=rs.getInt(1);
@@ -39,6 +39,9 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			throw new Exception("Selection Search View Failed");
 		}
 	}
+	private void printLocal() {
+		logger.info("Prime Id   Name of Video");
+	}
 	public List<PrimeReleases> likeSearch(String term,String search) throws Exception {
 		String sql = "select prime_id,name_of_video from prime_releases where ? LIKE %?%";
 		try(Connection con = TestConnection.getConnection();
@@ -47,7 +50,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		pst.setString(2, search);
 		try(ResultSet rs = pst.executeQuery();){
 		ArrayList<PrimeReleases> l = new ArrayList<>();
-		logger.info("Prime Id   Name of Video");
+		printLocal();
 		while(rs.next())
 		{
 			int a=rs.getInt(1);
@@ -69,7 +72,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		pst.setString(2, val);
 		try(ResultSet rs = pst.executeQuery();){
 		ArrayList<PrimeReleases> l = new ArrayList<>();
-		logger.info("Prime Id   Name of Video");
+		printLocal();
 		while(rs.next())
 		{
 			int a=rs.getInt(1);
@@ -123,11 +126,12 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		ad.descriptionofvideo=o;
 		l.add(ad);
 		logger.info(ad);
-		return null;	}	}
+			}	}
 		catch(DbException e)
 		{
 			throw new Exception("Selection Video Details Failed");
 		}
+		return null;
 	
 	}
 	public ArrayList<PrimeReleases> list1() throws Exception {

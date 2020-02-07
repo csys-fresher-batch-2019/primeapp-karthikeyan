@@ -3,17 +3,17 @@
 import java.util.Scanner;
 
 import com.chainsys.primevideos.imp.UserCreditsImp;
-import com.chainsys.primevideos.method.UserCredits;
+import com.chainsys.primevideos.method.userCredits;
 
 public class TestSignUp {
 
 	public static void main(String[] args) throws Exception {
 		UserCreditsImp ap = new UserCreditsImp();
-		UserCredits as = new UserCredits();
+		userCredits as = new userCredits();
 	    Scanner sc = new Scanner(System.in);
 	    System.out.println("Prime Registration");
 	    System.out.println("Mail ID");   
-	 	as.MailId(sc.next());
+	 	as.mailId1(sc.next());
 	 	
 	 	String password="";
 	 	while((password.length())<8)
@@ -25,7 +25,7 @@ public class TestSignUp {
 	 	String password1  =sc.next();
 	 	if (password1.equals(password))
 	 	{
-	 		as.Password(password);
+	 		as.password(password);
 	 		String mailId = ap.userSignUp(as);
 	 		TestNewUser.main(mailId);
 	 	}

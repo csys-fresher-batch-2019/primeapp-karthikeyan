@@ -11,7 +11,7 @@ public interface CategoryDAO {
 
 	void updateCategory(int categoryid,String categoryname) throws Exception;
 
-	void deleteUpdateCategorys(int category_id) throws SQLException, Exception;
+	void deleteUpdateCategorys(int categoryId) throws SQLException, Exception;
 
 	ArrayList<Categorys> getcategorys() throws Exception;
 	

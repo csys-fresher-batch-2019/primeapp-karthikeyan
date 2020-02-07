@@ -6,11 +6,11 @@ import com.chainsys.primevideos.method.PrimeReleases;
 
 public interface PrimeReleasesDAO {
 
-	void addReleaseDetails(PrimeReleases PrimeRelease);
+	void addReleaseDetails(PrimeReleases primeRelease);
 	
 	List<PrimeReleases> getPrimeReleases(String videoname);
 	
-	String[] nameOfVideo(String Like);
+	String[] nameOfVideo(String like);
 
 	int addImdbRating (int primeID);
 	

@@ -43,6 +43,7 @@ public class PrimeReleases {
 	}
 	
 	public PrimeReleases() {
+		throw new UnsupportedOperationException();
 	}
 
 	public String toString() {

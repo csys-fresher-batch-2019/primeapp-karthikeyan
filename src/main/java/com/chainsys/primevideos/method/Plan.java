@@ -17,6 +17,7 @@ public class Plan {
 	}
 
 	public Plan() {
+		throw new UnsupportedOperationException();
 	}
 
 	public String toString() {

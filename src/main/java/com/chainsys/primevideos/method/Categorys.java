@@ -11,6 +11,7 @@ public class Categorys {
 	}
 
 	public Categorys() {
+		throw new UnsupportedOperationException();
 	}
 
 	public String toString() {

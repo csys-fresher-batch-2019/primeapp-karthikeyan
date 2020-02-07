@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.List;
 
 import com.chainsys.primevideos.dao.UserCreditsDAO;
-import com.chainsys.primevideos.method.UserCredits;
+import com.chainsys.primevideos.method.userCredits;
 
 import connection.TestConnection;
 import exception.DbException;
@@ -25,11 +25,9 @@ public class UserCreditsImp implements UserCreditsDAO {
 		pst.setString(1, mailID);
 		try(ResultSet rs = pst.executeQuery();){
 		if (rs.next()) {
-			con.close();
 			return true;
 		} else {
 			logger.info("Incorrect Email ID DoesNot Exist");
-			con.close();
 			return false;
 		}}}
 		catch(DbException e)
@@ -81,7 +79,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 
 	}
 
-	public String userSignUp(UserCredits user) throws Exception {
+	public String userSignUp(userCredits user) throws Exception {
 		String sql = "select user_id from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
@@ -89,12 +87,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 		try(ResultSet rs = pst.executeQuery();){
 		rs.next();
 		if (rs.next()) {
-			con.close();
 			logger.info("Email Id Already Exist");
 
 		} else {
 			int random = OTPUtil.getOTP();
-			con.close();
 			insertSignUp(user.mailId, user.password, random);
 			return user.mailId;
 
@@ -136,9 +132,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 		pst.setString(1, mailId);
 		try(ResultSet rs = pst.executeQuery();){
 		rs.next();
-		String a = rs.getString(1);
 		
-		return a;}}
+		return rs.getString(1);		
+		}
+		}
 		catch(DbException e)
 		{
 			throw new Exception("Password Selection Failed at Matching Region");
@@ -146,7 +143,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 
 	}
 
-	public void userUpdate(UserCredits users) throws Exception {
+	public void userUpdate(userCredits users) throws Exception {
 		
 			String sql = "update user_credits set customer_name = ? ,gender = ?,DOB = ?,age = ?,mobile_no = ? where mail_id = ?";
 			try(Connection con = TestConnection.getConnection();
@@ -159,7 +156,6 @@ public class UserCreditsImp implements UserCreditsDAO {
 			pst.setString(6, users.mailId);
 			int row = pst.executeUpdate();
 
-			con.close();
 			if (row != 0) {
 				profile(users.mailId);
 			}
@@ -173,7 +169,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		String sql1 = "select * from user_credits where mail_id = ?";
 		try(Connection con1 = TestConnection.getConnection();
 		PreparedStatement pst1 = con1.prepareStatement(sql1);){
-		Logger logger = Logger.getInstance();
+		
 		pst1.setString(1, mailIds);
 		try(ResultSet row1 = pst1.executeQuery();){
 		row1.next();
@@ -186,7 +182,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		String g = row1.getString(7);
 		Long h = row1.getLong(8);
 		Date i = row1.getDate(9);
-		UserCredits aes = new UserCredits();
+		userCredits aes = new userCredits();
 		aes.customerName = a;
 		aes.gender = b;
 		aes.dob = c.toLocalDate();
@@ -205,11 +201,11 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 	}
 
-	public List<UserCredits> getUserDetails() {
+	public List<userCredits> getUserDetails() {
 		throw new UnsupportedOperationException();
 	}
 
-	public List<UserCredits> getUserAge(int age) {
+	public List<userCredits> getUserAge(int age) {
 		throw new UnsupportedOperationException();
 	}
 

@@ -4,14 +4,14 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 import com.chainsys.primevideos.imp.UserCreditsImp;
-import com.chainsys.primevideos.method.UserCredits;
+import com.chainsys.primevideos.method.userCredits;
 
 import logger.Logger;
 
 public class TestNewUser {
 	public static void main(String mailIds) throws Exception {
 		UserCreditsImp apa = new UserCreditsImp();
-		UserCredits asa = new UserCredits();
+		userCredits asa = new userCredits();
 		asa.mailId=mailIds;
 		Logger logger = Logger.getInstance();
 	    Scanner sc = new Scanner(System.in);

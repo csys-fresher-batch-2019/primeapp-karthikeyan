@@ -9,11 +9,11 @@ public interface AmazonPlanDAO {
 	
 	ArrayList<Plan> list() throws Exception;
 	
-	ArrayList<Integer> getPlanDuration(int PlanDuration) throws Exception;
+	ArrayList<Integer> getPlanDuration(int planDuration) throws Exception;
 	
-	ArrayList<Plan> getPlansamount(int PlanAmount) throws Exception;
+	ArrayList<Plan> getPlansamount(int planAmount) throws Exception;
 	
-	ArrayList<Plan> getPlans(int PlanDuration,int PlanAmount);
+	ArrayList<Plan> getPlans(int planDuration,int planAmount);
 
 
 }
