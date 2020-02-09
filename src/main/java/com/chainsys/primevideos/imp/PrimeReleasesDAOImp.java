@@ -86,12 +86,9 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		
 	
 
-	public List<PrimeReleases> commonMethod(String term, String val, String sql) throws Exception {
+	public List<PrimeReleases> PowerSearchMethod(String sql) throws Exception {
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
-			
-		pst.setString(1, term);
-		pst.setString(2, val);
 		try(ResultSet rs = pst.executeQuery();){
 		ArrayList<PrimeReleases> l = new ArrayList<>();
 		printLocal();
@@ -156,6 +153,10 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		return null;
 	
 	}
+	public ArrayList<PrimeReleases> list(String sqlq) throws Exception{
+		String sql = sqlq;
+		return callFunction(sql);
+	}
 	public ArrayList<PrimeReleases> list1() throws Exception {
 		String sql = "select prime_id,name_of_video from prime_releases  where ROWNUM<=5  order by release_date desc";
 		return callFunction(sql);
@@ -195,24 +196,14 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			throw new Exception("DataBase Operation Failed");
 		}
 	}
-	public void addReleaseDetails(PrimeReleases primeRelease) {
-		throw new UnsupportedOperationException();
+	@Override
+	public List<PrimeReleases> commonMethod(String term, String val, String sql) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
-	public List<PrimeReleases> getPrimeReleases(String videoname) {
-		throw new UnsupportedOperationException();
-	}
-	public String[] nameOfVideo(String like) {
-		throw new UnsupportedOperationException();
-	}
-	public int addImdbRating(int primeID) {
-		throw new UnsupportedOperationException();
-	}
-	public List<PrimeReleases> getGenres(String genre) {
-		throw new UnsupportedOperationException();
-	}
-	public List<PrimeReleases> list() {
-		throw new UnsupportedOperationException();
-	}
+	
+	
+	
 
 
 	

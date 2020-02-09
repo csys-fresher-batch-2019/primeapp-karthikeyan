@@ -6,16 +6,13 @@ import java.util.Scanner;
 import com.chainsys.primevideos.imp.UserCreditsImp;
 import com.chainsys.primevideos.method.UserCredits;
 
-import logger.Logger;
-
 public class TestNewUser {
 	public static void main(String mailIds) throws Exception {
 		UserCreditsImp apa = new UserCreditsImp();
 		UserCredits asa = new UserCredits();
 		asa.setMailId(mailIds);
-		Logger logger = Logger.getInstance();
 	    Scanner sc = new Scanner(System.in);
-	 	logger.info("Enter CustomerName");
+	 	System.out.println("Enter CustomerName");
 	 	asa.setCustomerName(sc.next());
 	 	System.out.println("Enter Gender(M/F)");
 	 	asa.setGender(sc.next());

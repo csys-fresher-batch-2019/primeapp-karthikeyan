@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class TestPage {
 	
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String EmailId) throws Exception {
 		
 		ReadFile.main("Page");
 		Scanner sc = new Scanner(System.in);
@@ -15,12 +15,12 @@ public class TestPage {
 		{
 		case 1:
 		{
-			TestHome.main(null);
+			TestHome.main(EmailId);
 			break;
 		}
 		case 2:
 		{
-			TestSearch.main(null);
+			TestSearch.main(EmailId);
 			break;
 		}
 		case 3:
@@ -33,6 +33,7 @@ public class TestPage {
 		}
 		case 5:
 		{
+			TestSetting.main(EmailId);
 			break;
 		}
 		default:

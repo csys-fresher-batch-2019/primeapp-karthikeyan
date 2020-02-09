@@ -28,6 +28,7 @@ public class TestHelp {
 		}
 		
 	}
+		sc.close();
 
 }
 }

@@ -16,13 +16,14 @@ public class TestLogin {
 			int b = 0;
 			int c = 0;
 			while (b != 1 && c != 3) {
+				
 				System.out.println("Enter Password");
 				String Password = sc.next();
 				String pass = as.password(EmailId);
 				if (pass.equals(Password)) {
 					System.out.println("Login Successfull");
 					b = 1;
-					TestPage.main(null);
+					TestPage.main(EmailId);
 
 				} else {
 					c++;

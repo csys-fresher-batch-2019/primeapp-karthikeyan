@@ -19,18 +19,21 @@ public class TestAdminInterface {
 		{
 			
 			TestPlanInterface.main(null);
-	
+			break;
 			
 		}
 		case 2:
 		{
 			TestCategoryInterface.main(null);
+			break;
 		}
 		case 3:
 		{
 			TestUserAdminInterface.main(null);
+			break;
 		}
 		}
+		TestAdminInterface.main(null);
 
 
 		

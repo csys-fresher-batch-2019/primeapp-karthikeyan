@@ -43,14 +43,6 @@ public class UserCredits {
 	}
 
 
-	public void mailId1(String next) {
-		throw new UnsupportedOperationException();
-	}
-
-
-	public void password1(String password2) {
-		throw new UnsupportedOperationException();
-	}
 
 
 	public String getCustomerName() {

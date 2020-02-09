@@ -4,13 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import com.chainsys.primevideos.dao.AmazonPlanDAO;
 import com.chainsys.primevideos.method.Plan;
-
 import connection.TestConnection;
 import exception.DbException;
 import logger.Logger;
+
 public class AmazonPlanImplements implements AmazonPlanDAO {
 	Logger logger = Logger.getInstance();
 

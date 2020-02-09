@@ -8,30 +8,30 @@ import com.chainsys.primevideos.method.PrimeReleases;
 
 public class TestHome {
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String EmailId) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("---------------------------------------------------AMAZON---------------------------------------------------------");
 		System.out.println("-------------------------------------------------Prime Video------------------------------------------------------");
 		PrimeReleasesDAOImp as = new PrimeReleasesDAOImp();	
 		ArrayList<PrimeReleases> we = as.list2();
-		ArrayList<PrimeReleases> wee = as.list1();
-		ArrayList<PrimeReleases> weee = as.list3();
-		ArrayList<PrimeReleases> weeee = as.list4();
-		//List<PrimeReleases> weeeee = as.getAudioLanguages(audioLanguages);
+		ArrayList<PrimeReleases> we1 = as.list1();
+		ArrayList<PrimeReleases> we2 = as.list3();
+		ArrayList<PrimeReleases> we3 = as.list4();
 		System.out.println();
 		System.out.println();
-		System.out.println("1 - TOP PRIORITIES");
+		System.out.println("TOP PRIORITIES");
 		PrintMethod(we);
 		ReadFile.main("Languages");
 		System.out.println();
 		System.out.println("-------------------------------------------------------------------------------------------------------");
-		System.out.println("1 - New Releases");
-		PrintMethod(wee);
-		System.out.println("1 - Originals");
-		PrintMethod(weee);
-		System.out.println("1 - Recently added Movies");
-		PrintMethod(weeee);
-		
+		System.out.println("New Releases");
+		PrintMethod(we1);
+		System.out.println("Originals");
+		PrintMethod(we2);
+		System.out.println("Recently added Movies");
+		PrintMethod(we3);
+		System.out.println("To search by MovieId Press 1");
+		System.out.println("To search by language Press 2");
 		System.out.println("Select Type(1/2)");
 		int s =sc.nextInt();
 		if(s==1)
@@ -54,9 +54,10 @@ public class TestHome {
 		{
 			System.out.println("Enter Valid Type(1/2)");
 		}
+		sc.close();
 	}
 	
-	private static void PrintMethod(ArrayList<PrimeReleases> weee) {
+	public static void PrintMethod(ArrayList<PrimeReleases> weee) {
 		System.out.println("Prime Id   Name of Video");
 		for(PrimeReleases a : weee)
 		{
@@ -67,5 +68,5 @@ public class TestHome {
 		System.out.println("-------------------------------------------------------------------------------------------------------");
 		
 	}
-
+	
 }

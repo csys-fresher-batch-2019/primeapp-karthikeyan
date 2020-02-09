@@ -34,7 +34,7 @@ public class TestPasswordAssitancne {
 		 	else
 		 	{
 		 		
-		 		System.out.println("Pasword does not match");
+		 		System.out.println("Password does not match");
 		 	}
 			s.verifyOTPAndUpdatePassword(EmailId, password2);
 		}

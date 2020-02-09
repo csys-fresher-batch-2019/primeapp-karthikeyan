@@ -14,5 +14,5 @@ public interface UserCreditsDAO {
 
 	List<UserCredits> getUserAge(int age);
 	
-	ArrayList<UserCredits> List() throws SQLException, Exception;
+	ArrayList<UserCredits> list() throws SQLException, Exception;
 }

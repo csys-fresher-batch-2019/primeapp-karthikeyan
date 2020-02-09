@@ -6,10 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.chainsys.primevideos.dao.UserCreditsDAO;
 import com.chainsys.primevideos.method.UserCredits;
-
 import connection.TestConnection;
 import exception.DbException;
 import logger.Logger;
@@ -28,7 +26,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		if (rs.next()) {
 			return true;
 		} else {
-			logger.info("Incorrect Email ID DoesNot Exist");
+			logger.info("Incorrect Email ID or DoesNot Exist");
 			return false;
 		}}}
 		catch(DbException e)
@@ -81,31 +79,34 @@ public class UserCreditsImp implements UserCreditsDAO {
 
 	}
 
-	public String userSignUp(UserCredits user) throws Exception {
-		String sql = "select user_id from user_credits where mail_id = ?";
+	public boolean userSignUp(String mailId,String password) throws Exception {
+		String sql = "select passwords from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
-		pst.setString(1, user.getMailId());
+		pst.setString(1, mailId);
 		try(ResultSet rs = pst.executeQuery();){
-		rs.next();
 		if (rs.next()) {
 			logger.info("Email Id Already Exist");
+			return false;
 
 		} else {
 			int random = OTPUtil.getOTP();
-			insertSignUp(user.getMailId(), user.getPassword(), random);
-			return user.getMailId();
-
+			if(insertSignUp(mailId,password, random))
+			{
+				return true;
+			}
+			
 		}
-		return null;}}
+		}}
 		catch(DbException e)
 		{
-			throw new Exception("userLogin operation Failed");
+			throw new Exception("Registration operation Failed");
 		}
+		return false;
 
 	}
 
-	public void insertSignUp(String mailId, String password, int random) throws Exception {
+	public boolean insertSignUp(String mailId, String password, int random) throws Exception {
 
 		if (TestConformEmail.main(random, mailId))
 
@@ -117,6 +118,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 			pst1.setString(2, password);
 			pst1.executeUpdate();
 			logger.info("Welcome to Prime\nUpdate your Profile");
+			return true;
 			}
 		catch(DbException e)
 			{
@@ -124,6 +126,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 			}
 			
 		}
+		return false;
 	}
 
 	public String password(String mailId) throws Exception {
@@ -207,7 +210,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 	}
 
 	@Override
-	public ArrayList<UserCredits> List() throws Exception {
+	public ArrayList<UserCredits> list() throws Exception {
 		String sql = "select * from user_credits";
 		try(Connection con1 = TestConnection.getConnection();
 				PreparedStatement pst1 = con1.prepareStatement(sql);){				

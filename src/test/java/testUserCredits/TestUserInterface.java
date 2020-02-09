@@ -13,10 +13,10 @@ public class TestUserInterface {
 		
 		System.out.println("Welcome to Prime Video");
 		System.out.println("Join Prime to watch the latest movies, exclusive TV shows as well as award-winning Amazon Originals");
-		System.out.println("Press 1 --- Login to Amazon Prime");
-		System.out.println("Press 2 --- SignIn to Amazon Prime");
-		System.out.println("Press 3 --- View Amazon Plans");
-		System.out.println("Press 4 --- About Amazon Prime");
+		System.out.println("Press 1 --- Login to Prime videos");
+		System.out.println("Press 2 --- SignIn to Prime Video");
+		System.out.println("Press 3 --- View Prime videos Plans");
+		System.out.println("Press 4 --- About Prime videos");
 		int a = sc.nextInt();
 		switch(a)
 		{
@@ -27,8 +27,10 @@ public class TestUserInterface {
 		}
 		case 2:
 		{
-			TestSignUp.main(null);
+			if(TestSignUp.main(null))
+			{
 			TestLogin.main(null);
+			}
 			
 			break;
 		}
