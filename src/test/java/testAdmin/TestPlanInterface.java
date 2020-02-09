@@ -1,11 +1,10 @@
-package plan;
+package testAdmin;
 import java.util.Scanner;
+
 import plan.TestDeletePlan;
 import plan.TestInsertPlan;
 import plan.TestPlan;
-import plan.TestPlanInterface;
 import plan.TestUpdatePlan;
-import testAdmin.TestAdminInterface;
 
 public class TestPlanInterface {
 	

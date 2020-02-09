@@ -2,69 +2,75 @@ package testUserCredits;
 
 import java.util.Scanner;
 
-import com.chainsys.primevideos.imp.PrimeReleasesDAOImp;
+//import com.chainsys.primevideos.imp.PrimeReleasesDAOImp;
 
 public class TestSearch {
-	public static int a=0;
 	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
-		PrimeReleasesDAOImp ds = new PrimeReleasesDAOImp();
+		//PrimeReleasesDAOImp ds = new PrimeReleasesDAOImp();
 		ReadFile.main("Search");
-		
+		String sql = "select * from prime_releases where ";		
 		System.out.println("Movie : ");
 		String movie = sc.nextLine();
 		if(movie.length()!=0)
 		{
-			a++;
+				sql = sql +"name_of_video Like %"+movie+"%";			
+			
 		}
 		System.out.println("IMDb : ");
 		String IMDB = sc.nextLine();
 		if(IMDB.length()!=0)
 		{
-			a++;
+				sql = sql+"imdb_rating = "+IMDB;
 		}
 		System.out.println("Language : ");
 		String Language = sc.nextLine();
 		if(Language.length()!=0)
 		{
-			a++;
+				sql = sql+"language = "+Language;
 		}
 		System.out.println("Director : ");
 		String Director = sc.nextLine();
 		if(Director.length()!=0)
 		{
-			a++;
+				sql = sql+"director  = "+Director;
 		}
 		System.out.println("Actor : ");
 		String Actor = sc.nextLine();
 		if(Actor.length()!=0)
 		{
-			a++;
+				sql = sql+"actor = "+Actor;
 		}
 		System.out.println("Genre : ");
 		String Genre = sc.nextLine();
 		if(Genre.length()!=0)
 		{
-			a++;
+				sql = sql+"genre = "+Genre;
 		}
 		System.out.println("Categorys : ");
 		String Categorys = sc.nextLine();
 		if(Categorys.length()!=0)
 		{
-			a++;
+				sql = sql+"categorys = "+Categorys;
 		}
 		System.out.println("Origials (Y,N): ");
 		String Originals = sc.nextLine();
 		if(Originals.length()!=0)
 		{
-			a++;
+				sql = sql+"originals = "+Originals;
 		}
-		System.out.println("Release Year : ");
+		/*System.out.println("Release Year : ");
 		String year = sc.nextLine();
 		if(year.length()!=0)
 		{
-			a++;
-		}
+			a=1;
+			if(a==1)
+			{
+				sql = sql+" = "+IMDB;
+				a=0;
+			}
+		}*/
+		
 		sc.close();
 	}
 	

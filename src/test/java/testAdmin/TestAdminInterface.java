@@ -2,8 +2,6 @@ package testAdmin;
 
 import java.util.Scanner;
 
-import plan.TestPlanInterface;
-
 public class TestAdminInterface {
 	static Scanner sc =new Scanner(System.in);
 	
@@ -26,13 +24,15 @@ public class TestAdminInterface {
 		}
 		case 2:
 		{
-			TestCategoryInterface(null);
+			TestCategoryInterface.main(null);
 		}
+		case 3:
+		{
+			TestUserAdminInterface.main(null);
 		}
 		}
 
-	private static void TestCategoryInterface(Object object) {
-		// TODO Auto-generated method stub
+
 		
 	}
 	}

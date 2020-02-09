@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.chainsys.primevideos.dao.UserCreditsDAO;
@@ -17,7 +18,7 @@ import util.TestConformEmail;
 
 
 public class UserCreditsImp implements UserCreditsDAO {
-	Logger logger = Logger.getInstance();
+	static Logger logger = Logger.getInstance();
 	public boolean userLogin(String mailID) throws Exception {
 		String sql = "Select passwords from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
@@ -115,7 +116,6 @@ public class UserCreditsImp implements UserCreditsDAO {
 			pst1.setString(1, mailId);
 			pst1.setString(2, password);
 			pst1.executeUpdate();
-
 			logger.info("Welcome to Prime\nUpdate your Profile");
 			}
 		catch(DbException e)
@@ -132,8 +132,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		PreparedStatement pst = con.prepareStatement(sql);){
 		pst.setString(1, mailId);
 		try(ResultSet rs = pst.executeQuery();){
-		rs.next();
-		
+		rs.next();		
 		return rs.getString(1);		
 		}
 		}
@@ -156,7 +155,6 @@ public class UserCreditsImp implements UserCreditsDAO {
 			pst.setLong(5, users.getMobileNumber());
 			pst.setString(6, users.getMailId());
 			int row = pst.executeUpdate();
-
 			if (row != 0) {
 				profile(users.getMailId());
 			}
@@ -202,12 +200,55 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 	}
 
-	public List<UserCredits> getUserDetails() {
-		throw new UnsupportedOperationException();
-	}
+
 
 	public List<UserCredits> getUserAge(int age) {
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public ArrayList<UserCredits> List() throws Exception {
+		String sql = "select * from user_credits";
+		try(Connection con1 = TestConnection.getConnection();
+				PreparedStatement pst1 = con1.prepareStatement(sql);){				
+				try(ResultSet row1 = pst1.executeQuery();){
+				ArrayList<UserCredits> ll = new ArrayList<>();
+				while(row1.next())
+				{
+				String a = row1.getString(1);
+				String b = row1.getString(2);
+				Date c = row1.getDate(3);
+				int d = row1.getInt(4);
+				String e = row1.getString(5);
+				int f = row1.getInt(6);
+				Long h = row1.getLong(8);
+				Date i = row1.getDate(9);
+				UserCredits aes = new UserCredits();
+				aes.setCustomerName(a);
+				aes.setGender(b);
+				aes.setDob(c.toLocalDate());
+				aes.setAge(d);
+				aes.setMailId(e);
+				aes.setUserId(f);
+				aes.setMobileNumber(h);
+				aes.setCreatedDate(i.toLocalDate());
+				ll.add(aes);
+				}
+				return ll;
+				}
+		}
+				
+				catch(DbException e)
+				{
+					throw new Exception("UsesCredits View Failed");
+				}
+	}
+
+	@Override
+	public java.util.List<UserCredits> getUserDetails() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

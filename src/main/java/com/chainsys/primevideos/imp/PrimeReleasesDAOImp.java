@@ -30,7 +30,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		while(rs.next())
 		{
 			int a=rs.getInt(1);
-			String b=rs.getString(2);			
+			String b=rs.getString(3);			
 			logger.info(a+"        "+b);
 		}			
 		return l;}}
@@ -54,7 +54,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		while(rs.next())
 		{
 			int a=rs.getInt(1);
-			String b=rs.getString(2);			
+			String b=rs.getString(3);			
 			logger.info(a+"      "+b);
 		}			
 		return l;}}
@@ -64,6 +64,28 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		}
 		
 	}
+	public ArrayList<PrimeReleases> getSearchMovies(String sql) throws Exception {
+		try(Connection con1 = TestConnection.getConnection();
+				PreparedStatement pst1 = con1.prepareStatement(sql);){				
+					try(ResultSet rs = pst1.executeQuery();){
+						ArrayList<PrimeReleases> l = new ArrayList<>();
+						printLocal();
+						while(rs.next())
+						{
+							int a=rs.getInt(1);
+							String b=rs.getString(3);			
+							logger.info(a+"      "+b);
+						}			
+						return l;}}
+						catch(DbException e)
+						{
+							throw new Exception("MovieSearch Failed");
+						}
+						
+		}
+		
+	
+
 	public List<PrimeReleases> commonMethod(String term, String val, String sql) throws Exception {
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
