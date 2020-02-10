@@ -45,16 +45,16 @@ import javax.mail.internet.MimeMultipart;
         	Multipart multipart = messageBody(Msg);
             message.setContent(multipart);  
         	}
-        	else if(val==2)
+        	else
         	{
         		Multipart multipart1 = messageBody1(to,Msg);
                 message.setContent(multipart1);
         	}
-        	else
+        	/*else
         	{
-        		Multipart multipart2 = messageBody2(to,Msg);
+        		Multipart multipart2 = messageBody2(val, to,Msg, Msg);
                 message.setContent(multipart2);
-        	}
+        	}*/
         	Transport.send(message);    
         	System.out.println("message sent successfully to "+to);    
         }
@@ -63,6 +63,7 @@ import javax.mail.internet.MimeMultipart;
         	throw new RuntimeException(e);
         }    
 	}
+
 
 	private static Multipart messageBody(String Msg) throws MessagingException{ {
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
@@ -101,13 +102,13 @@ import javax.mail.internet.MimeMultipart;
 		BodyPart messageBodyPart3 = new MimeBodyPart(); 
 		messageBodyPart3.setText("\nYour MailId/UserID  "+to);
 		BodyPart messageBodyPart4 = new MimeBodyPart(); 
-		messageBodyPart4.setText("Has been Deleted From PrimeVideo\nSo you Are NO Longer a Prime User");
+		messageBodyPart4.setText("\nHas been Deleted From PrimeVideo\nSo you Are NO Longer a Prime User");
 		BodyPart messageBodyPart5 = new MimeBodyPart(); 
-		messageBodyPart5.setText("Because OF Following Reasons");
+		messageBodyPart5.setText("\nBecause OF Following Reasons");
 		BodyPart messageBodyPart6 = new MimeBodyPart(); 
-		messageBodyPart6.setText(Msg);
+		messageBodyPart6.setText("\n"+Msg);
 		BodyPart messageBodyPart7= new MimeBodyPart(); 
-		messageBodyPart7.setText("Thank you");
+		messageBodyPart7.setText("\nThank you");
 		/*String filename = "SendAttachment.java";  
 		FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
 		messageBodyPart2.setDataHandler(new DataHandler(source));  
@@ -126,7 +127,7 @@ import javax.mail.internet.MimeMultipart;
 
 
  }
-	private static Multipart messageBody2(String to,String Msg) throws MessagingException{ {
+	private static Multipart messageBody2(int userId, String customerName,String to, String msg) throws MessagingException{ {
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
 		messageBodyPart1.setText("Prime Video Messaging Assitance");  
 		BodyPart messageBodyPart2 = new MimeBodyPart(); 
@@ -134,9 +135,13 @@ import javax.mail.internet.MimeMultipart;
 		BodyPart messageBodyPart3 = new MimeBodyPart(); 
 		messageBodyPart3.setText("\nMailId/UserID  "+to+"\n");
 		BodyPart messageBodyPart4 = new MimeBodyPart(); 
-		messageBodyPart4.setText("Hi "+Msg);
-		BodyPart messageBodyPart5= new MimeBodyPart(); 
-		messageBodyPart5.setText("Thank you");
+		messageBodyPart4.setText("\n Hi "+customerName+" UserId :"+userId);
+		BodyPart messageBodyPart5 = new MimeBodyPart(); 
+		messageBodyPart5.setText("\nNew Released Movie :");
+		BodyPart messageBodyPart6= new MimeBodyPart(); 
+		messageBodyPart6.setText("\n"+msg);
+		BodyPart messageBodyPart7 = new MimeBodyPart(); 
+		messageBodyPart7.setText("\nOnly on Prime Videos");
 		/*String filename = "SendAttachment.java";  
 		FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
 		messageBodyPart2.setDataHandler(new DataHandler(source));  
@@ -148,10 +153,47 @@ import javax.mail.internet.MimeMultipart;
 		multipart.addBodyPart(messageBodyPart3);
 		multipart.addBodyPart(messageBodyPart4);
 		multipart.addBodyPart(messageBodyPart5);
+		multipart.addBodyPart(messageBodyPart6);
+		multipart.addBodyPart(messageBodyPart7);
 		return multipart; 
 
 
  }
+	}
+
+	public static void send1(int userId, String customerName, String to, String sub, String Msg, int val) {
+		
+		Properties props = new Properties();    
+        props.put("mail.smtp.host", "smtp.gmail.com");    
+        props.put("mail.smtp.socketFactory.port", "465");    
+        props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");    
+        props.put("mail.smtp.auth", "true");    
+        props.put("mail.smtp.port", "465");  
+        props.put("mail.smtp.ssl.checkserveridentity", true); 
+        Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() 
+        {    
+        	protected PasswordAuthentication getPasswordAuthentication() 
+        	{    
+        		return new PasswordAuthentication("primemovieentertainments@gmail.com","Reset@123");  
+        	}      
+        });    
+        try 
+        {    
+        	MimeMessage message = new MimeMessage(session);    
+        	message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
+        	message.setSubject(sub); 
+        	if(val==3)
+        	{
+        		Multipart multipart2 = messageBody2(userId,customerName,to,Msg);
+                message.setContent(multipart2);
+        	}
+        	Transport.send(message);    
+        	System.out.println("message sent successfully to "+to);    
+        }
+        catch (MessagingException e) 
+        {
+        	throw new RuntimeException(e);
+        }    
 	}
 }
 

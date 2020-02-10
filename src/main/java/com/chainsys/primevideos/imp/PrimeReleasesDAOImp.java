@@ -144,13 +144,13 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		ad.setCasting(n);
 		ad.setDescriptionofvideo(o);
 		l.add(ad);
-		logger.info(ad);
+		//logger.info(ad);
+		return l;
 			}	}
 		catch(DbException e)
 		{
 			throw new Exception("Selection Video Details Failed");
 		}
-		return null;
 	
 	}
 	public ArrayList<PrimeReleases> list(String sqlq) throws Exception{

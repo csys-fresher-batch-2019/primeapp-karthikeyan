@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.chainsys.primevideos.dao.AmazonPlanDAO;
 import com.chainsys.primevideos.method.Plan;
 import connection.TestConnection;
@@ -136,5 +138,35 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		}
 		
 	} 
+	public List<Plan> list1(int plan_id) throws Exception{
+		String sql = "select * from plans where plan_id = ?";
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);){
+		pst.setInt(1, plan_id);
+		try(ResultSet rs = pst.executeQuery();){
+		List<Plan> ll = new ArrayList<>();
+		rs.next();
+			int a=rs.getInt(1);
+			int b=rs.getInt(2);
+			int c=rs.getInt(3);
+			int d=rs.getInt(4);
+			int e=rs.getInt(5);			
+			Plan as = new Plan();
+			as.setPlanId(a);
+			as.setPlanAmount(b);
+			as.setPlanDuration(c);
+			as.setNoOfScreens(d);
+			as.setDiscountAmount(e);
+			
+			ll.add(as);
 		
+		
+		return ll;
+		}}
+		catch(DbException e)
+		{
+			throw new Exception("Plan Selection View Failed");
+		}
+			
 	}
+}

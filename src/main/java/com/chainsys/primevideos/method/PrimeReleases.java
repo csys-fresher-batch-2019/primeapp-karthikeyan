@@ -43,17 +43,16 @@ public class PrimeReleases {
 	}
 	
 	public PrimeReleases() {
-		throw new UnsupportedOperationException();
 	}
 
 	public String toString() {
-		return "PrimeReleases [primeId=" + primeId + ", categoryId=" + categoryId + ", nameofVideo=" + nameofVideo
-				+ ", genre=" + genre + ", season=" + season + ", totalEpisodes=" + totalEpisodes + ", audioLanguages="
-				+ audioLanguages + ", subtitleLanguages=" + subtitleLanguages + ", director=" + director
-				+ ", releaseDate=" + releaseDate + ", primereleaseDate=" + primereleaseDate
-				+ ", boxofficecollectionuinmillions=" + boxofficecollectionuinmillions + ", casting=" + casting
-				+ ", descriptionofvideo=" + descriptionofvideo + ", imdbRating=" + imdbRating + ", originals="
-				+ originals + "]";
+		return "PrimeReleases \nprimeId =" + primeId + "\ncategoryId =" + categoryId + "\nnameofVideo = " + nameofVideo
+				+ "\nGenre = " + genre + "\nSeason = " + season + "\nTotalEpisodes = " + totalEpisodes + "\nAudioLanguages = "
+				+ audioLanguages + "\nSubtitleLanguages = " + subtitleLanguages + "\nDirector=" + director
+				+ "\nReleaseDate=" + releaseDate + "\nPrimereleaseDate = " + primereleaseDate
+				+ "\nBoxofficecollectionuinmillions = " + boxofficecollectionuinmillions + "\nCasting=" + casting
+				+ "\nDescriptionofvideo=" + descriptionofvideo + "\nImdbRating=" + imdbRating + "\nOriginals="
+				+ originals;
 	}
 
 	public int getPrimeId() {
