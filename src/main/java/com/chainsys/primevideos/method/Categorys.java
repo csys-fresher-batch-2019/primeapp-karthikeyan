@@ -1,12 +1,5 @@
 package com.chainsys.primevideos.method;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
-@Data
-@ToString
-@NoArgsConstructor
 public class Categorys {
 	public Categorys(int categoryId, String categoryName) {
 		super();
