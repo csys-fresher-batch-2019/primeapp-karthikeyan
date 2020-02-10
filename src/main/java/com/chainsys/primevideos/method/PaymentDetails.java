@@ -1,7 +1,13 @@
 package com.chainsys.primevideos.method;
 
 import java.time.LocalDate;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Data
+@ToString
+@NoArgsConstructor
 public class PaymentDetails {
 	
 	private int userId;

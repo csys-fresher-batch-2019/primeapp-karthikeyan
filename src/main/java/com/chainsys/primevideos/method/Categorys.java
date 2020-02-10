@@ -1,38 +1,38 @@
 package com.chainsys.primevideos.method;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@ToString
+@NoArgsConstructor
 public class Categorys {
-	private int categoryId;
-	private String categoryName;
-	
 	public Categorys(int categoryId, String categoryName) {
 		super();
-		this.setCategoryId(categoryId);
-		this.setCategoryName(categoryName);
+		this.categoryId = categoryId;
+		this.categoryName = categoryName;
 	}
-
 	public Categorys() {
-		throw new UnsupportedOperationException();
+		// TODO Auto-generated constructor stub
 	}
-
-	public String toString() {
-		return "categorys [categoryId=" + getCategoryId() + ", categoryName=" + getCategoryName() + "]";
-	}
-
+	private int categoryId;
+	private String categoryName;
 	public int getCategoryId() {
 		return categoryId;
 	}
-
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
 	}
-
 	public String getCategoryName() {
 		return categoryName;
 	}
-
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
+	@Override
+	public String toString() {
+		return "Categorys [categoryId=" + categoryId + ", categoryName=" + categoryName + "]";
+	}
 	
-
 }

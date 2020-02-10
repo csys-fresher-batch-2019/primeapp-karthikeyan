@@ -32,7 +32,7 @@ public class UserCredits {
 
 
 	public UserCredits() {
-		throw new UnsupportedOperationException();
+		
 	}
 
 

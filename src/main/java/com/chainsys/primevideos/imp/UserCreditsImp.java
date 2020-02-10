@@ -35,6 +35,25 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 
 	}
+	public boolean deleteUser(String mailId) throws Exception{
+		String sql ="delete from user_credits where mail_id = ?";
+		try(Connection con = TestConnection.getConnection();
+		PreparedStatement pst = con.prepareStatement(sql);)
+		{
+			pst.setString(1, mailId);
+			int row = pst.executeUpdate();
+			if(row==1)
+			{
+			logger.info("UserCredits of :"+mailId+" deleted \n");
+			return true;
+			}}
+		catch(DbException e)
+		{
+			throw new Exception("User deletion Failed");
+		}
+		return false;
+	}
+	
 
 	public boolean resetPassword(String mailId) throws Exception {
 		int otp = 0;
@@ -159,7 +178,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 			pst.setString(6, users.getMailId());
 			int row = pst.executeUpdate();
 			if (row != 0) {
-				profile(users.getMailId());
+				if(profile(users.getMailId()))
+				{
+					logger.info("Profile Updated");
+				}
 			}
 		} catch(DbException e)
 		{
@@ -167,7 +189,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 	}
 
-	public void profile(String mailIds) throws Exception {
+	public boolean profile(String mailIds) throws Exception {
 		String sql1 = "select * from user_credits where mail_id = ?";
 		try(Connection con1 = TestConnection.getConnection();
 		PreparedStatement pst1 = con1.prepareStatement(sql1);){
@@ -181,7 +203,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		int d = row1.getInt(4);
 		String e = row1.getString(5);
 		int f = row1.getInt(6);
-		String g = row1.getString(7);
+		String g = "***********";
 		Long h = row1.getLong(8);
 		Date i = row1.getDate(9);
 		UserCredits aes = new UserCredits();
@@ -195,12 +217,13 @@ public class UserCreditsImp implements UserCreditsDAO {
 		aes.setMobileNumber(h);
 		aes.setCreatedDate(i.toLocalDate());
 		logger.info(aes);
-		logger.info("Profile Updated");
+		
 		}}
 		catch(DbException e)
 		{
 			throw new Exception("UsesCredits View Failed");
 		}
+		return false;
 	}
 
 
@@ -235,6 +258,32 @@ public class UserCreditsImp implements UserCreditsDAO {
 				aes.setUserId(f);
 				aes.setMobileNumber(h);
 				aes.setCreatedDate(i.toLocalDate());
+				ll.add(aes);
+				}
+				return ll;
+				}
+		}
+				
+				catch(DbException e)
+				{
+					throw new Exception("UsesCredits View Failed");
+				}
+	}
+	public ArrayList<UserCredits> list1() throws Exception {
+		String sql = "select mail_id,user_id,customer_name from user_credits";
+		try(Connection con1 = TestConnection.getConnection();
+				PreparedStatement pst1 = con1.prepareStatement(sql);){				
+				try(ResultSet row1 = pst1.executeQuery();){
+				ArrayList<UserCredits> ll = new ArrayList<>();
+				while(row1.next())
+				{
+				String a = row1.getString(1);
+				int b = row1.getInt(2);
+				String c = row1.getString(3);
+				UserCredits aes = new UserCredits();
+				aes.setMailId(a);	
+				aes.setCustomerName(c);
+				aes.setUserId(b);
 				ll.add(aes);
 				}
 				return ll;

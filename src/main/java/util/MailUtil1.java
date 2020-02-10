@@ -19,7 +19,7 @@ import javax.mail.internet.MimeMultipart;
 
  public class MailUtil1
 {  
-	public static void send(final String from,final String password,String to,String sub,String Msg) throws IOException
+	public static void send(String to,String sub,String Msg,int val) throws IOException
 	{  
 		Properties props = new Properties();    
         props.put("mail.smtp.host", "smtp.gmail.com");    
@@ -32,18 +32,31 @@ import javax.mail.internet.MimeMultipart;
         {    
         	protected PasswordAuthentication getPasswordAuthentication() 
         	{    
-        		return new PasswordAuthentication(from,password);  
+        		return new PasswordAuthentication("primemovieentertainments@gmail.com","Reset@123");  
         	}      
         });    
         try 
         {    
         	MimeMessage message = new MimeMessage(session);    
         	message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));    
-        	message.setSubject(sub);    
+        	message.setSubject(sub); 
+        	if(val==1)
+        	{
         	Multipart multipart = messageBody(Msg);
-            message.setContent(multipart );  
+            message.setContent(multipart);  
+        	}
+        	else if(val==2)
+        	{
+        		Multipart multipart1 = messageBody1(to,Msg);
+                message.setContent(multipart1);
+        	}
+        	else
+        	{
+        		Multipart multipart2 = messageBody2(to,Msg);
+                message.setContent(multipart2);
+        	}
         	Transport.send(message);    
-        	System.out.println("message sent successfully");    
+        	System.out.println("message sent successfully to "+to);    
         }
         catch (MessagingException e) 
         {
@@ -64,6 +77,66 @@ import javax.mail.internet.MimeMultipart;
 		BodyPart messageBodyPart5 = new MimeBodyPart(); 
 		messageBodyPart5.setText("Thanks for Using Prime Videos");
 
+		/*String filename = "SendAttachment.java";  
+		FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
+		messageBodyPart2.setDataHandler(new DataHandler(source));  
+		messageBodyPart2.setFileName(filename); */
+		
+		Multipart multipart = new MimeMultipart();  
+		multipart.addBodyPart(messageBodyPart1);  
+		multipart.addBodyPart(messageBodyPart2);
+		multipart.addBodyPart(messageBodyPart3);
+		multipart.addBodyPart(messageBodyPart4);
+		multipart.addBodyPart(messageBodyPart5);
+		return multipart; 
+	}
+
+
+ }
+	private static Multipart messageBody1(String to,String Msg) throws MessagingException{ {
+		BodyPart messageBodyPart1 = new MimeBodyPart();  
+		messageBodyPart1.setText("Prime Assitance");  
+		BodyPart messageBodyPart2 = new MimeBodyPart(); 
+		messageBodyPart2.setText("\nDear Prime Video User");
+		BodyPart messageBodyPart3 = new MimeBodyPart(); 
+		messageBodyPart3.setText("\nYour MailId/UserID  "+to);
+		BodyPart messageBodyPart4 = new MimeBodyPart(); 
+		messageBodyPart4.setText("Has been Deleted From PrimeVideo\nSo you Are NO Longer a Prime User");
+		BodyPart messageBodyPart5 = new MimeBodyPart(); 
+		messageBodyPart5.setText("Because OF Following Reasons");
+		BodyPart messageBodyPart6 = new MimeBodyPart(); 
+		messageBodyPart6.setText(Msg);
+		BodyPart messageBodyPart7= new MimeBodyPart(); 
+		messageBodyPart7.setText("Thank you");
+		/*String filename = "SendAttachment.java";  
+		FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
+		messageBodyPart2.setDataHandler(new DataHandler(source));  
+		messageBodyPart2.setFileName(filename); */
+		
+		Multipart multipart = new MimeMultipart();  
+		multipart.addBodyPart(messageBodyPart1);  
+		multipart.addBodyPart(messageBodyPart2);
+		multipart.addBodyPart(messageBodyPart3);
+		multipart.addBodyPart(messageBodyPart4);
+		multipart.addBodyPart(messageBodyPart5);
+		multipart.addBodyPart(messageBodyPart6);
+		multipart.addBodyPart(messageBodyPart7);
+		return multipart; 
+	}
+
+
+ }
+	private static Multipart messageBody2(String to,String Msg) throws MessagingException{ {
+		BodyPart messageBodyPart1 = new MimeBodyPart();  
+		messageBodyPart1.setText("Prime Video Messaging Assitance");  
+		BodyPart messageBodyPart2 = new MimeBodyPart(); 
+		messageBodyPart2.setText("\nDear Prime Video User");
+		BodyPart messageBodyPart3 = new MimeBodyPart(); 
+		messageBodyPart3.setText("\nMailId/UserID  "+to+"\n");
+		BodyPart messageBodyPart4 = new MimeBodyPart(); 
+		messageBodyPart4.setText("Hi "+Msg);
+		BodyPart messageBodyPart5= new MimeBodyPart(); 
+		messageBodyPart5.setText("Thank you");
 		/*String filename = "SendAttachment.java";  
 		FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
 		messageBodyPart2.setDataHandler(new DataHandler(source));  
