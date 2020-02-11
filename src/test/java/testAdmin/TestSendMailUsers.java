@@ -76,11 +76,26 @@ public class TestSendMailUsers {
 					MailUtil1.send1(a.getUserId(),a.getCustomerName(),a.getMailId(), "Prime Video Message", mailMsg, 3);
 				}
 			}
-
+			}
 		}
-		}
+			case 2:
+			{
+				System.out.println("Enter the Amount of Users to Send Mail");
+				int t = sc.nextInt();
+				sc.nextLine();
+				int i=1;
+				String[] userId = new String[t];
+				System.out.println("Enter the UserIds");
+				for(i=0;i<t;i++)
+				{
+					userId[i] = sc.next();
+				}
+				for(i=0;i<t;i++)
+				{
+					
+					System.out.print(userId[i]);
+				}
+			}
 		sc.close();
+		}}}
 
-	}
-	}
-}

@@ -43,7 +43,7 @@ public class TestCategoryInterface {
 	System.out.println("To Stay Press 1");
 	System.out.println("To Go Back To AdminInterface Page Press 2");
 	int ch = sc.nextInt();
-	sc.close();
+	
 	switch(ch)
 	{
 	case 1:

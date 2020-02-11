@@ -3,6 +3,7 @@ package com.chainsys.primevideos.imp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,20 +47,7 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		
 		while(rs.next())
 		{
-			int a=rs.getInt(1);
-			int b=rs.getInt(2);
-			int c=rs.getInt(3);
-			int d=rs.getInt(4);
-			int e=rs.getInt(5);
-			
-			Plan as = new Plan();
-			as.setPlanId(a);
-			as.setPlanAmount(b);
-			as.setPlanDuration(c);
-			as.setNoOfScreens(d);
-			as.setDiscountAmount(e);
-			
-			ll.add(as);
+			valPlan(rs, ll);
 		
 		}
 		return ll;
@@ -146,19 +134,7 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 		try(ResultSet rs = pst.executeQuery();){
 		List<Plan> ll = new ArrayList<>();
 		rs.next();
-			int a=rs.getInt(1);
-			int b=rs.getInt(2);
-			int c=rs.getInt(3);
-			int d=rs.getInt(4);
-			int e=rs.getInt(5);			
-			Plan as = new Plan();
-			as.setPlanId(a);
-			as.setPlanAmount(b);
-			as.setPlanDuration(c);
-			as.setNoOfScreens(d);
-			as.setDiscountAmount(e);
-			
-			ll.add(as);
+			valPlan(rs, ll);
 		
 		
 		return ll;
@@ -168,5 +144,21 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 			throw new Exception("Plan Selection View Failed");
 		}
 			
+	}
+
+	private void valPlan(ResultSet rs, List<Plan> ll) throws SQLException {
+		int a=rs.getInt(1);
+		int b=rs.getInt(2);
+		int c=rs.getInt(3);
+		int d=rs.getInt(4);
+		int e=rs.getInt(5);			
+		Plan as = new Plan();
+		as.setPlanId(a);
+		as.setPlanAmount(b);
+		as.setPlanDuration(c);
+		as.setNoOfScreens(d);
+		as.setDiscountAmount(e);
+		
+		ll.add(as);
 	}
 }

@@ -42,7 +42,6 @@ public class AmazonCategorysImp implements CategoryDAO {
 			try(Connection con = TestConnection.getConnection();
 			PreparedStatement pst = con.prepareStatement(sql);){			
 			try(ResultSet row = pst.executeQuery();){
-			logger.info(row);
 			ArrayList<Categorys> ww = new ArrayList<>();
 			
 			while(row.next())

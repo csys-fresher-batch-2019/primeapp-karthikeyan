@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.chainsys.primevideos.dao.UserCreditsDAO;
@@ -197,6 +198,17 @@ public class UserCreditsImp implements UserCreditsDAO {
 		pst1.setString(1, mailIds);
 		try(ResultSet row1 = pst1.executeQuery();){
 		row1.next();
+		UserCredits aes = valPrimeReleases(row1);
+		logger.info(aes);
+		
+		}}
+		catch(DbException e)
+		{
+			throw new Exception("UsesCredits View Failed");
+		}
+		return false;
+	}
+	private UserCredits valPrimeReleases(ResultSet row1) throws SQLException {
 		String a = row1.getString(1);
 		String b = row1.getString(2);
 		Date c = row1.getDate(3);
@@ -216,14 +228,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		aes.setPassword(g);
 		aes.setMobileNumber(h);
 		aes.setCreatedDate(i.toLocalDate());
-		logger.info(aes);
-		
-		}}
-		catch(DbException e)
-		{
-			throw new Exception("UsesCredits View Failed");
-		}
-		return false;
+		return aes;
 	}
 
 
@@ -241,23 +246,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 				ArrayList<UserCredits> ll = new ArrayList<>();
 				while(row1.next())
 				{
-				String a = row1.getString(1);
-				String b = row1.getString(2);
-				Date c = row1.getDate(3);
-				int d = row1.getInt(4);
-				String e = row1.getString(5);
-				int f = row1.getInt(6);
-				Long h = row1.getLong(8);
-				Date i = row1.getDate(9);
-				UserCredits aes = new UserCredits();
-				aes.setCustomerName(a);
-				aes.setGender(b);
-				aes.setDob(c.toLocalDate());
-				aes.setAge(d);
-				aes.setMailId(e);
-				aes.setUserId(f);
-				aes.setMobileNumber(h);
-				aes.setCreatedDate(i.toLocalDate());
+					UserCredits aes = valPrimeReleases(row1);
 				ll.add(aes);
 				}
 				return ll;
