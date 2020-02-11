@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.chainsys.primevideos.dao.UserCreditsDAO;
 import com.chainsys.primevideos.method.UserCredits;
@@ -33,10 +34,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 			return false;
 		}}}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.mailCheck);
+			throw new DbException(InfoMessages.MAILCHECK);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 		}
 
@@ -54,10 +55,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 			return true;
 			}}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.deleteUser);
+			throw new DbException(InfoMessages.DELETEUSER);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 		return false;
 	}
@@ -77,10 +78,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 		}}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.mailCheck);
+			throw new DbException(InfoMessages.MAILCHECK);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 		return false;
 		
@@ -100,10 +101,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 			logger.info("Password Updated");
 		}}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.verifyOtp);
+			throw new DbException(InfoMessages.VERIFYOTP);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 
 		
@@ -130,10 +131,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 		}}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.mailCheck);
+			throw new DbException(InfoMessages.MAILCHECK);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 		return false;
 
@@ -154,10 +155,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 			return true;
 			}
 			catch (SQLException e1) {
-				throw new DbException(InfoMessages.mailCheck);
+				throw new DbException(InfoMessages.MAILCHECK);
 			} 
 			 catch (Exception e1) {
-					throw new DbException(InfoMessages.Connection);
+					throw new DbException(InfoMessages.CONNECTION);
 				}
 			
 		}
@@ -175,10 +176,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 		}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.mailCheck);
+			throw new DbException(InfoMessages.MAILCHECK);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 	}
 
@@ -199,12 +200,16 @@ public class UserCreditsImp implements UserCreditsDAO {
 				{
 					logger.info("Profile Updated");
 				}
+				else
+				{
+					logger.info("Profile Update Cannot Be Done");
+				}
 			}
 		} catch (SQLException e1) {
-			throw new DbException(InfoMessages.updateUser);
+			throw new DbException(InfoMessages.UPDATEUSER);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 	}
 
@@ -221,10 +226,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 		
 		}}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.viewUser);
+			throw new DbException(InfoMessages.VIEWUSER);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 		return false;
 	}
@@ -251,7 +256,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 		return aes;
 	}
 	@Override
-	public ArrayList<UserCredits> list() throws DbException {
+	public List<UserCredits> list() throws DbException {
 		String sql = "select * from user_credits";
 		try(Connection con1 = TestConnection.getConnection();
 				PreparedStatement pst1 = con1.prepareStatement(sql);){				
@@ -267,10 +272,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 				
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.viewUser);
+			throw new DbException(InfoMessages.VIEWUSER);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 	}
 	public ArrayList<UserCredits> list1() throws DbException {
@@ -295,10 +300,10 @@ public class UserCreditsImp implements UserCreditsDAO {
 		}
 				
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.viewUser);
+			throw new DbException(InfoMessages.VIEWUSER);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 	}
 

@@ -67,31 +67,31 @@ public class TestSearch {
 		{
 				sql = sql+" originals = '"+Originals+"'";
 		}	
-		ds.PowerSearchMethod(sql);
+		ds.powerSearchMethod(sql);
 		break;
 		}
 		case 2:
 		{
 			String sql ="select prime_id,name_of_video from prime_releases order by release_date desc";
-			ds.PowerSearchMethod(sql);
+			ds.powerSearchMethod(sql);
 			break;
 		}
 		case 3:
 		{
 			String sql = "select prime_id,name_of_video from prime_releases order by imdb_rating desc";
-			ds.PowerSearchMethod(sql);
+			ds.powerSearchMethod(sql);
 			break;
 		}
 		case 4:
 		{
 			String sql = "select prime_id,name_of_video from prime_releases where originals = 1 order by imdb_rating desc";
-			ds.PowerSearchMethod(sql);
+			ds.powerSearchMethod(sql);
 			break;
 		}
 		case 5:
 		{
 			String sql = "";
-			ds.PowerSearchMethod(sql);
+			ds.powerSearchMethod(sql);
 			break;
 		}
 		}
@@ -112,6 +112,5 @@ public class TestSearch {
 		{
 			TestPage.main(null);
 		}
-		//sc.close();
 		}
 }

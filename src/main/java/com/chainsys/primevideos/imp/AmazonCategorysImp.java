@@ -31,10 +31,10 @@ public class AmazonCategorysImp implements CategoryDAO {
 				logger.info(row);
 			}
 			catch (SQLException e1) {
-				throw new DbException(InfoMessages.addCategory);
+				throw new DbException(InfoMessages.ADDCATEGORY);
 			} 
 			 catch (Exception e1) {
-					throw new DbException(InfoMessages.Connection);
+					throw new DbException(InfoMessages.CONNECTION);
 				}
 		
 	}
@@ -62,10 +62,10 @@ public class AmazonCategorysImp implements CategoryDAO {
 			
 			return ww;}}
 			catch (SQLException e1) {
-				throw new DbException(InfoMessages.viewCategory);
+				throw new DbException(InfoMessages.VIEWCATEGORY);
 			} 
 			 catch (Exception e1) {
-					throw new DbException(InfoMessages.Connection);
+					throw new DbException(InfoMessages.CONNECTION);
 				}
 		
 		
@@ -84,10 +84,10 @@ public class AmazonCategorysImp implements CategoryDAO {
 		int row = pst.executeUpdate();
 		logger.info(row);}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.deleteCategory);
+			throw new DbException(InfoMessages.DELETECATEGORY);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 	}
 
@@ -100,10 +100,10 @@ public class AmazonCategorysImp implements CategoryDAO {
 		int row = pst.executeUpdate();
 		logger.info(row);}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.updateCategory);
+			throw new DbException(InfoMessages.UPDATECATEGORY);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 	}
 

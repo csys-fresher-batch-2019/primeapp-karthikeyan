@@ -29,7 +29,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		
 	}
 
-	public List<PrimeReleases> PowerSearchMethod(String sql) throws DbException {
+	public List<PrimeReleases> powerSearchMethod(String sql) throws DbException {
 		return commonCall(sql);
 		}
 
@@ -48,10 +48,10 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		return l;}
 		}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.viewVideo);
+			throw new DbException(InfoMessages.VIEWVIDEO);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 	}
 	
@@ -94,19 +94,18 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		ad.setCasting(n);
 		ad.setDescriptionofvideo(o);
 		l.add(ad);
-		//logger.info(ad);
 		return l;
 			}	}
 		catch (SQLException e1) {
-			throw new DbException(InfoMessages.viewVideo);
+			throw new DbException(InfoMessages.VIEWVIDEO);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 		}
 	
 	
-	public ArrayList<PrimeReleases> list(String sqlq) throws Exception{
+	public List<PrimeReleases> list(String sqlq) throws Exception{
 		String sql = sqlq;
 		return callFunction(sql);
 	}
@@ -129,7 +128,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 	private static ArrayList<PrimeReleases> callFunction(String sql) throws DbException{
 		return commonCall(sql);}
 
-	public  ArrayList<PrimeReleases> completeSearch(String sql) throws DbException {
+	public  List<PrimeReleases> completeSearch(String sql) throws DbException {
 		return commonCall(sql);
 	}
 	

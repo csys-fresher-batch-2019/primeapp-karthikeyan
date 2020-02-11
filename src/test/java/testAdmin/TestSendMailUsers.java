@@ -96,6 +96,6 @@ public class TestSendMailUsers {
 					System.out.print(userId[i]);
 				}
 			}
-		//sc.close();
+		
 		}}}
 

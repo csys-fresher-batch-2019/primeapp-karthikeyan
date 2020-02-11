@@ -26,7 +26,6 @@ public class TestNewUser {
 	 	asa.setMobileNumber(sc.nextLong());
 	 	apa.userUpdate(asa);
 	 	
-	 	//sc.close();	
 	}
 
 }

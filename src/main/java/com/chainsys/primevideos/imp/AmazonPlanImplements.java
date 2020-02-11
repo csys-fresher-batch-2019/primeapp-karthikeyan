@@ -32,11 +32,11 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 				logger.info("PlanId :" + plans.getPlanId() + " Inserted\n");
 			}
 		} catch (SQLException e1) {
-			throw new DbException(InfoMessages.addPlan);
+			throw new DbException(InfoMessages.ADPLAN);
 
 		} catch (Exception e1) {
 			
-			throw new DbException(InfoMessages.Connection);
+			throw new DbException(InfoMessages.CONNECTION);
 		}
 
 	}
@@ -55,10 +55,10 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 				return ll;
 			}
 		}catch (SQLException e1) {
-			throw new DbException(InfoMessages.viewPlan);
+			throw new DbException(InfoMessages.VIEWPLAN);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			} 
 
 	}
@@ -81,10 +81,10 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 				return ln;
 			}
 		} catch (SQLException e1) {
-			throw new DbException(InfoMessages.viewPlan);
+			throw new DbException(InfoMessages.VIEWPLAN);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			} 
 	}
 
@@ -98,10 +98,10 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 				logger.info("PlanId :" + planId + " deleted \n");
 			}
 		} catch (SQLException e1) {
-			throw new DbException(InfoMessages.deletePlan);
+			throw new DbException(InfoMessages.DELETEPLAN);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			} 
 	}
 
@@ -117,21 +117,21 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 			pst.setInt(5, plans.getPlanId());
 			int row = pst.executeUpdate();
 			if (row == 1) {
-				logger.info("PlanId :" + plans.getPlanId() + " Updated\n");
+				logger.info("Plan_Id :" + plans.getPlanId() + " Updated\n");
 			}
 		} catch (SQLException e1) {
-			throw new DbException(InfoMessages.updatePlan);
+			throw new DbException(InfoMessages.UPDATEPLAN);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 
 	}
 
-	public List<Plan> list1(int plan_id) throws DbException {
+	public List<Plan> list1(int planId) throws DbException {
 		String sql = "select * from plans where plan_id = ?";
 		try (Connection con = TestConnection.getConnection(); PreparedStatement pst = con.prepareStatement(sql);) {
-			pst.setInt(1, plan_id);
+			pst.setInt(1, planId);
 			try (ResultSet rs = pst.executeQuery();) {
 				List<Plan> ll = new ArrayList<>();
 				rs.next();
@@ -140,10 +140,10 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 				return ll;
 			}
 		} catch (SQLException e1) {
-			throw new DbException(InfoMessages.viewPlan);
+			throw new DbException(InfoMessages.VIEWPLAN);
 		} 
 		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
+				throw new DbException(InfoMessages.CONNECTION);
 			}
 
 	}

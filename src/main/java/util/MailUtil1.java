@@ -17,8 +17,11 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import logger.Logger;
+
  public class MailUtil1
 {  
+	 static Logger logger = new Logger();
 	 private static Session getProperties() {
 			Properties props = new Properties();    
 	        props.put("mail.smtp.host", "smtp.gmail.com");    
@@ -39,7 +42,7 @@ import javax.mail.internet.MimeMultipart;
 	
 
 
-	public static void send(String to,String sub,String Msg,int val) throws IOException
+	public static void send(String to,String sub,String message1,int val) throws IOException
 	{  
 		Session session = getProperties();        
         try 
@@ -49,21 +52,17 @@ import javax.mail.internet.MimeMultipart;
         	message.setSubject(sub); 
         	if(val==1)
         	{
-        	Multipart multipart = messageBody(Msg);
+        	Multipart multipart = messageBody(message1);
             message.setContent(multipart);  
         	}
         	else
         	{
-        		Multipart multipart1 = messageBody1(to,Msg);
+        		Multipart multipart1 = messageBody1(to,message1);
                 message.setContent(multipart1);
         	}
-        	/*else
-        	{
-        		Multipart multipart2 = messageBody2(val, to,Msg, Msg);
-                message.setContent(multipart2);
-        	}*/
+     
         	Transport.send(message);    
-        	System.out.println("message sent successfully to "+to);    
+        	logger.info("message sent successfully to "+to);    
         }
         catch (MessagingException e) 
         {
@@ -93,7 +92,7 @@ public static void send1(int userId, String customerName, String to, String sub,
 	}
 
 
-	private static Multipart messageBody(String Msg) throws MessagingException{ {
+	private static Multipart messageBody(String Msg) throws MessagingException{ 
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
 		messageBodyPart1.setText("Prime OTP Assitance");  
 		BodyPart messageBodyPart2 = new MimeBodyPart(); 
@@ -106,11 +105,6 @@ public static void send1(int userId, String customerName, String to, String sub,
 		BodyPart messageBodyPart5 = new MimeBodyPart(); 
 		messageBodyPart5.setText("Thanks for Using Prime Videos");
 
-		/*String filename = "SendAttachment.java";  
-		FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
-		messageBodyPart2.setDataHandler(new DataHandler(source));  
-		messageBodyPart2.setFileName(filename); */
-		
 		Multipart multipart = new MimeMultipart();  
 		multipart.addBodyPart(messageBodyPart1);  
 		multipart.addBodyPart(messageBodyPart2);
@@ -121,8 +115,8 @@ public static void send1(int userId, String customerName, String to, String sub,
 	}
 
 
- }
-	private static Multipart messageBody1(String to,String Msg) throws MessagingException{ {
+ 
+	private static Multipart messageBody1(String to,String Msg) throws MessagingException{ 
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
 		messageBodyPart1.setText("Prime Assitance");  
 		BodyPart messageBodyPart2 = new MimeBodyPart(); 
@@ -137,10 +131,6 @@ public static void send1(int userId, String customerName, String to, String sub,
 		messageBodyPart6.setText("\n"+Msg);
 		BodyPart messageBodyPart7= new MimeBodyPart(); 
 		messageBodyPart7.setText("\nThank you");
-		/*String filename = "SendAttachment.java";  
-		FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
-		messageBodyPart2.setDataHandler(new DataHandler(source));  
-		messageBodyPart2.setFileName(filename); */
 		
 		Multipart multipart = new MimeMultipart();  
 		multipart.addBodyPart(messageBodyPart1);  
@@ -154,8 +144,8 @@ public static void send1(int userId, String customerName, String to, String sub,
 	}
 
 
- }
-	private static Multipart messageBody2(int userId, String customerName,String to, String msg) throws MessagingException{ {
+ 
+	private static Multipart messageBody2(int userId, String customerName,String to, String msg) throws MessagingException{ 
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
 		messageBodyPart1.setText("Prime Video Messaging Assitance");  
 		BodyPart messageBodyPart2 = new MimeBodyPart(); 
@@ -170,10 +160,6 @@ public static void send1(int userId, String customerName, String to, String sub,
 		messageBodyPart6.setText("\n"+msg);
 		BodyPart messageBodyPart7 = new MimeBodyPart(); 
 		messageBodyPart7.setText("\nOnly on Prime Videos");
-		/*String filename = "SendAttachment.java";  
-		FileDataSource source = new FileDataSource("./src/test/java/com/chainsys/PayrollApp/SendMailSSL.java");  
-		messageBodyPart2.setDataHandler(new DataHandler(source));  
-		messageBodyPart2.setFileName(filename); */
 		
 		Multipart multipart = new MimeMultipart();  
 		multipart.addBodyPart(messageBodyPart1);  
@@ -186,7 +172,7 @@ public static void send1(int userId, String customerName, String to, String sub,
 		return multipart; 
 
 
- }
+ 
 	}
 }
 
