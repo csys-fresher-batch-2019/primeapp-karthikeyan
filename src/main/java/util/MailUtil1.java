@@ -105,12 +105,8 @@ public static void send1(int userId, String customerName, String to, String sub,
 		BodyPart messageBodyPart5 = new MimeBodyPart(); 
 		messageBodyPart5.setText("Thanks for Using Prime Videos");
 
-		Multipart multipart = new MimeMultipart();  
-		multipart.addBodyPart(messageBodyPart1);  
-		multipart.addBodyPart(messageBodyPart2);
-		multipart.addBodyPart(messageBodyPart3);
-		multipart.addBodyPart(messageBodyPart4);
-		multipart.addBodyPart(messageBodyPart5);
+		Multipart multipart = commonCallMail(messageBodyPart1, messageBodyPart2, messageBodyPart3, messageBodyPart4,
+				messageBodyPart5);
 		return multipart; 
 	}
 
@@ -118,28 +114,18 @@ public static void send1(int userId, String customerName, String to, String sub,
  
 	private static Multipart messageBody1(String to,String msg4) throws MessagingException{ 
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
-		messageBodyPart1.setText("Prime Assitance");  
+		messageBodyPart1.setText("Prime Assitance.\nDear Prime Video User");  
 		BodyPart messageBodyPart2 = new MimeBodyPart(); 
-		messageBodyPart2.setText("\nDear Prime Video User");
+		messageBodyPart2.setText("\nYour MailId/UserID  "+to);
 		BodyPart messageBodyPart3 = new MimeBodyPart(); 
-		messageBodyPart3.setText("\nYour MailId/UserID  "+to);
+		messageBodyPart3.setText("\nHas been Deleted From PrimeVideo\nSo you Are NO Longer a Prime User.\nBecause OF Following Reasons");
 		BodyPart messageBodyPart4 = new MimeBodyPart(); 
-		messageBodyPart4.setText("\nHas been Deleted From PrimeVideo\nSo you Are NO Longer a Prime User");
+		messageBodyPart4.setText("\n"+msg4);
 		BodyPart messageBodyPart5 = new MimeBodyPart(); 
-		messageBodyPart5.setText("\nBecause OF Following Reasons");
-		BodyPart messageBodyPart6 = new MimeBodyPart(); 
-		messageBodyPart6.setText("\n"+msg4);
-		BodyPart messageBodyPart7= new MimeBodyPart(); 
-		messageBodyPart7.setText("\nThank you");
+		messageBodyPart5.setText("\nThank you");
 		
-		Multipart multipart = new MimeMultipart();  
-		multipart.addBodyPart(messageBodyPart1);  
-		multipart.addBodyPart(messageBodyPart2);
-		multipart.addBodyPart(messageBodyPart3);
-		multipart.addBodyPart(messageBodyPart4);
-		multipart.addBodyPart(messageBodyPart5);
-		multipart.addBodyPart(messageBodyPart6);
-		multipart.addBodyPart(messageBodyPart7);
+		Multipart multipart = commonCallMail(messageBodyPart1, messageBodyPart2, messageBodyPart3, messageBodyPart4,
+				messageBodyPart5);
 		return multipart; 
 	}
 
@@ -147,32 +133,36 @@ public static void send1(int userId, String customerName, String to, String sub,
  
 	private static Multipart messageBody2(int userId, String customerName,String to, String msg) throws MessagingException{ 
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
-		messageBodyPart1.setText("Prime Video Messaging Assitance");  
 		BodyPart messageBodyPart2 = new MimeBodyPart(); 
-		messageBodyPart2.setText("\nDear Prime Video User");
 		BodyPart messageBodyPart3 = new MimeBodyPart(); 
-		messageBodyPart3.setText("\nMailId/UserID  "+to+"\n");
 		BodyPart messageBodyPart4 = new MimeBodyPart(); 
-		messageBodyPart4.setText("\n Hi "+customerName+" UserId :"+userId);
-		BodyPart messageBodyPart5 = new MimeBodyPart(); 
-		messageBodyPart5.setText("\nNew Released Movie :");
-		BodyPart messageBodyPart6= new MimeBodyPart(); 
-		messageBodyPart6.setText("\n"+msg);
-		BodyPart messageBodyPart7 = new MimeBodyPart(); 
-		messageBodyPart7.setText("\nOnly on Prime Videos");
+		BodyPart messageBodyPart5= new MimeBodyPart();
+		messageBodyPart1.setText("Prime Video Messaging Assitance.\nDear Prime Video User");
+		messageBodyPart2.setText("\nMailId/UserID  "+to+"\n");
+		messageBodyPart3.setText("\n Hi "+customerName+" UserId :"+userId);
+		messageBodyPart4.setText("\nNew Released Movie :");
+		messageBodyPart5.setText("\n"+msg+"\nOnly on Prime Videos");
 		
+		
+		Multipart multipart = commonCallMail(messageBodyPart1, messageBodyPart2, messageBodyPart3, messageBodyPart4,
+				messageBodyPart5);
+		return multipart; 
+
+
+ 
+	}
+
+
+
+	private static Multipart commonCallMail(BodyPart messageBodyPart1, BodyPart messageBodyPart2,
+			BodyPart messageBodyPart3, BodyPart messageBodyPart4, BodyPart messageBodyPart5) throws MessagingException {
 		Multipart multipart = new MimeMultipart();  
 		multipart.addBodyPart(messageBodyPart1);  
 		multipart.addBodyPart(messageBodyPart2);
 		multipart.addBodyPart(messageBodyPart3);
 		multipart.addBodyPart(messageBodyPart4);
 		multipart.addBodyPart(messageBodyPart5);
-		multipart.addBodyPart(messageBodyPart6);
-		multipart.addBodyPart(messageBodyPart7);
-		return multipart; 
-
-
- 
+		return multipart;
 	}
 }
 
