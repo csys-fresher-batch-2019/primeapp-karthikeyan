@@ -1,28 +1,31 @@
 package util;
 
-import java.io.IOException;
 import java.util.Scanner;
 
+import exception.DbException;
 import logger.Logger;
 
 public class TestConformEmail 
 {
+	private TestConformEmail() {
+		
+	}
 	static Scanner sc = new Scanner(System.in);
 	static Logger logger = Logger.getInstance();
-	public static boolean main(int random, String mailId) throws IOException {
+	public static boolean main(int random, String mailId) throws DbException {
 		
         String subject = "Verify your new Amazon account";    
         String bodyContent = "To verify your email address,\nplease use the following One Time Password (OTP):\n\n\n "+random+"\n\nDo not share this OTP with anyone.\nPrime takes your account security very seriously. ";
         return mailOtpCheck(random, mailId, subject, bodyContent);
 	}
-	public static boolean changePassword(int random,String mailId) throws IOException {
+	public static boolean changePassword(int random,String mailId) throws DbException {
 		
         String subject = "Prime password assistance";
         String bodyContent = "Password assistance \n\n\n To authenticate, please use the following One Time Password (OTP): \n\n\n "+random+"Do not share this OTP with anyone. \nPrime takes your account security very seriously.";
         return mailOtpCheck(random, mailId, subject, bodyContent);
 	}
 	private static boolean mailOtpCheck(int random, String mailId, String subject, String bodyContent)
-			throws IOException {
+			throws DbException {
 		MailUtil1.send(mailId,subject,bodyContent,1);
         logger.info("Enter the OTP");
         logger.info("OTP send to your MailId");

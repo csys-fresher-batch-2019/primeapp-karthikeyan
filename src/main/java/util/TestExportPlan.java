@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
+
 import com.chainsys.primevideos.imp.AmazonPlanImplements;
 import com.chainsys.primevideos.method.Plan;
 
@@ -17,12 +18,15 @@ public class TestExportPlan {
 		AmazonPlanImplements imp = new AmazonPlanImplements();
 		ArrayList<Plan> e = imp.list();
 		String filecontents = "";
+		//StringBuilder bld = new StringBuilder();
 		for(Plan ae : e)
 		{
 			String line = ae.getPlanId()+","+ae.getPlanDuration()+","+ae.getPlanAmount()+","+ae.getNoOfScreens()+","+ae.getDiscountAmount();
 			
 			filecontents = filecontents + line+ "\n"; 
 		}
+		
+		 
 		logger.info(filecontents);
 		
 		Path path = Paths.get("D:\\gre.txt");

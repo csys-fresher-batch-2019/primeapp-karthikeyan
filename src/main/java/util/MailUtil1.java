@@ -1,10 +1,6 @@
 package util;
 
-import java.io.IOException;
 import java.util.Properties;
-
-//import javax.activation.DataHandler;
-//import javax.activation.FileDataSource;
 import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -16,11 +12,14 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-
+import exception.DbException;
+import exception.InfoMessages;
 import logger.Logger;
 
  public class MailUtil1
 {  
+	 private MailUtil1() {
+	 }
 	 static Logger logger = new Logger();
 	 private static Session getProperties() {
 			Properties props = new Properties();    
@@ -32,6 +31,7 @@ import logger.Logger;
 	        props.put("mail.smtp.ssl.checkserveridentity", true); 
 	        Session session = Session.getDefaultInstance(props,new javax.mail.Authenticator() 
 	        {    
+	        	@Override
 	        	protected PasswordAuthentication getPasswordAuthentication() 
 	        	{    
 	        		return new PasswordAuthentication("primemovieentertainments@gmail.com","Reset@123");  
@@ -42,7 +42,7 @@ import logger.Logger;
 	
 
 
-	public static void send(String to,String sub,String message1,int val) throws IOException
+	public static void send(String to,String sub,String message1,int val) throws DbException
 	{  
 		Session session = getProperties();        
         try 
@@ -69,7 +69,7 @@ import logger.Logger;
         	throw new RuntimeException(e);
         }    
 	}
-public static void send1(int userId, String customerName, String to, String sub, String Msg, int val) {
+public static void send1(int userId, String customerName, String to, String sub, String msg2, int val) throws DbException {
 		
 		Session session = getProperties();    
         try 
@@ -79,27 +79,27 @@ public static void send1(int userId, String customerName, String to, String sub,
         	message.setSubject(sub); 
         	if(val==3)
         	{
-        		Multipart multipart2 = messageBody2(userId,customerName,to,Msg);
+        		Multipart multipart2 = messageBody2(userId,customerName,to,msg2);
                 message.setContent(multipart2);
         	}
         	Transport.send(message);    
-        	System.out.println("message sent successfully to "+to);    
+        	logger.info("message sent successfully to "+to);    
         }
         catch (MessagingException e) 
         {
-        	throw new RuntimeException(e);
+        	throw new DbException(InfoMessages.MAILSEND);
         }    
 	}
 
 
-	private static Multipart messageBody(String Msg) throws MessagingException{ 
+	private static Multipart messageBody(String msg3) throws MessagingException{ 
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
 		messageBodyPart1.setText("Prime OTP Assitance");  
 		BodyPart messageBodyPart2 = new MimeBodyPart(); 
 		messageBodyPart2.setText("\nTo authenticate, please use the following One Time Password (OTP):");
 		 
 		BodyPart messageBodyPart3 = new MimeBodyPart(); 
-		messageBodyPart3.setText(Msg);
+		messageBodyPart3.setText(msg3);
 		BodyPart messageBodyPart4 = new MimeBodyPart(); 
 		messageBodyPart4.setText("Do not share this OTP with anyone. \nAmazon takes your account security very seriously. \nAmazon Customer Service will never ask you to disclose or \nverify your Amazon password, OTP, credit card, or banking account number. ");
 		BodyPart messageBodyPart5 = new MimeBodyPart(); 
@@ -116,7 +116,7 @@ public static void send1(int userId, String customerName, String to, String sub,
 
 
  
-	private static Multipart messageBody1(String to,String Msg) throws MessagingException{ 
+	private static Multipart messageBody1(String to,String msg4) throws MessagingException{ 
 		BodyPart messageBodyPart1 = new MimeBodyPart();  
 		messageBodyPart1.setText("Prime Assitance");  
 		BodyPart messageBodyPart2 = new MimeBodyPart(); 
@@ -128,7 +128,7 @@ public static void send1(int userId, String customerName, String to, String sub,
 		BodyPart messageBodyPart5 = new MimeBodyPart(); 
 		messageBodyPart5.setText("\nBecause OF Following Reasons");
 		BodyPart messageBodyPart6 = new MimeBodyPart(); 
-		messageBodyPart6.setText("\n"+Msg);
+		messageBodyPart6.setText("\n"+msg4);
 		BodyPart messageBodyPart7= new MimeBodyPart(); 
 		messageBodyPart7.setText("\nThank you");
 		
