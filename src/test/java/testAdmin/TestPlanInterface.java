@@ -7,11 +7,9 @@ import plan.TestPlan;
 import plan.TestUpdatePlan;
 
 public class TestPlanInterface {
-	
-
-	static Scanner sc =new Scanner(System.in);
-	
+	static Scanner sc =new Scanner(System.in);	
 	public static void main(String[] args) throws Exception {
+		
 		System.out.println("Prime Videos Plans");
 		System.out.println("1.To Insert New Plan");
 		System.out.println("2.To View Plans");
@@ -44,9 +42,7 @@ public class TestPlanInterface {
 		}
 		System.out.println("To Stay Press 1");
 		System.out.println("To Go Back To AdminInterface Page Press 2");
-		int ch = sc.nextInt();
-		
-		switch(ch)
+		switch(sc.nextInt())
 		{
 		case 1:
 		{
@@ -57,8 +53,9 @@ public class TestPlanInterface {
 		{
 			TestAdminInterface.main(null);
 			break;
+			}
 		}
-		}
+		
 		
 	}
 

@@ -7,7 +7,6 @@ import com.chainsys.primevideos.method.Categorys;
 
 public interface CategoryDAO {
 
-	void addCategorys(String category) throws Exception;
 
 	void updateCategory(int categoryid,String categoryname) throws Exception;
 

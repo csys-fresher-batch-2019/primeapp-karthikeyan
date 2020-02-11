@@ -6,11 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
+
 import com.chainsys.primevideos.dao.UserCreditsDAO;
 import com.chainsys.primevideos.method.UserCredits;
+
 import connection.TestConnection;
 import exception.DbException;
+import exception.InfoMessages;
 import logger.Logger;
 import util.OTPUtil;
 import util.TestConformEmail;
@@ -18,7 +20,7 @@ import util.TestConformEmail;
 
 public class UserCreditsImp implements UserCreditsDAO {
 	static Logger logger = Logger.getInstance();
-	public boolean userLogin(String mailID) throws Exception {
+	public boolean userLogin(String mailID) throws DbException {
 		String sql = "Select passwords from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
@@ -30,13 +32,16 @@ public class UserCreditsImp implements UserCreditsDAO {
 			logger.info("Incorrect Email ID or DoesNot Exist");
 			return false;
 		}}}
-		catch(DbException e)
-		{
-			throw new Exception("UserLogin Failed");
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.mailCheck);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 		}
 
-	}
-	public boolean deleteUser(String mailId) throws Exception{
+	
+	public boolean deleteUser(String mailId) throws DbException{
 		String sql ="delete from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);)
@@ -48,15 +53,17 @@ public class UserCreditsImp implements UserCreditsDAO {
 			logger.info("UserCredits of :"+mailId+" deleted \n");
 			return true;
 			}}
-		catch(DbException e)
-		{
-			throw new Exception("User deletion Failed");
-		}
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.deleteUser);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 		return false;
 	}
 	
 
-	public boolean resetPassword(String mailId) throws Exception {
+	public boolean resetPassword(String mailId) throws DbException {
 		int otp = 0;
 		String sql = "select * from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
@@ -69,17 +76,19 @@ public class UserCreditsImp implements UserCreditsDAO {
 			return true;
 		}
 		}}
-		catch(DbException e)
-		{
-			throw new Exception("User Selection Reset Password Failed");
-		}
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.mailCheck);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 		return false;
 		
 		
 	}
 
 	
-	public void verifyOTPAndUpdatePassword(String mailId, String password) throws Exception {
+	public void verifyOTPAndUpdatePassword(String mailId, String password) throws DbException {
 		// String password = getPassword.main(null);
 		String sql1 = "update user_credits set passwords = ? where mail_id = ?"; //and otp = ?
 		try(Connection con1 = TestConnection.getConnection();
@@ -90,16 +99,18 @@ public class UserCreditsImp implements UserCreditsDAO {
 		if (row == 1) {
 			logger.info("Password Updated");
 		}}
-		catch(DbException e)
-		{
-			throw new Exception("Password Update Failed");
-		}
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.verifyOtp);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 
 		
 
 	}
 
-	public boolean userSignUp(String mailId,String password) throws Exception {
+	public boolean userSignUp(String mailId,String password) throws DbException {
 		String sql = "select passwords from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
@@ -118,10 +129,12 @@ public class UserCreditsImp implements UserCreditsDAO {
 			
 		}
 		}}
-		catch(DbException e)
-		{
-			throw new Exception("Registration operation Failed");
-		}
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.mailCheck);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 		return false;
 
 	}
@@ -140,16 +153,18 @@ public class UserCreditsImp implements UserCreditsDAO {
 			logger.info("Welcome to Prime\nUpdate your Profile");
 			return true;
 			}
-		catch(DbException e)
-			{
-				throw new Exception("Update User Failed After Otp Conformation");
-			}
+			catch (SQLException e1) {
+				throw new DbException(InfoMessages.mailCheck);
+			} 
+			 catch (Exception e1) {
+					throw new DbException(InfoMessages.Connection);
+				}
 			
 		}
 		return false;
 	}
 
-	public String password(String mailId) throws Exception {
+	public String password(String mailId) throws DbException {
 		String sql = "Select passwords from user_credits where mail_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
@@ -159,14 +174,15 @@ public class UserCreditsImp implements UserCreditsDAO {
 		return rs.getString(1);		
 		}
 		}
-		catch(DbException e)
-		{
-			throw new Exception("Password Selection Failed at Matching Region");
-		}
-
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.mailCheck);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 	}
 
-	public void userUpdate(UserCredits users) throws Exception {
+	public void userUpdate(UserCredits users) throws DbException {
 		
 			String sql = "update user_credits set customer_name = ? ,gender = ?,DOB = ?,age = ?,mobile_no = ? where mail_id = ?";
 			try(Connection con = TestConnection.getConnection();
@@ -184,13 +200,15 @@ public class UserCreditsImp implements UserCreditsDAO {
 					logger.info("Profile Updated");
 				}
 			}
-		} catch(DbException e)
-		{
-			throw new Exception("UserProfile Update Failed");
-		}
+		} catch (SQLException e1) {
+			throw new DbException(InfoMessages.updateUser);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 	}
 
-	public boolean profile(String mailIds) throws Exception {
+	public boolean profile(String mailIds) throws DbException {
 		String sql1 = "select * from user_credits where mail_id = ?";
 		try(Connection con1 = TestConnection.getConnection();
 		PreparedStatement pst1 = con1.prepareStatement(sql1);){
@@ -202,10 +220,12 @@ public class UserCreditsImp implements UserCreditsDAO {
 		logger.info(aes);
 		
 		}}
-		catch(DbException e)
-		{
-			throw new Exception("UsesCredits View Failed");
-		}
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.viewUser);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 		return false;
 	}
 	private UserCredits valPrimeReleases(ResultSet row1) throws SQLException {
@@ -230,15 +250,8 @@ public class UserCreditsImp implements UserCreditsDAO {
 		aes.setCreatedDate(i.toLocalDate());
 		return aes;
 	}
-
-
-
-	public List<UserCredits> getUserAge(int age) {
-		throw new UnsupportedOperationException();
-	}
-
 	@Override
-	public ArrayList<UserCredits> list() throws Exception {
+	public ArrayList<UserCredits> list() throws DbException {
 		String sql = "select * from user_credits";
 		try(Connection con1 = TestConnection.getConnection();
 				PreparedStatement pst1 = con1.prepareStatement(sql);){				
@@ -253,12 +266,14 @@ public class UserCreditsImp implements UserCreditsDAO {
 				}
 		}
 				
-				catch(DbException e)
-				{
-					throw new Exception("UsesCredits View Failed");
-				}
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.viewUser);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 	}
-	public ArrayList<UserCredits> list1() throws Exception {
+	public ArrayList<UserCredits> list1() throws DbException {
 		String sql = "select mail_id,user_id,customer_name from user_credits";
 		try(Connection con1 = TestConnection.getConnection();
 				PreparedStatement pst1 = con1.prepareStatement(sql);){				
@@ -279,17 +294,15 @@ public class UserCreditsImp implements UserCreditsDAO {
 				}
 		}
 				
-				catch(DbException e)
-				{
-					throw new Exception("UsesCredits View Failed");
-				}
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.viewUser);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 	}
 
-	@Override
-	public java.util.List<UserCredits> getUserDetails() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 
 }

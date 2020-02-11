@@ -21,7 +21,7 @@ public class TestInsertPlan {
 		System.out.println("Enter Discount Amount :");
 		a.setDiscountAmount(sc.nextInt());
 		api.addPlan(a);
-		sc.close();
+		
 
 	}
 

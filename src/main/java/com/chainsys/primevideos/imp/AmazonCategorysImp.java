@@ -3,6 +3,7 @@ package com.chainsys.primevideos.imp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.chainsys.primevideos.dao.CategoryDAO;
@@ -10,6 +11,7 @@ import com.chainsys.primevideos.method.Categorys;
 
 import connection.TestConnection;
 import exception.DbException;
+import exception.InfoMessages;
 import logger.Logger;
 
 public class AmazonCategorysImp implements CategoryDAO {
@@ -28,15 +30,17 @@ public class AmazonCategorysImp implements CategoryDAO {
 				int row = pst.executeUpdate();
 				logger.info(row);
 			}
-			catch(Exception e)
-			{
-				throw new DbException("Category Insertion Failed");
-		} 
+			catch (SQLException e1) {
+				throw new DbException(InfoMessages.addCategory);
+			} 
+			 catch (Exception e1) {
+					throw new DbException(InfoMessages.Connection);
+				}
 		
 	}
 
 
-	public ArrayList<Categorys> getcategorys() throws Exception {
+	public ArrayList<Categorys> getcategorys() throws DbException {
 		
 			String sql = "select * from categorys"; 
 			try(Connection con = TestConnection.getConnection();
@@ -57,10 +61,12 @@ public class AmazonCategorysImp implements CategoryDAO {
 }
 			
 			return ww;}}
-			catch(DbException e)
-			{
-				throw new Exception("Category View Failed");
-			}
+			catch (SQLException e1) {
+				throw new DbException(InfoMessages.viewCategory);
+			} 
+			 catch (Exception e1) {
+					throw new DbException(InfoMessages.Connection);
+				}
 		
 		
 		
@@ -70,20 +76,22 @@ public class AmazonCategorysImp implements CategoryDAO {
 		
 	
 
-	public void deleteUpdateCategorys(int categoryid) throws Exception {
+	public void deleteUpdateCategorys(int categoryid) throws DbException {
 		String sql ="delete categorys where category_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){	
 		pst.setInt(1,categoryid);
 		int row = pst.executeUpdate();
 		logger.info(row);}
-		catch(DbException e)
-		{
-			throw new Exception("Category Deletion Failed");
-		}
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.deleteCategory);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 	}
 
-	public void updateCategory(int categoryid,String categoryname) throws Exception {
+	public void updateCategory(int categoryid,String categoryname) throws DbException {
 		String sql = "update categorys set category_name = ? where category_id = ?";
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
@@ -91,15 +99,15 @@ public class AmazonCategorysImp implements CategoryDAO {
 		pst.setInt(2,categoryid);
 		int row = pst.executeUpdate();
 		logger.info(row);}
-		catch(DbException e)
-		{
-			throw new Exception("Plan Insertion Failed");
-		}
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.updateCategory);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 	}
 
 
-	public void addCategorys(String category) throws Exception {
-		throw new UnsupportedOperationException();
-	}
+	
 
 }

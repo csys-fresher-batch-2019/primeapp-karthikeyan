@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,59 +13,18 @@ import com.chainsys.primevideos.method.PrimeReleases;
 
 import connection.TestConnection;
 import exception.DbException;
+import exception.InfoMessages;
 import logger.Logger;
 
 public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 	Logger logger = Logger.getInstance();
 
-	public List<PrimeReleases> completeSearch(String get,String term) throws Exception {
-		String sql = "select prime_id,name_of_video from prime_releases where ? =?";
-		try(Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);){
-		pst.setString(1, get);
-		pst.setString(2, term);
-		try(ResultSet rs = pst.executeQuery();){
-		logger.info(sql);
-		ArrayList<PrimeReleases> l = new ArrayList<>();
-		printLocal();
-		while(rs.next())
-		{
-			int a=rs.getInt(1);
-			String b=rs.getString(3);			
-			logger.info(a+"        "+b);
-		}			
-		return l;}}
-		catch(DbException e)
-		{
-			throw new Exception("Selection Search View Failed");
-		}
-	}
+
 	private void printLocal() {
 		logger.info("Prime Id   Name of Video");
 	}
-	public List<PrimeReleases> likeSearch(String term,String search) throws Exception {
-		String sql = "select prime_id,name_of_video from prime_releases where ? LIKE %?%";
-		try(Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);){
-		pst.setString(1, term);
-		pst.setString(2, search);
-		try(ResultSet rs = pst.executeQuery();){
-		ArrayList<PrimeReleases> l = new ArrayList<>();
-		printLocal();
-		while(rs.next())
-		{
-			int a=rs.getInt(1);
-			String b=rs.getString(3);			
-			logger.info(a+"      "+b);
-		}			
-		return l;}}
-		catch(DbException e)
-		{
-			throw new Exception("Like Search Failed");
-		}
-		
-	}
-	public ArrayList<PrimeReleases> getSearchMovies(String sql) throws Exception {
+	
+	public ArrayList<PrimeReleases> getSearchMovies(String sql) throws DbException {
 		try(Connection con1 = TestConnection.getConnection();
 				PreparedStatement pst1 = con1.prepareStatement(sql);){				
 					try(ResultSet rs = pst1.executeQuery();){
@@ -77,16 +37,17 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 							logger.info(a+"      "+b);
 						}			
 						return l;}}
-						catch(DbException e)
-						{
-							throw new Exception("MovieSearch Failed");
-						}
-						
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.viewVideo);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 		}
 		
 	
 
-	public List<PrimeReleases> PowerSearchMethod(String sql) throws Exception {
+	public List<PrimeReleases> PowerSearchMethod(String sql) throws DbException {
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
 		try(ResultSet rs = pst.executeQuery();){
@@ -100,12 +61,15 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		}			
 		return l;}
 		}
-		catch(DbException e)
-		{
-			throw new Exception("Common Search Method Failed");
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.viewVideo);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 		}
-	}
-	public List<PrimeReleases> getDetails(int id) throws Exception
+	
+	public List<PrimeReleases> getDetails(int id) throws DbException
 	{
 		String sql ="Select * from prime_releases where prime_id = ?";
 		try(Connection con = TestConnection.getConnection();
@@ -147,12 +111,15 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		//logger.info(ad);
 		return l;
 			}	}
-		catch(DbException e)
-		{
-			throw new Exception("Selection Video Details Failed");
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.viewVideo);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 		}
 	
-	}
+	
 	public ArrayList<PrimeReleases> list(String sqlq) throws Exception{
 		String sql = sqlq;
 		return callFunction(sql);
@@ -173,7 +140,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		String sql = "select prime_id,name_of_video from prime_releases  where ROWNUM<=5  order by prime_release_date desc";
 		return callFunction(sql);		
 		}
-	private static ArrayList<PrimeReleases> callFunction(String sql) throws Exception{
+	private static ArrayList<PrimeReleases> callFunction(String sql) throws DbException{
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){	
 		try(ResultSet rs = pst.executeQuery();){
@@ -191,18 +158,13 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 			l.add(as);
 		}			
 		return l;}}
-		catch(DbException e)
-		{
-			throw new Exception("DataBase Operation Failed");
+		catch (SQLException e1) {
+			throw new DbException(InfoMessages.viewVideo);
+		} 
+		 catch (Exception e1) {
+				throw new DbException(InfoMessages.Connection);
+			}
 		}
-	}
-	@Override
-	public List<PrimeReleases> commonMethod(String term, String val, String sql) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
 	
 
 
