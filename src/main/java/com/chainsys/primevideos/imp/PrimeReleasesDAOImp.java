@@ -17,37 +17,23 @@ import exception.InfoMessages;
 import logger.Logger;
 
 public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
-	Logger logger = Logger.getInstance();
+	static Logger logger = Logger.getInstance();
 
 
-	private void printLocal() {
+	private static void printLocal() {
 		logger.info("Prime Id   Name of Video");
 	}
 	
 	public ArrayList<PrimeReleases> getSearchMovies(String sql) throws DbException {
-		try(Connection con1 = TestConnection.getConnection();
-				PreparedStatement pst1 = con1.prepareStatement(sql);){				
-					try(ResultSet rs = pst1.executeQuery();){
-						ArrayList<PrimeReleases> l = new ArrayList<>();
-						printLocal();
-						while(rs.next())
-						{
-							int a=rs.getInt(1);
-							String b=rs.getString(3);			
-							logger.info(a+"      "+b);
-						}			
-						return l;}}
-		catch (SQLException e1) {
-			throw new DbException(InfoMessages.viewVideo);
-		} 
-		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
-			}
-		}
+		return commonCall(sql);
 		
-	
+	}
 
 	public List<PrimeReleases> PowerSearchMethod(String sql) throws DbException {
+		return commonCall(sql);
+		}
+
+	private static ArrayList<PrimeReleases> commonCall(String sql) throws DbException {
 		try(Connection con = TestConnection.getConnection();
 		PreparedStatement pst = con.prepareStatement(sql);){
 		try(ResultSet rs = pst.executeQuery();){
@@ -67,7 +53,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		 catch (Exception e1) {
 				throw new DbException(InfoMessages.Connection);
 			}
-		}
+	}
 	
 	public List<PrimeReleases> getDetails(int id) throws DbException
 	{
@@ -141,30 +127,11 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		return callFunction(sql);		
 		}
 	private static ArrayList<PrimeReleases> callFunction(String sql) throws DbException{
-		try(Connection con = TestConnection.getConnection();
-		PreparedStatement pst = con.prepareStatement(sql);){	
-		try(ResultSet rs = pst.executeQuery();){
-		ArrayList<PrimeReleases> l = new ArrayList<>();
-		
-		while(rs.next())
-		{
-			int a=rs.getInt(1);
-			String b=rs.getString(2);
-			
-			
-			PrimeReleases as = new PrimeReleases();
-			as.setPrimeId(a);
-			as.setNameofVideo(b);			
-			l.add(as);
-		}			
-		return l;}}
-		catch (SQLException e1) {
-			throw new DbException(InfoMessages.viewVideo);
-		} 
-		 catch (Exception e1) {
-				throw new DbException(InfoMessages.Connection);
-			}
-		}
+		return commonCall(sql);}
+
+	public  ArrayList<PrimeReleases> completeSearch(String sql) throws DbException {
+		return commonCall(sql);
+	}
 	
 
 

@@ -64,7 +64,6 @@ public class TestUserInterface {
 		{
 			TestUserInterface.main(null);
 		}
-		sc.close();
 	
 	}
 	

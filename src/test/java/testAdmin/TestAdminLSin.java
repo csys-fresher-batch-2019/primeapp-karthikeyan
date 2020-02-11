@@ -31,6 +31,6 @@ public class TestAdminLSin {
 		}
 
 	}
-		sc.close();
+		
 }
 }

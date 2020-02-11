@@ -41,7 +41,7 @@ public class TestPage {
 			System.out.println("Enter valid Page");
 		}
 		
-		sc.close();	
+			
 	}
 
 	}}

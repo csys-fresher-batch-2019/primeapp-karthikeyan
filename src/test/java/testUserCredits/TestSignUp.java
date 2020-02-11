@@ -37,7 +37,7 @@ public class TestSignUp {
 	 		System.out.println("Pasword does not match");
 	 		nextStep();
 	 	}
-	 	sc.close();
+	 	
 		return false;
 		
 

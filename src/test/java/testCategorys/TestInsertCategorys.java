@@ -14,7 +14,7 @@ public class TestInsertCategorys {
 		System.out.println("Enter the Category Name");
 		String categoryName = String.valueOf(sc.next());
 		ae.addCategorys(categoryid,categoryName);
-		sc.close();
+		//sc.close();
 	}
 
 }

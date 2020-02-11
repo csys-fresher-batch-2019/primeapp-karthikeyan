@@ -25,10 +25,11 @@ public class TestHelp {
 		case 3:
 		{
 			TestPasswordAssitancne.main(null);
+			break;
 		}
 		
 	}
-		sc.close();
+		//sc.close();
 
 }
 }

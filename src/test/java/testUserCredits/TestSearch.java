@@ -112,6 +112,6 @@ public class TestSearch {
 		{
 			TestPage.main(null);
 		}
-		sc.close();
+		//sc.close();
 		}
 }

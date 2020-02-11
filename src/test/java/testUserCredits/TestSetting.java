@@ -47,7 +47,7 @@ public class TestSetting {
 		}
 		}
 		TestPage.main(EmailId);
-		sc.close();
+		//sc.close();
 	}
 
 }

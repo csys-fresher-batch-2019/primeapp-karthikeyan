@@ -38,7 +38,7 @@ public class TestPasswordAssitancne {
 		 	}
 			s.verifyOTPAndUpdatePassword(EmailId, password2);
 		}
-		sc.close();
+		//sc.close();
 
 	}
 

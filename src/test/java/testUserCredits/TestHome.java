@@ -6,6 +6,8 @@ import java.util.Scanner;
 import com.chainsys.primevideos.imp.PrimeReleasesDAOImp;
 import com.chainsys.primevideos.method.PrimeReleases;
 
+import exception.DbException;
+
 public class TestHome {
 	
 	public static void main(String EmailId) throws Exception {
@@ -36,25 +38,28 @@ public class TestHome {
 		int s =sc.nextInt();
 		if(s==1)
 		{
-			System.out.println("Enter the Movie ID");
-			int id = sc.nextInt();
-			as.getDetails(id);
+			movieIdSearch(sc, as);
 		}
 		else if(s==2)
 		{
 			System.out.println("Enter the Language");
 			String lang = sc.next();
-			as.completeSearch("audio_languages", lang);
-			System.out.println("Enter the Movie ID");
-			int id = sc.nextInt();
-			as.getDetails(id);
+			String sql = "select prime_id,name_of_video from prime_releases where audio_languages = '"+lang+"'";
+			as.completeSearch(sql);
+			movieIdSearch(sc, as);
 			
 		}
 		else
 		{
 			System.out.println("Enter Valid Type(1/2)");
 		}
-		sc.close();
+		
+	}
+
+	private static void movieIdSearch(Scanner sc, PrimeReleasesDAOImp as) throws DbException {
+		System.out.println("Enter the Movie ID");
+		int id = sc.nextInt();
+		as.getDetails(id);
 	}
 	
 	public static void PrintMethod(ArrayList<PrimeReleases> weee) {
