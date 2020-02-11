@@ -1,6 +1,5 @@
 package testAdmin;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,7 +19,7 @@ public class TestSendMailUsers {
 		UserCreditsImp as = new UserCreditsImp();
 		AmazonPlanImplements asx = new AmazonPlanImplements();
 		PrimeReleasesDAOImp ad = new PrimeReleasesDAOImp();
-		ArrayList<UserCredits> a1 = as.list1();
+		List<UserCredits> a1 = as.list1();
 		System.out.println("Send Mail  to Users");
 		System.out.println("1. To Send Mail To All Users");
 		System.out.println("2. To Send Mail To Particular Users");

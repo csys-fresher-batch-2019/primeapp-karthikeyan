@@ -18,15 +18,14 @@ public class TestExportPlan {
 		AmazonPlanImplements imp = new AmazonPlanImplements();
 		ArrayList<Plan> e = imp.list();
 		String filecontents = "";
-		//StringBuilder bld = new StringBuilder();
+		StringBuilder bld = new StringBuilder();
 		for(Plan ae : e)
 		{
-			String line = ae.getPlanId()+","+ae.getPlanDuration()+","+ae.getPlanAmount()+","+ae.getNoOfScreens()+","+ae.getDiscountAmount();
-			
-			filecontents = filecontents + line+ "\n"; 
+			bld.append(ae.getPlanId()).append(",").append(ae.getPlanDuration());
+			bld.append(",").append(ae.getPlanAmount()).append(",").append(ae.getNoOfScreens()).append(",").append(ae.getDiscountAmount());
 		}
 		
-		 
+		 filecontents = bld.toString();
 		logger.info(filecontents);
 		
 		Path path = Paths.get("D:\\gre.txt");

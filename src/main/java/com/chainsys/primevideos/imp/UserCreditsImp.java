@@ -277,7 +277,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 				throw new DbException(InfoMessages.CONNECTION);
 			}
 	}
-	public ArrayList<UserCredits> list1() throws DbException {
+	public List<UserCredits> list1() throws DbException {
 		String sql = "select mail_id,user_id,customer_name from user_credits";
 		try(Connection con1 = TestConnection.getConnection();
 				PreparedStatement pst1 = con1.prepareStatement(sql);){				

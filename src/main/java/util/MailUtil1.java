@@ -66,7 +66,7 @@ import logger.Logger;
         }
         catch (MessagingException e) 
         {
-        	throw new RuntimeException(e);
+        	throw new DbException(InfoMessages.MAILSEND);
         }    
 	}
 public static void send1(int userId, String customerName, String to, String sub, String msg2, int val) throws DbException {
