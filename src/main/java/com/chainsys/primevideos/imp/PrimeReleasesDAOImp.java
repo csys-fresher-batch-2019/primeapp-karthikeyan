@@ -109,19 +109,19 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		String sql = sqlq;
 		return callFunction(sql);
 	}
-	public ArrayList<PrimeReleases> list1() throws Exception {
+	public ArrayList<PrimeReleases> list1() throws DbException {
 		String sql = "select prime_id,name_of_video from prime_releases  where ROWNUM<=5  order by release_date desc";
 		return callFunction(sql);
 		}
-	public ArrayList<PrimeReleases> list2() throws Exception {
+	public ArrayList<PrimeReleases> list2() throws DbException {
 		String sql = "select prime_id,name_of_video from prime_releases  where ROWNUM<=10  order by imdb_rating desc";
 		return callFunction(sql);
 		}
-	public ArrayList<PrimeReleases> list3() throws Exception {
+	public ArrayList<PrimeReleases> list3() throws DbException {
 		String sql = "select prime_id,name_of_video from prime_releases  where originals = 1 and ROWNUM<=10  order by imdb_rating desc";
 		return callFunction(sql);			
 		}
-	public ArrayList<PrimeReleases> list4() throws Exception {
+	public ArrayList<PrimeReleases> list4() throws DbException {
 		String sql = "select prime_id,name_of_video from prime_releases  where ROWNUM<=5  order by prime_release_date desc";
 		return callFunction(sql);		
 		}
