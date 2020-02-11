@@ -90,7 +90,6 @@ public class UserCreditsImp implements UserCreditsDAO {
 
 	
 	public void verifyOTPAndUpdatePassword(String mailId, String password) throws DbException {
-		// String password = getPassword.main(null);
 		String sql1 = "update user_credits set passwords = ? where mail_id = ?"; //and otp = ?
 		try(Connection con1 = TestConnection.getConnection();
 		PreparedStatement pst1 = con1.prepareStatement(sql1);){
@@ -140,7 +139,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 
 	}
 
-	public boolean insertSignUp(String mailId, String password, int random) throws Exception {
+	public boolean insertSignUp(String mailId, String password, int random) throws DbException {
 
 		if (TestConformEmail.main(random, mailId))
 

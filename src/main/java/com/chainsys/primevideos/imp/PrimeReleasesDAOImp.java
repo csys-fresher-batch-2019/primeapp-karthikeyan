@@ -105,7 +105,7 @@ public class PrimeReleasesDAOImp implements PrimeReleasesDAO {
 		}
 	
 	
-	public List<PrimeReleases> list(String sqlq) throws Exception{
+	public List<PrimeReleases> list(String sqlq) throws DbException{
 		String sql = sqlq;
 		return callFunction(sql);
 	}

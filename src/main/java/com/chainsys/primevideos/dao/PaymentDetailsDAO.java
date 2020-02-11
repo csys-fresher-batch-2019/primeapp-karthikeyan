@@ -4,12 +4,14 @@ import java.util.List;
 
 import com.chainsys.primevideos.method.PaymentDetails;
 
+import exception.DbException;
+
 public interface PaymentDetailsDAO {
-	void addPaymentDetails(PaymentDetails payments) throws Exception;
+	void addPaymentDetails(PaymentDetails payments) throws DbException;
 
-	List<PaymentDetails> getPaymentsDetails() throws Exception;
+	List<PaymentDetails> getPaymentsDetails() throws DbException;
 
-	List<PaymentDetails> getPaymentsDetails(String cardCategoty) throws Exception;
+	List<PaymentDetails> getPaymentsDetails(String cardCategoty) throws DbException;
 	
 
 }
