@@ -19,7 +19,7 @@ public class AmazonPlanImplements implements AmazonPlanDAO {
 	Logger logger = Logger.getInstance();
 
 	public void addPlan(Plan plans) throws DbException {
-		String sql = "insert into plans(plan_id,plan_amount,plan_duration,no_of_screens,discount_amount) values (?,?,?,?,?)";
+		String sql = "insert into plans(plan_id,plan_amount,plan_duration,no_of_screens,discount_amount,originals) values (?,?,?,?,?)";
 		try (Connection con = TestConnection.getConnection(); 
 			PreparedStatement pst = con.prepareStatement(sql);) {
 			pst.setInt(1, plans.getPlanId());

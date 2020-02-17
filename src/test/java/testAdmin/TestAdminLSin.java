@@ -17,17 +17,16 @@ public class TestAdminLSin {
 		{
 		case 1:
 		{
-			//TestAdminLogin.main(null);
+			TestAdminLogin.main(null);
 			
 		}
 		case 2:
 		{
-			/*if(TestAdminSignUp.main(null))
+			if(TestAdminSignUp.main(null))
 			{
 			TestAdminLogin.main(null);
-			}
-			
-			break;*/
+			}			
+			break;
 		}
 
 	}

@@ -34,9 +34,11 @@ public class UserCreditsImp implements UserCreditsDAO {
 			return false;
 		}}}
 		catch (SQLException e1) {
+			e1.printStackTrace();
 			throw new DbException(InfoMessages.MAILCHECK);
 		} 
 		 catch (Exception e1) {
+			 e1.printStackTrace();
 				throw new DbException(InfoMessages.CONNECTION);
 			}
 		}
@@ -118,16 +120,16 @@ public class UserCreditsImp implements UserCreditsDAO {
 		try(ResultSet rs = pst.executeQuery();){
 		if (rs.next()) {
 			logger.info("Email Id Already Exist");
-			return false;
+			
 
-		} else {
+		}/* else {
 			int random = OTPUtil.getOTP();
 			if(insertSignUp(mailId,password, random))
 			{
 				return true;
 			}
 			
-		}
+		}*/
 		}}
 		catch (SQLException e1) {
 			throw new DbException(InfoMessages.MAILCHECK);
@@ -139,11 +141,11 @@ public class UserCreditsImp implements UserCreditsDAO {
 
 	}
 
-	public boolean insertSignUp(String mailId, String password, int random) throws DbException {
+	public  void insertSignUp(String mailId, String password) throws DbException {
 
-		if (TestConformEmail.main(random, mailId))
+		/*if (TestConformEmail.main(random, mailId))
 
-		{
+		{*/
 			String sql1 = "insert into user_credits (mail_id,user_id,passwords) values (?,user_id_seq.nextval,?)";
 			try(Connection con1 = TestConnection.getConnection();
 			PreparedStatement pst1 = con1.prepareStatement(sql1);){
@@ -151,7 +153,7 @@ public class UserCreditsImp implements UserCreditsDAO {
 			pst1.setString(2, password);
 			pst1.executeUpdate();
 			logger.info("Welcome to Prime\nUpdate your Profile");
-			return true;
+			
 			}
 			catch (SQLException e1) {
 				throw new DbException(InfoMessages.MAILCHECK);
@@ -160,8 +162,8 @@ public class UserCreditsImp implements UserCreditsDAO {
 					throw new DbException(InfoMessages.CONNECTION);
 				}
 			
-		}
-		return false;
+		
+		
 	}
 
 	public String password(String mailId) throws DbException {

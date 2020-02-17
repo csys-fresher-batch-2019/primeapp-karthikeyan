@@ -40,5 +40,11 @@ public class TestConformEmail
 			return false;
 		}
 	}
+public static void otpjsp(int random, String mailId) throws DbException {
+		
+        String subject = "Verify your new Amazon account";    
+        String bodyContent = "To verify your email address,\nplease use the following One Time Password (OTP):\n\n\n "+random+"\n\nDo not share this OTP with anyone.\nPrime takes your account security very seriously. ";
+        MailUtil1.send(mailId, subject, bodyContent, 1);
+}
 	
 }

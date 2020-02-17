@@ -8,8 +8,10 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class AdminInterface {
-	private String adminId;
+	private String adminLoginId;
+	private String adminEmpId;
 	private String adminName;
+	private String mailId;
 	private String loginKey;
 	private String password;
 	private int status;

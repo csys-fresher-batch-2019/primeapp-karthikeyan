@@ -27,4 +27,5 @@ public class InfoMessages {
    public static final String SIGNUPADD = "Unable to verify the Perform SignUp Operation";
    public static final String PASSCHECK = "Unable Perform Password Check";
    public static final String MAILSEND =  "Mail Cannot Be Send";
+   public static final String OPERATION =  "Cannot Able to Perform This Operation";
 }

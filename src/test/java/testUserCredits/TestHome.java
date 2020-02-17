@@ -10,28 +10,28 @@ import exception.DbException;
 
 public class TestHome {
 	
-	public static void main(String EmailId) throws Exception {
+	public static void main(String emailId) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("---------------------------------------------------AMAZON---------------------------------------------------------");
 		System.out.println("-------------------------------------------------Prime Video------------------------------------------------------");
 		PrimeReleasesDAOImp as = new PrimeReleasesDAOImp();	
-		ArrayList<PrimeReleases> we = as.list2();
-		ArrayList<PrimeReleases> we1 = as.list1();
-		ArrayList<PrimeReleases> we2 = as.list3();
-		ArrayList<PrimeReleases> we3 = as.list4();
 		System.out.println();
 		System.out.println();
 		System.out.println("TOP PRIORITIES");
-		PrintMethod(we);
+		ArrayList<PrimeReleases> we = as.list2();
+		printMethod(we);
 		ReadFile.main("Languages");
 		System.out.println();
 		System.out.println("-------------------------------------------------------------------------------------------------------");
 		System.out.println("New Releases");
-		PrintMethod(we1);
+		ArrayList<PrimeReleases> we1 = as.list1();
+		printMethod(we1);
 		System.out.println("Originals");
-		PrintMethod(we2);
+		ArrayList<PrimeReleases> we2 = as.list3();
+		printMethod(we2);
 		System.out.println("Recently added Movies");
-		PrintMethod(we3);
+		ArrayList<PrimeReleases> we3 = as.list4();
+		printMethod(we3);
 		System.out.println("To search by MovieId Press 1");
 		System.out.println("To search by language Press 2");
 		System.out.println("Select Type(1/2)");
@@ -62,12 +62,11 @@ public class TestHome {
 		as.getDetails(id);
 	}
 	
-	public static void PrintMethod(ArrayList<PrimeReleases> weee) {
-		System.out.println("Prime Id   Name of Video");
+	public static void printMethod(ArrayList<PrimeReleases> weee) {
+		System.out.println("Prime Id   Name of the Video");
 		for(PrimeReleases a : weee)
-		{
-			
-			System.out.print(a.getPrimeId()+" "+ a.getNameofVideo()+"    ");
+		{			
+			System.out.println(a.getPrimeId()+"     "+ a.getNameofVideo());
 		}
 		System.out.println();
 		System.out.println("-------------------------------------------------------------------------------------------------------");

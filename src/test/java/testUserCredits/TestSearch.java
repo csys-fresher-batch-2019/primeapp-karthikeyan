@@ -8,7 +8,7 @@ import com.chainsys.primevideos.imp.PrimeReleasesDAOImp;
 
 
 public class TestSearch {
-	public static void main(String EmailId) throws Exception {
+	public static void main(String[] args) throws Exception {
 		Scanner sc = new Scanner(System.in);
 		PrimeReleasesDAOImp ds = new PrimeReleasesDAOImp();
 		ReadFile.main("Search");
@@ -47,13 +47,13 @@ public class TestSearch {
 		String Director = sc.nextLine();
 		if(Director.length()!=0)
 		{
-				sql = sql+" director  = '"+Director+"'";
+				sql = sql+"director = '%"+Director+"%'";
 		}
 		System.out.println("Actor : ");
 		String Actor = sc.nextLine();
 		if(Actor.length()!=0)
 		{
-				sql = sql+" actor = '"+Actor+"'";
+				sql = sql+"actor '%"+Actor+"%'";
 		}
 		System.out.println("Genre : ");
 		String Genre = sc.nextLine();
